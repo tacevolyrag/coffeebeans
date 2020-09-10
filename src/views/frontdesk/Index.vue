@@ -1,13 +1,20 @@
 <template>
     <div class="mb-5 pb-5 index">
         <div class="container-fluid px-0 py-0">
-            <div class="banner">
-                <div class="banner-img img-fluid">
-                <h4 class="banner-text text-coffeetext">
-                    遠離喧囂的生活<br>
-                    邂逅內心的自我<br>
-                    一杯手沖單品咖啡<br>
-                    讓心靈定格在光影與音樂的世界裡</h4>
+            <div class="banner d-flex justify-content-center align-items-center">
+                <div></div>
+                <div class="banner-img">
+                    <div class="banner-text text-coffeetext h4">
+                        <!-- <p>遠離喧囂的生活</p><br>
+                        <p>邂逅內心的自我</p><br>
+                        <p>一杯手沖單品咖啡</p><br>
+                        <p>讓心靈定格在光影</p><br>
+                        <p>與音樂的世界裡</p> -->
+                        <p>遠離喧囂的生活</p>
+                        <p>邂逅內心的自我</p>
+                        <p>一杯手沖單品咖啡</p>
+                        <p>讓心靈定格在光影與音樂的世界裡</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -179,7 +186,7 @@ export default {
 // banner img,text css
   .banner{
     height: 500px;
-    position: relative;
+
       .banner-img{
         // height: 500px;
         // background-image: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v656-ning-09-coffeeday_1.jpg?bg=transparent&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-3.1.0&q=80&usm=15&vib=3&w=1300&s=51430a8903a95215898d944a6b81a8b5');
@@ -189,10 +196,8 @@ export default {
         // background-attachment: fixed;
       }
     .banner-text{
-        position: absolute;
-        top: 25%;
-        right: 30%;
-        line-height: 2.3;
+        line-height: 1.6;
+        transform: translateX(70%)
     }
   }
 // banner img,text end
@@ -234,7 +239,7 @@ export default {
       }
       .img-opacity{
           opacity: 0;
-          transition: all 1s;
+          transition: all 1.5s;
       }
       .img-opacity1{
           transform: translateX(-50%);

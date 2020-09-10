@@ -17,7 +17,7 @@
             <a href="#" class="text-coffeetext coffee-knowledge" @click.prevent="menuDropDown">
               咖啡豆知識
               </a>
-            <ul class="text-coffeetext knowledge-list">
+            <ul class="text-coffeetext knowledge-list bg-coffee2">
               <li>
                 <router-link to="/coffeekind" class="text-coffeetext">咖啡豆種類</router-link>
               </li>
@@ -102,7 +102,6 @@ html {
     }
     li {
       transform: all 1s;
-      background-color: #632100;
       a {
         padding: 20px 30px;
       }

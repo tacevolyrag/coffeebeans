@@ -183,6 +183,12 @@ body{
   }
   .step3 {
     position: relative;
+      div {
+        color: #ffebae;
+      }
+      span {
+        color: #2c3e50;
+      }
     &::before {
       position: absolute;
       display: block;
@@ -193,13 +199,6 @@ body{
       width: 150px;
       right: -199%;
       z-index: 9;
-      div {
-        background-color: #632100;
-        color: #ffebae;
-      }
-      span {
-        color: #2c3e50;
-      }
     }
   }
   .step4 {
