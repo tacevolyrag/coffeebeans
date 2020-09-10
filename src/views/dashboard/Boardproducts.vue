@@ -21,7 +21,7 @@
       <tbody>
         <tr v-for="(item,index) in products" :key="item.id">
           <td class="pt-3 text-left">{{ index+1 }}</td>
-          <td class="pt-3 text-left">{{ item.content }}</td>
+          <td class="pt-3 text-left">{{ item.category }}</td>
           <td class="pt-3 text-left">{{ item.title }}</td>
           <td class="pt-3 text-right">{{ item.origin_price | thousand }}</td>
           <td class="pt-3 text-right">{{ item.price | thousand }}</td>

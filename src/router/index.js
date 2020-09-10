@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/frontdesk/Home.vue';
+// import Home from '../views/frontdesk/Home.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    component: Home,
+    component: () => import('../views/frontdesk/Home.vue'),
     children: [
       {
         path: '',
@@ -22,8 +22,12 @@ const routes = [
         component: () => import('../views/frontdesk/Paybill.vue'),
       },
       {
-        path: 'payedbill',
+        path: 'payedbill/:id',
         component: () => import('../views/frontdesk/Payedbill.vue'),
+      },
+      {
+        path: 'checkouts',
+        component: () => import('../views/frontdesk/Checkouts.vue'),
       },
       {
         path: 'product/:id',
@@ -36,6 +40,14 @@ const routes = [
       {
         path: 'cart',
         component: () => import('../views/frontdesk/Cart.vue'),
+      },
+      {
+        path: 'coffeebaking',
+        component: () => import('../views/frontdesk/Coffeebaking.vue'),
+      },
+      {
+        path: 'coffeekind',
+        component: () => import('../views/frontdesk/Coffeekind.vue'),
       },
     ],
   },

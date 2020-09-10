@@ -85,6 +85,11 @@ $theme-colors: map-merge(
     "light":      $light,
     "dark":       $dark,
     "coffee":     #2a1a07,
+    "coffee2": #632100,
+    "coffeetext": #ffebae,
+    "beige": #fefbf4,
+    "lightgrey" : #bbb,
+    "bgtext" : #3a3b3d,
   ),
   $theme-colors
 );
@@ -1062,6 +1067,7 @@ $breadcrumb-bg:                     $gray-200 !default;
 $breadcrumb-divider-color:          $gray-600 !default;
 $breadcrumb-active-color:           $gray-600 !default;
 $breadcrumb-divider:                quote("/") !default;
+$breadcrumb-active-color:           #632100 !default;
 
 $breadcrumb-border-radius:          $border-radius !default;
 

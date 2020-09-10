@@ -1,16 +1,9 @@
 <template>
   <div id="app">
+    <div class="">
     <loading :active.sync="isLoading"></loading>
-    <div id="nav">
-      <router-link to="/">首頁</router-link>|
-      <router-link to="/about">關於我們</router-link>|
-      <router-link to="/products">產品列表</router-link>|
-      <router-link to="/cart">購物車</router-link>|
-      <router-link to="/paybill">結帳頁面</router-link>|
-      <router-link to="/payedbill">結帳完成</router-link>|
-    </div>
-    <hr />
     <router-view />
+    </div>
   </div>
 </template>
 
@@ -27,7 +20,7 @@ export default {
 @import "./assets/main";
 
 #app {
-  font-family: 微軟正黑體;
+  font-family: 'Noto Sans TC', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -5,19 +5,39 @@ import $ from 'jquery';
 import 'bootstrap';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
+import {
+  ValidationObserver, ValidationProvider, extend, localize, configure,
+} from 'vee-validate';
+import * as rules from 'vee-validate/dist/rules';
+import TW from 'vee-validate/dist/locale/zh_TW.json';
 import App from './App.vue';
 import router from './router';
 
 Vue.config.productionTip = false;
 
 Vue.component('Loading', Loading);
+Vue.component('ValidationObserver', ValidationObserver);
+Vue.component('ValidationProvider', ValidationProvider);
 Vue.use(VueAxios, axios);
+Vue.prototype.$bus = new Vue();
 Vue.filter('thousand', (num) => {
   const parts = num.toString().split('.');
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return parts.join('.');
 });
 
+Object.keys(rules).forEach((rule) => {
+  extend(rule, rules[rule]);
+});
+
+configure({
+  classes: {
+    valid: 'is-valid',
+    invalid: 'is-invalid',
+  },
+});
+
+localize('zh_TW', TW);
 window.$ = $;
 
 new Vue({

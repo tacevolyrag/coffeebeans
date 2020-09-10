@@ -1,11 +1,15 @@
 <template>
   <div>
+    <div id="nav">
     <router-link to="/admin/boardproducts">後台產品列表</router-link>|
     <router-link to="/admin/order">訂單列表</router-link>|
     <router-link to="/admin/coupons">優惠券列表</router-link>|
     <router-link to="/admin/depositimage">後台儲存圖片</router-link>|
     <router-link to="/admin/login">登入</router-link>|
+    <router-link to="/">回到前台</router-link>|
+    <hr>
     <router-view :token="token" />
+    </div>
   </div>
 </template>
 

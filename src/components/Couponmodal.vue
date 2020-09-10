@@ -26,7 +26,50 @@
                     />
                   </div>
                 </form>
+                <!-- <form>
+                  <div class="form-group text-left">
+                    <label for="couponId" class="col-form-label">
+                      <div>優惠券序號</div>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="couponId"
+                      placeholder="COUPON CODE"
+                      v-model="editCoupon.code"
+                    />
+                  </div>
+                </form> -->
                 <form>
+                  <div class="form-group text-left">
+                    <label for="couponDate" class="col-form-label">
+                      <div>優惠券期限</div>
+                    </label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="couponDate"
+                      v-model="couponDate"
+                    />
+                  </div>
+                </form>
+                <form>
+                  <div class="form-group text-left">
+                    <label for="couponTime" class="col-form-label">
+                      <div>優惠券時間</div>
+                    </label>
+                    <input
+                      type="time"
+                      class="form-control"
+                      id="couponTime"
+                      step="1"
+                      v-model="couponTime"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-4">
+                  <form>
                   <div class="form-group text-left">
                     <label for="couponId" class="col-form-label">
                       <div>優惠券序號</div>
@@ -40,22 +83,6 @@
                     />
                   </div>
                 </form>
-                <form>
-                  <div class="form-group text-left">
-                    <label for="couponTime" class="col-form-label">
-                      <div>優惠券期限</div>
-                    </label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="couponTime"
-                      placeholder="2020-12-31 23:59:59"
-                      v-model="editCoupon.deadline_at"
-                    />
-                  </div>
-                </form>
-              </div>
-              <div class="col-md-4">
                 <form>
                   <div class="form-group text-left">
                     <label for="couponPercent" class="col-form-label">
@@ -97,6 +124,8 @@ export default {
   data() {
     return {
       isLoading: false,
+      couponTime: '',
+      couponDate: '',
     };
   },
   props: ['editCoupon', 'created'],
@@ -105,6 +134,8 @@ export default {
       this.isLoading = true;
       const creatCouponUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/coupon`;
       const editCouponUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/coupon/${this.editCoupon.id}`;
+      this.editCoupon.deadline_at = `${this.couponDate} ${this.couponTime}`;
+      console.log(this.editCoupon.deadline_at);
       // 如果是 true 就新增一個優惠券，反之則編輯優惠券。
       if (this.created) {
         this.$http.post(creatCouponUrl, this.editCoupon)

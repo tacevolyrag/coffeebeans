@@ -37,7 +37,8 @@
         <div class="modal fade" id="couponModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
             <Couponmodal :edit-coupon="editCoupon" :created="created"
-            @update="getcouponsData"></Couponmodal>
+            @update="getcouponsData">
+            </Couponmodal>
         </div>
     <!-- newCouponModal end-->
     <!-- delCouponModal -->
@@ -62,7 +63,9 @@ export default {
   data() {
     return {
       coupons: [],
-      editCoupon: {},
+      editCoupon: {
+        deadline_at: 0,
+      },
       pagination: {},
       created: false,
       isLoading: false,
@@ -77,11 +80,13 @@ export default {
           this.coupons = res.data.data;
           this.pagination = res.data.meta.pagination;
           this.isLoading = false;
+          console.log(res.data);
         });
     },
     newCouponModal() {
       this.created = true;
       this.editCoupon = {};
+      this.editCoupon.deadline_at = {};
       $('#couponModal').modal('show');
     },
     editCouponModal(coupon) {
