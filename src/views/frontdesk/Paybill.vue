@@ -37,6 +37,8 @@
       </ol>
     </div>
     <!-- shopping step end -->
+
+    <!-- customer data -->
     <div class="container py-5" v-if="cart.length">
       <div class="row">
         <div class="col-md-6">
@@ -106,9 +108,9 @@
           </div>
         </div>
          <!-- 訂單資訊驗證及訊息 start-->
-        <div class="col-md-6">
+        <div class="col-md-6 data-validation">
           <div class="row">
-            <validation-observer v-slot="{ invalid }" class="col-md-9">
+            <validation-observer v-slot="{ invalid }" class="col-md-12">
               <form @submit.prevent="submitData">
                 <div class="form-group text-left">
                   <validation-provider rules="required" v-slot="{ errors,classes}">
@@ -173,6 +175,7 @@
         </div>
       </div>
     </div>
+    <!-- customer data e -->
     <div class="cart container py-5" v-else>
       <div class="text-center">
         <p style="font-size: 6rem"><i class="fas fa-shopping-cart"></i></p>
@@ -359,6 +362,30 @@ body{
   .checkout-money{
     padding-top: 20px;
     border-top: 3px solid #632100;
+  }
+}
+@media screen and (max-width: 768px){
+  .shopping-step{
+    li{
+      margin: 0 59px;
+    }
+    .step2::before{
+      right: -87%;
+    }
+    .step3::before{
+      display: none;
+    }
+    .step4{
+      display: none;
+    }
+  }
+}
+@media screen and (max-width: 414px){
+  .shopping-step{
+    display: none;
+  }
+  .data-validation{
+    margin-top: 50px;
   }
 }
 </style>

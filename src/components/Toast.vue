@@ -9,7 +9,7 @@
         aria-atomic="true"
         data-delay="3000"
         data-animation="true"
-        style="position: absolute; top:90px ; right:200px ;"
+        style="position: absolute; top:90px ; right:200px ;  z-index: 30"
       >
         <div class="toast-header">
           <div class="mr-2" style="color:#632100">

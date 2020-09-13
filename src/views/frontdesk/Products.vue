@@ -11,6 +11,7 @@
         <li class="breadcrumb-item font-weight-bold active" aria-current="page">商品列表</li>
       </ol>
     </nav>
+    <!-- 商品分類 -->
     <div class="category pb-3">
       <ul class="d-flex justify-content-center">
         <li :class="{ active: filterProducts === 'all'}"
@@ -23,6 +24,8 @@
         @click="filterSort(filterProducts = 'other')">週邊商品</li>
       </ul>
     </div>
+    <!-- 商品分類e -->
+    <!-- 商品列表 -->
       <div class="row">
         <div class="col-md-12">
           <div class="content">
@@ -31,7 +34,6 @@
                 class="products-list shadow-sm bg-white rounded"
                 v-for="product in categoryProducts"
                 :key="product.id"
-                style="width: 31%"
               >
                 <div class="card" style="height: 450px">
                   <a href="#" @click.prevent="getProductDetail(product.id)">
@@ -78,6 +80,7 @@
           </div>
         </div>
       </div>
+      <!-- 商品列表e -->
     </div>
     <Toast></Toast>
     <Toasterror></Toasterror>
@@ -159,11 +162,6 @@ export default {
 <style lang="scss">
 .products{
   background-color: #fefbf4;
-  // background-image: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v656-ning-09-coffeeday_1.jpg?bg=transparent&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-3.1.0&q=80&usm=15&vib=3&w=1300&s=51430a8903a95215898d944a6b81a8b5');
-  // background-position: center center;
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  // background-attachment: fixed;
 }
 .category{
   ul{
@@ -184,14 +182,44 @@ export default {
     }
   }
 }
+@media screen and (max-width: 414px){
+  .category{
+    ul{
+      li{
+        padding: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10;
+      }
+    }
+  }
+}
+@media screen and (max-width: 320px){
+  .category{
+    ul{
+      li{
+        padding: 5px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 280px){
+  .category{
+    ul{
+      li{
+        padding: 10px;
+      }
+    }
+  }
+}
 .product-title a {
   text-decoration: none;
   font-weight: bolder;
 }
 .products-list {
   margin-bottom: 25px;
+  width: 31%;
 }
-
 .product-origin {
   position: relative;
   color: #bbb;
@@ -222,5 +250,16 @@ export default {
 }
 .breadcrumb-item.active{
   color: #632100;
+}
+@media screen and(max-width: 768px){
+  .products-list{
+    width: 48%;
+  }
+}
+@media screen and(max-width: 414px){
+  .products-list{
+    width: 100%;
+    margin-bottom: 50px;
+  }
 }
 </style>

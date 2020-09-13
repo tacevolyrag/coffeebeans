@@ -171,4 +171,11 @@ body{
     background-image: url("https://images.unsplash.com/photo-1514066637891-498034f5a154?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
   }
 }
+@media screen and (max-width: 1024px){
+  .bakingCoffee{
+    .baking-image-1{
+    margin: 110px 0;
+    }
+  }
+}
 </style>

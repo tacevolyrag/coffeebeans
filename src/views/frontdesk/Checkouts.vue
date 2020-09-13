@@ -21,16 +21,17 @@
         </li>
       </ol>
     </div>
-    <div class="container py-5">
+    <div class="container py-5 congra congratulation">
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div style="font-size: 6rem"><i class="fas fa-truck"></i></div>
           <h4 class="mt-1 text-coffee2">恭喜您，已完成付款結帳囉 ！</h4>
           <p class="mt-1">感謝您對 <span style="font-family:'Carter One', cursive;">
             CoffeeBeans</span> 的信任，商品將會在 1 - 3 天到府，請耐心等候。</p>
-          <div class="d-flex justify-content-around my-5">
+          <div class="d-flex justify-content-around my-5 btnArea">
           <button class="btn btn-outline-coffee2" type="button" @click="goToIndex">回首頁</button>
-          <button class="btn btn-coffee2" type="button" style="width:40%" @click="goToShop">
+          <button class="btn btn-coffee2 backShop"
+          type="button" style="width:40%" @click="goToShop">
             繼續購物 ！</button>
           </div>
         </div>
@@ -144,6 +145,21 @@ body{
     }
     span {
       color: #2c3e50;
+    }
+  }
+}
+@media screen and(max-width:768px){
+  .shopping-step{
+    display: none;
+  }
+}
+@media screen and(max-width:320px){
+  .congratulation{
+    margin-bottom: 3rem;
+  }
+  .btnArea{
+    .backShop{
+      width: 50%;
     }
   }
 }

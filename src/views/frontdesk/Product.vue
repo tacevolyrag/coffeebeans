@@ -19,7 +19,7 @@
     <div class="mt-4">
       <div class="">
         <div class="row align-items-center">
-          <div class="col-md-6">
+          <div class="col-md-6 single-product">
             <img :src="product.imageUrl" class="img-fluid" alt />
           </div>
           <div class="col-md-6">
@@ -184,6 +184,11 @@ body{
   width: 100%;
   left: 0;
   height: 55%;
-  border-bottom: 2px solid #f00;
+  border-bottom: 2px solid #bbb;
+}
+@media screen and (max-width: 414px){
+  .single-product{
+    margin-bottom: 30px;
+  }
 }
 </style>

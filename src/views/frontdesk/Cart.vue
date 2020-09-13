@@ -37,13 +37,14 @@
     <!-- cart detail -->
     <div class="cart container py-5" v-if="cart.length">
       <div class="row">
-        <div class="col-md-8 cart-border">
+        <div class="col-md-12 col-lg-8 col-12 cart-border">
           <div class="text-right mt-3">
             <button type="button" class="btn btn-outline-danger btn-sm" @click="removeItems">
               <i class="fas fa-times"> 清除購物車</i>
             </button>
           </div>
-          <table class="table mt-3 mb-0">
+          <div class="cart-table">
+            <table class="table mt-3 mb-0 cart-table">
             <thead>
               <th>刪除</th>
               <th>商品名稱</th>
@@ -103,12 +104,13 @@
                 >$ {{ cartTotal | thousand }} 元</td>
               </tr>
             </tfoot>
-          </table>
+            </table>
+          </div>
         </div>
         <!-- cart detail end-->
 
         <!-- order information -->
-        <div class="col-md-4">
+        <div class="col-md-12  col-lg-4 col-12 orderInfo">
           <div class="cart-border " style="width: 20rem;">
             <div class="card-header text-left pt-3 text-coffee2">訂單資訊</div>
             <div class="card-body my-3">
@@ -136,11 +138,11 @@
         <!-- order information end-->
       </div>
     </div>
-    <div class="cart container py-5" v-else>
+    <div class="cart container" v-else>
       <div class="text-center">
         <p style="font-size: 6rem" class=""><i class="fas fa-shopping-cart"></i></p>
         <p>您的購物車中沒有商品</p>
-        <div class="btn btn-coffee2" type="button" style="width: 15%" @click="goToShop" >去購物</div>
+        <div class="btn btn-coffee2 cart-goshop" type="button" @click="goToShop" >去購物</div>
       </div>
     </div>
   </div>
@@ -315,6 +317,134 @@ body{
     .productTitle{
       text-decoration: none;
       color: #000;
+    }
+  }
+  .cart-goshop{
+    width: 15%;
+  }
+}
+.cart-table{
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+}
+@media screen and(max-width:768px){
+  .shopping-step{
+    li{
+      margin: 0 59px;
+    }
+    .step1::before{
+      top: 23%;
+      right: -206%;
+    }
+    .step2::before{
+      top: 23%;
+      right: -87%;
+    }
+    .step3::before{
+      display: none;
+    }
+    .step4{
+       display: none;
+    }
+  }
+  .cart{
+    .cart-goshop{
+      width: 25%;
+    }
+  }
+  .orderInfo{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+}
+@media screen and(max-width:540px){
+  .shopping-step{
+    li{
+      margin: 0 45px;
+    }
+    .step1::before{
+      top: 18%;
+      right: -210%;
+      width: 135px;
+    }
+    .step2::before{
+      top: 18%;
+      right: -91%;
+      width: 130px;
+    }
+  }
+}
+@media screen and(max-width:414px){
+  .shopping-step{
+    li{
+      margin: 0 50px;
+    }
+    .step1::before{
+      top: 17%;
+      right: -237%;
+      width: 137px;
+    }
+    .step2::before{
+      display: none;
+    }
+    .step3{
+      display: none;
+    }
+  }
+  .cart{
+    padding-bottom: 100px;
+    .cart-goshop{
+      width: 50%;
+    }
+  }
+}
+@media screen and(max-width:375px){
+  .shopping-step{
+    li{
+      margin: 0 42px;
+    }
+    .step1::before{
+      top: 18%;
+      right: -213%;
+      width: 120px;
+    }
+  }
+}
+@media screen and(max-width:360px){
+  .shopping-step{
+    li{
+      margin: 0 39px;
+    }
+    .step1::before{
+      top: 18%;
+      right: -204%;
+      width: 120px;
+    }
+  }
+}
+@media screen and(max-width:320px){
+  .shopping-step{
+    li{
+      margin: 0 25px;
+    }
+    .step1::before{
+      top: 18%;
+      right: -144%;
+      width: 92px;
+    }
+  }
+}
+@media screen and(max-width:280px){
+  .shopping-step{
+    li{
+      margin: 0 18px;
+    }
+    .step1::before{
+      top: 18%;
+      right: -120%;
+      width: 72px;
     }
   }
 }

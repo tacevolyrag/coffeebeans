@@ -21,13 +21,13 @@
         </li>
       </ol>
     </div>
-    <div class="container mb-5 pb-5">
+    <div class="container mb-5 pb-5 data-coustomer">
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="border mb-4">
             <table class="table">
               <tr>
-                <td class="text-left h5 text-coffee2">收件人資訊</td>
+                <td class="text-left h5 text-coffee2 order-info" width="35%">收件人資訊</td>
               </tr>
               <tr>
                 <td class="text-left" width="20%">姓名</td>
@@ -50,7 +50,7 @@
           <div class="border mb-4">
             <table class="table">
               <tr>
-                <td class="text-left h5 text-coffee2">訂單資訊</td>
+                <td class="text-left h5 text-coffee2 order-info" width="35%">訂單資訊</td>
               </tr>
               <tr>
                 <td class="text-left" width="20%">付款方式</td>
@@ -209,6 +209,39 @@ body{
       span {
         color: #bbb;
       }
+  }
+}
+@media screen and(max-width: 768px){
+  .shopping-step{
+    .step1{
+      display: none;
+    }
+    .step4{
+      display: block;
+    }
+  }
+}
+@media screen and(max-width: 540px){
+  .data-coustomer{
+    margin-top: 3rem;
+  }
+  .shopping-step{
+    display: none;
+  }
+}
+@media screen and(max-width: 414px){
+  .shopping-step{
+    display: none;
+  }
+}
+@media screen and(max-width: 375px){
+  .order-info{
+    width: 40%;
+  }
+}
+@media screen and(max-width: 320px){
+  .order-info{
+    width: 45%;
   }
 }
 </style>

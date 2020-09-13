@@ -17,7 +17,11 @@
                             <div class="card-price text-right">
                                 <div class="originPrice" v-if="item.origin_price">
                                     NT$ {{ item.origin_price }}</div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                  <router-link :to="`/product/${item.id}`" class="btn btn-coffee2"
+                                  target="_blank">查看更多</router-link>
                                 <div class="price h5 mt-1">NT$ {{ item.price }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -55,6 +59,23 @@ export default {
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
+        },
+        breakpoints: {
+          1024: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            loop: true,
+          },
+          768: {
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+            loop: true,
+          },
+          280: {
+            slidesPerView: 1,
+            slidesPerGroup: 1,
+            loop: true,
+          },
         },
       },
       swiperProducts: {},
