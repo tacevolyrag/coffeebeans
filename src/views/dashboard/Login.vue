@@ -37,7 +37,6 @@ export default {
         email: '',
         password: '',
       },
-      apiPath: 'https://course-ec-api.hexschool.io/',
       token: '',
     };
   },
@@ -58,6 +57,7 @@ export default {
         })
         .catch((err) => {
           console.log(err.response);
+          this.isLoading = false;
         });
     },
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <loading :active.sync="isLoading"></loading>
     <div class="container shopping-step py-5">
       <ol class="step d-flex justify-content-center">
@@ -73,7 +73,7 @@
             </table>
           </div>
           <div class="d-flex justify-content-end mb-5">
-            <button class="btn btn-coffee2" style="width:50%" @click="payedBill">確認付款</button>
+            <button class="btn btn-coffee2 confrimedPay" @click="payedBill">確認付款</button>
           </div>
         </div>
       </div>
@@ -94,11 +94,14 @@ export default {
       const { id } = this.$route.params;
       this.isLoading = true;
       const getOrderUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/orders/${id}`;
-      this.$http.get(getOrderUrl).then((res) => {
-        console.log(res);
-        this.order = res.data.data;
-        this.isLoading = false;
-      });
+      this.$http.get(getOrderUrl)
+        .then((res) => {
+          this.order = res.data.data;
+          this.isLoading = false;
+        }).catch((err) => {
+          console.log(err);
+          this.isLoading = false;
+        });
     },
     backToPaybill() {
       this.$router.push('/paybill');
@@ -113,6 +116,7 @@ export default {
           this.$router.push('/checkouts');
         }).catch((err) => {
           console.log(err);
+          this.isLoading = false;
         });
     },
   },
@@ -123,6 +127,9 @@ export default {
 </script>
 
 <style lang="scss">
+$cf-Step-bgColor:  #632100;
+$cf-throughLine-Color: #bbb;
+
 body{
    background-color: #fefbf4;
 }
@@ -140,7 +147,7 @@ body{
   .step3,
   .step4 {
     div {
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       color: #ffebae;
       height: 40px;
       width: 40px;
@@ -156,7 +163,7 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       width: 200px;
       height: 5px;
       top: 25%;
@@ -173,7 +180,7 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       width: 192px;
       height: 5px;
       top: 25%;
@@ -193,7 +200,7 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       height: 5px;
       top: 25%;
       width: 150px;
@@ -203,13 +210,16 @@ body{
   }
   .step4 {
       div {
-        background-color: #bbb;
+        background-color: $cf-throughLine-Color;
         color: #aaa;
       }
       span {
-        color: #bbb;
+        color: $cf-throughLine-Color;
       }
   }
+}
+.confrimedPay{
+  width: 50%;
 }
 @media screen and(max-width: 768px){
   .shopping-step{

@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/coffeebeans/dist/'
-}
+  publicPath: './',
+};

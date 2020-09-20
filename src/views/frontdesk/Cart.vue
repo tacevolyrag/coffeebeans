@@ -3,8 +3,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb bg-beige border-bottom">
         <li class="breadcrumb-item">
-          <router-link to="/" class="text-lightgrey "
-        style="text-decoration: none;">首頁</router-link>
+          <router-link to="/" class="text-lightgrey">首頁</router-link>
         </li>
         <li class="breadcrumb-item font-weight-bold active text-coffee2"
         aria-current="page">購物車</li>
@@ -111,7 +110,7 @@
 
         <!-- order information -->
         <div class="col-md-12  col-lg-4 col-12 orderInfo">
-          <div class="cart-border " style="width: 20rem;">
+          <div class="cart-border">
             <div class="card-header text-left pt-3 text-coffee2">訂單資訊</div>
             <div class="card-body my-3">
               <div class="d-flex">
@@ -129,7 +128,7 @@
                 <span class="ml-auto mr-4 font-weight-bold h5">
                   NT$ {{ cartTotal | thousand }}</span>
               </div>
-              <button class="btn btn-coffee2" style="width: 100%"
+              <button class="btn btn-coffee2 nextToStep"
               @click="stepToPayway">
               下一步</button>
             </div>
@@ -140,7 +139,7 @@
     </div>
     <div class="cart container" v-else>
       <div class="text-center">
-        <p style="font-size: 6rem" class=""><i class="fas fa-shopping-cart"></i></p>
+        <p class="cart-img"><i class="fas fa-shopping-cart"></i></p>
         <p>您的購物車中沒有商品</p>
         <div class="btn btn-coffee2 cart-goshop" type="button" @click="goToShop" >去購物</div>
       </div>
@@ -164,30 +163,41 @@ export default {
     getCartItems() {
       const getCartItemsUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping`;
       this.isLoading = true;
-      this.$http.get(getCartItemsUrl).then((res) => {
-        this.cart = res.data.data;
-        this.updateCartTotal();
-        this.isLoading = false;
-      });
+      this.$http.get(getCartItemsUrl)
+        .then((res) => {
+          this.cart = res.data.data;
+          this.updateCartTotal();
+          this.isLoading = false;
+        }).catch((err) => {
+          this.isLoading = false;
+          console.log(err);
+        });
     },
     removeItems() {
       const removeItemsUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping/all/product`;
       this.isLoading = true;
-      this.$http.delete(removeItemsUrl).then((res) => {
-        console.log(res);
-        this.$bus.$emit('get-cart');
-        this.getCartItems();
-        this.isLoading = false;
-      });
+      this.$http.delete(removeItemsUrl)
+        .then(() => {
+          this.$bus.$emit('get-cart');
+          this.getCartItems();
+          this.isLoading = false;
+        }).catch((err) => {
+          this.isLoading = false;
+          console.log(err);
+        });
     },
     removeItem(id) {
       const removeItemUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping/${id}`;
       this.isLoading = true;
-      this.$http.delete(removeItemUrl, id).then(() => {
-        this.$bus.$emit('get-cart');
-        this.getCartItems();
-        this.isLoading = false;
-      });
+      this.$http.delete(removeItemUrl, id)
+        .then(() => {
+          this.$bus.$emit('get-cart');
+          this.getCartItems();
+          this.isLoading = false;
+        }).catch((err) => {
+          this.isLoading = false;
+          console.log(err);
+        });
     },
     goToProduct(id) {
       this.$router.push(`/product/${id}`);
@@ -199,10 +209,14 @@ export default {
         quantity,
       };
       this.isLoading = true;
-      this.$http.patch(quantityUpdateUrl, updateObj).then(() => {
-        this.getCartItems();
-        this.isLoading = false;
-      });
+      this.$http.patch(quantityUpdateUrl, updateObj)
+        .then(() => {
+          this.getCartItems();
+          this.isLoading = false;
+        }).catch((err) => {
+          this.isLoading = false;
+          console.log(err);
+        });
     },
     updateCartTotal() {
       this.cartTotal = 0;
@@ -226,6 +240,9 @@ export default {
 </script>
 
 <style lang="scss">
+$cf-Step-bgColor:  #632100;
+$cf-throughLine-Color: #bbb;
+
 body{
   margin-bottom: 80px;
   background-color: #fefbf4;
@@ -244,7 +261,7 @@ body{
   .step3,
   .step4 {
     div {
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       color: #ffebae;
       height: 40px;
       width: 40px;
@@ -260,7 +277,7 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       width: 200px;
       height: 5px;
       top: 25%;
@@ -274,7 +291,7 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #bbb;
+      background-color: $cf-throughLine-Color;
       width: 192px;
       height: 5px;
       top: 25%;
@@ -288,7 +305,7 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #bbb;
+      background-color: $cf-throughLine-Color;
       height: 5px;
       top: 25%;
       width: 155px;
@@ -300,17 +317,25 @@ body{
   .step3,
   .step4 {
     div {
-      background-color: #bbb;
+      background-color: $cf-throughLine-Color;
       color: #aaa;
     }
     span {
-      color: #bbb;
+      color: $cf-throughLine-Color;
     }
   }
 }
+.breadcrumb-item{
+  a{
+    text-decoration: none;;
+  }
+}
+.nextToStep{
+  width: 100%;
+}
 .cart {
   .cart-border {
-    border: 1px solid #bbb;
+    border: 1px solid $cf-throughLine-Color;
     border-radius: 1%;
   }
   tbody{
@@ -327,6 +352,9 @@ body{
   width: 100%;
   display: block;
   overflow-x: auto;
+}
+.cart-img{
+  font-size: 6rem;
 }
 @media screen and(max-width:768px){
   .shopping-step{

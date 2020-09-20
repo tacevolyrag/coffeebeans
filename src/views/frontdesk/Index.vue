@@ -1,27 +1,26 @@
 <template>
     <div class="mb-5 pb-5 index">
-        <div class="container-fluid px-0 py-0">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="banner">
-                        <div class="banner-img">
-                            <div class="banner-text  h4">
-                                <p>遠離喧囂的生活</p>
-                                <p>邂逅內心的自我</p>
-                                <p>一杯手沖單品咖啡</p>
-                                <p>讓心靈定格在光影與音樂的世界裡</p>
-                            </div>
+                        <div class="banner-text h4">
+                            <p>遠離喧囂的生活</p>
+                            <p>邂逅內心的自我</p>
+                            <p>一杯手沖單品咖啡</p>
+                            <p>讓心靈定格在光影與音樂的世界裡</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="bg-beige container-fluid mb-5 pt-4 ">
-            <div class="intoduction">
+        <div class="bg-beige container-fluid mb-5 pt-5">
+            <div class="intoduction pt-4">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-md-6">
                         <div class="into-img into-img-1 img-opacity img-opacity1 img-fluid">
-                            <a href="#" class="text-white" @click.prevent="btnToCoffeeBeans">
+                            <a href="#" class="text-white"
+                            @click.prevent="btnToCoffee('coffeekind')">
                                 Coffee 新鮮咖啡豆</a>
                         </div>
                     </div>
@@ -40,7 +39,7 @@
                             </p>
                             <button type="button"
                             class="btn btn-outline-coffee2 float-right mt-3"
-                            @click="btnToCoffeeBeans">
+                            @click="btnToCoffee('coffeekind')">
                                 更多咖啡豆資訊</button>
                         </div>
                     </div>
@@ -62,13 +61,14 @@
                                 </p>
                                 <button type="button"
                                 class="btn btn-outline-coffee2 float-right mt-3"
-                                @click="btnToCoffeeBaking">
+                                @click="btnToCoffee('coffeebaking')">
                                     更多咖啡豆資訊</button>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="into-img into-img-2 img-opacity img-opacity2 img-fluid">
-                                <a href="#" class="text-white" @click.prevent="btnToCoffeeBaking">
+                                <a href="#" class="text-white"
+                                @click.prevent="btnToCoffee('coffeebaking')">
                                     Baking 烘焙二三事</a>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                 帶點莓果般的酸味。
                             </p>
                             <button type="button" class="btn btn-outline-coffee2"
-                            @click="btnToProducts">
+                            @click="btnToCoffee('products')">
                             查看商品資訊
                             </button>
                         </div>
@@ -112,7 +112,7 @@
                                 羅布斯塔的味道較苦也較強烈。
                             </p>
                             <button type="button" class="btn btn-outline-coffee2"
-                            @click="btnToProducts">
+                            @click="btnToCoffee('products')">
                             查看商品資訊
                             </button>
                         </div>
@@ -123,23 +123,24 @@
                             </router-link>
                             <router-link to="/products" class="text-coffee2 link-product">
                             <h3>馬克杯</h3></router-link>
-                            <strong>圓潤杯耳舒適好拿握。</strong>
+                            <strong>圓潤杯耳舒適好拿握</strong>
                             <p>適盛裝咖啡、牛奶等，亦可做為居家<br>擺飾。
                             </p>
                             <button type="button" class="btn btn-outline-coffee2"
-                            @click="btnToProducts">
+                            @click="btnToCoffee('products')">
                             查看商品資訊
                             </button>
                         </div>
                     </div>
                 </div>
+                <div class="goToTop">
+                  <a href="#" @click.prevent="backToTop">
+                      <i class="fas fa-arrow-alt-circle-up"></i>
+                  </a>
+                </div>
             </div>
         </div>
-        <div class="goToTop">
-            <a href="#" @click.prevent="backToTop">
-                <i class="fas fa-arrow-alt-circle-up"></i>
-            </a>
-        </div>
+
     </div>
 </template>
 
@@ -147,24 +148,28 @@
 /* global $ */
 export default {
   methods: {
-    btnToCoffeeBeans() {
-      this.$router.push('/coffeekind');
-    },
-    btnToCoffeeBaking() {
-      this.$router.push('/coffeebaking');
-    },
-    btnToProducts() {
-      this.$router.push('/products');
+    btnToCoffee(somewhere) {
+      switch (somewhere) {
+        case 'coffeekind':
+          this.$router.push('/coffeekind');
+          break;
+        case 'coffeebaking':
+          this.$router.push('/coffeebaking');
+          break;
+        case 'products':
+          this.$router.push('/products');
+          break;
+        default:
+          break;
+      }
     },
     scrollToShow() {
       $(window).scroll(() => {
         const scrollPos = $(window).scrollTop();
         const windowHeight = $(window).height();
-        // console.log('滾輪高度', scrollPos, '高度', windowHeight);
         // eslint-disable-next-line
         $('.into-img').each(function () {
           const thisPos = $(this).offset().top;
-          console.log('目標座標', thisPos);
           if (scrollPos + windowHeight >= thisPos) {
             $(this).addClass('img-opacity-duration');
           }
@@ -201,7 +206,7 @@ export default {
     }
 }
 .index{
-    background-image: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v656-ning-09-coffeeday_1.jpg?bg=transparent&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-3.1.0&q=80&usm=15&vib=3&w=1300&s=51430a8903a95215898d944a6b81a8b5');
+    background-image: url('https://hexschool-api.s3.us-west-2.amazonaws.com/custom/KhTLAXpnObyZFg5pTNVivJJNg8ToVhnR0YqTlxvyDWsI0suOE9vbZQ6WVvit474bf7vReNco3yBbPF4MmGSyAvZPj7WAY2s4UjgwNK4JwrU0ewYaNvlv8EtyOC4T82RQ.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -253,10 +258,10 @@ export default {
           }
       }
       .into-img-1{
-          background-image: url('https://images.unsplash.com/photo-1572222182801-42d94da0d7fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
+          background-image: url('https://hexschool-api.s3.us-west-2.amazonaws.com/custom/bH8qdGnJpfKlCofNcIRFd7kjiTD5mLV1yDMZy62fTKraPaBlz2JGTx9lHCuWNhoILIz6SA2VbteEJS6mRdYML4Pel38zcM5UAGOCcHOmJHn9LF2zkWScmJqsZimLSc5b.jpg');
       }
       .into-img-2{
-          background-image: url('https://images.unsplash.com/photo-1572222182786-8394a1975dd8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
+          background-image: url('https://hexschool-api.s3.us-west-2.amazonaws.com/custom/shf14sdlCgLTJ9gSZiB5KRB2Ne4tzD10AhZDEM5fLUpoFTcqoUsxJeRZNsynkFwCs2uIW7djozFi5TnFfzrAr5s2G3uyECdURcyoxDkbJb6wekbm0H39wCeUJ9f6H4NU.jpg');
       }
       .img-opacity{
           opacity: 0;
@@ -323,13 +328,13 @@ export default {
               text-decoration: none;
           }
           .product1-img{
-              background-image: url('https://images.unsplash.com/photo-1587738108058-10ad47447b86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80');
+              background-image: url('https://hexschool-api.s3.us-west-2.amazonaws.com/custom/iKQstszyiUtycZzjZYEpKlAVkzCra5PZ9OtNV6nRaKxRpti4uyRTFkoIVi0vM8sis1eBL3KOBJ6yt5zYrp8lLpAaPIbqvRDnx7cKQDbVGojhdCvdk5FeznWMyCBnGTf5.jpg');
           }
           .product2-img{
-              background-image: url('https://images.unsplash.com/photo-1527619675211-f7283b39fae4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+              background-image: url('https://hexschool-api.s3.us-west-2.amazonaws.com/custom/NgQ4aVqkUd4WAsfY7Qscs502CNOrLCDEoPiMJA991dlpMKB8vnJ8B81SN8sipUP4MnXmxrfCuh9mnrcr4KMGmGQNh2Vejnv6wjgkCofeA2NlWEgUwRzVqEPO42kQLMde.jpg');
           }
           .product3-img{
-              background-image: url('https://images.unsplash.com/photo-1545676960-c8cefcddf8af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80');
+              background-image: url('https://hexschool-api.s3.us-west-2.amazonaws.com/custom/6yJabZwAspAQOTyJc6txgPxCdO38Gw1RfLdF4cvJWv7DyxqpFMEkspj6lf0F3Jp9degz4I4TEtBvQ7DImIwsXWe6NJPNlhbz3rPjBtpYmvEwlRcwqx7dpKOUeefFrGag.jpg');
           }
       }
   }
@@ -343,7 +348,7 @@ export default {
           }
       }
   }
-  @media screen and (max-width: 414px){
+  @media screen and (max-width: 425px){
       .index{
           .banner{
             background-repeat: no-repeat;

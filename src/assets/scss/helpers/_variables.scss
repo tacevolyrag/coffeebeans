@@ -44,6 +44,14 @@ $green:   #28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 
+
+// 咖啡豆主題色
+$cf-Theme-Color:  #421c02;
+// 咖啡豆次色彩
+$cf-beige-Color:  #fefbf4;
+$cf-Text-Color:  #e1c383;
+$cf-throughLine-Color: #bbb;
+
 $colors: () !default;
 $colors: map-merge(
   (
@@ -84,16 +92,16 @@ $theme-colors: map-merge(
     "danger":     $danger,
     "light":      $light,
     "dark":       $dark,
+    "coffee2": $cf-Theme-Color,
+    "coffeetext": $cf-Text-Color,
+    "beige": $cf-beige-Color,
+    "lightgrey" : $cf-throughLine-Color,
     "coffee":     #2a1a07,
-    "coffee2": #421c02,
+    "bgtext" : #3a3b3d,
     // #632100
-    "coffeetext": #e1c383,
-    // e2bc77
+    // #e2bc77
     // #ffebae
     // #b89c35
-    "beige": #fefbf4,
-    "lightgrey" : #bbb,
-    "bgtext" : #3a3b3d,
   ),
   $theme-colors
 );

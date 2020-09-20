@@ -12,6 +12,7 @@ import * as rules from 'vee-validate/dist/rules';
 import TW from 'vee-validate/dist/locale/zh_TW.json';
 import App from './App.vue';
 import router from './router';
+import './assets/js/filter';
 
 Vue.config.productionTip = false;
 
@@ -20,11 +21,6 @@ Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.use(VueAxios, axios);
 Vue.prototype.$bus = new Vue();
-Vue.filter('thousand', (num) => {
-  const parts = num.toString().split('.');
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  return parts.join('.');
-});
 
 Object.keys(rules).forEach((rule) => {
   extend(rule, rules[rule]);

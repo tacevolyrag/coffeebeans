@@ -55,7 +55,7 @@
 
 <script>
 /* global $ */
-import Pagination from '../../components/Pagination.vue';
+import Pagination from '@/components/Pagination.vue';
 
 export default {
   components: {
@@ -80,7 +80,8 @@ export default {
           this.pagination = res.data.meta.pagination;
           this.isLoading = false;
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err);
           this.isLoading = false;
         });
     },
@@ -96,7 +97,8 @@ export default {
           $('#delModal').modal('hide');
           this.getImages();
           this.isLoading = false;
-        }).catch(() => {
+        }).catch((err) => {
+          console.log(err);
           this.isLoading = false;
         });
     },

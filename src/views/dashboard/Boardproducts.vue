@@ -62,9 +62,9 @@
 <script>
 /* global $ */
 
-import Modal from '../../components/Productsmodal.vue';
-import Pagination from '../../components/Pagination.vue';
-import Delmodal from '../../components/Productsdelmodal.vue';
+import Modal from '@/components/Productsmodal.vue';
+import Pagination from '@/components/Pagination.vue';
+import Delmodal from '@/components/Productsdelmodal.vue';
 
 export default {
   components: {
@@ -102,6 +102,9 @@ export default {
             };
           }
           this.isLoading = false;
+        }).catch((err) => {
+          console.log(err);
+          this.isLoading = false;
         });
     },
     createdProduct() {
@@ -121,6 +124,9 @@ export default {
         .then((res) => {
           this.editProducts = res.data.data;
           $('#createdItem').modal('show');
+          this.isLoading = false;
+        }).catch((err) => {
+          console.log(err);
           this.isLoading = false;
         });
     },

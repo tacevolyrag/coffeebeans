@@ -5,8 +5,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb bg-beige border-bottom">
         <li class="breadcrumb-item">
-          <router-link to="/" class="text-lightgrey "
-        style="text-decoration: none;">首頁</router-link>
+          <router-link to="/" class="text-lightgrey">首頁</router-link>
         </li>
         <li class="breadcrumb-item font-weight-bold active" aria-current="page">商品列表</li>
       </ol>
@@ -35,17 +34,14 @@
                 v-for="product in categoryProducts"
                 :key="product.id"
               >
-                <div class="card" style="height: 450px">
+                <div class="card item-card">
                   <a href="#" @click.prevent="getProductDetail(product.id)">
                   <div
                     :style="{backgroundImage: `url(${product.imageUrl})`}"
-                    style="height: 200px; background-size: cover;
-                    background-position: center center;
-                    background-repeat: no-repeat"
+                    class="item-card-img"
                   ></div>
                   </a>
                   <div class="card-body">
-                    <span class="badge badge-light float-right">{{ product.category }}</span>
                     <h5 class="card-title product-title">
                       <a href="#" class="text-coffee2 font-weight-bold"
                       @click.prevent="getProductDetail(product.id)">
@@ -53,7 +49,7 @@
                     </h5>
                     <p class="card-text">{{ product.content }}</p>
                   </div>
-                  <div class="d-flex justify-content-around">
+                  <div class="d-flex justify-content-between product-all-price">
                     <div class="product-price">
                       <div
                         class="h6 product-origin"
@@ -89,8 +85,8 @@
 
 <script>
 /* global $ */
-import Toast from '../../components/Toast.vue';
-import Toasterror from '../../components/Toasterror.vue';
+import Toast from '@/components/Toast.vue';
+import Toasterror from '@/components/Toasterror.vue';
 
 export default {
   components: {
@@ -160,25 +156,44 @@ export default {
 </script>
 
 <style lang="scss">
+$cf-Theme-Color:  #421c02;
+$cg-white: #fff;
+
+.breadcrumb-item{
+  a{
+    text-decoration: none;
+  }
+}
 .products{
   background-color: #fefbf4;
+}
+.item-card{
+  height: 450px;
+  .item-card-img{
+    height: 200px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+}
+.product-all-price{
+  padding: 0 16px;
 }
 .category{
   ul{
       .active{
-        color: #632100;
-        border-bottom: #632100;
+        color: $cf-Theme-Color;
       }
     li{
       padding: 2px 30px;
       font-weight: bold;
       cursor: pointer;
       &:hover{
-        color: #632100;
+        color: $cf-Theme-Color;
       }
     }
     li:not(:last-child){
-      border-right: 1px solid #632100;
+      border-right: 1px solid $cf-Theme-Color;
     }
   }
 }
@@ -227,29 +242,29 @@ export default {
   text-decoration: line-through;
 }
 .product-off {
-  color: #632100;
+  color: $cf-Theme-Color;
   font-weight: bolder;
 }
 .card-footer button {
-  background-color: #632100;
-  color: #fff;
+  background-color: $cf-Theme-Color;
+  color: $cg-white;
   transition: 0.3s;
 }
 .card-footer button:hover {
-  background-color: #632100;
-  color: #fff;
+  background-color: $cf-Theme-Color;
+  color: $cg-white;
 }
 .card-footer .product-detail {
-  background-color: #fff;
-  color: #632100;
-  border-color: #632100;
+  background-color: $cg-white;
+  color: $cf-Theme-Color;
+  border-color: $cf-Theme-Color;
   transition: 0.3s;
 }
 .card-footer .product-detail:hover {
-  color: #fff;
+  color: $cg-white;
 }
 .breadcrumb-item.active{
-  color: #632100;
+  color: $cf-Theme-Color;
 }
 @media screen and(max-width: 768px){
   .products-list{

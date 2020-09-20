@@ -4,7 +4,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-beige border-bottom">
           <li class="breadcrumb-item">
-            <router-link to="/" class="text-lightgrey" style="text-decoration: none;">
+            <router-link to="/" class="text-lightgrey">
             首頁
             </router-link>
           </li>
@@ -134,6 +134,11 @@ export default {};
 </script>
 
 <style lang="scss">
+.breadcrumb-item{
+  a{
+    text-decoration: none;
+  }
+}
 .coffeekind {
   h5 {
     color: #632100;
@@ -170,14 +175,14 @@ export default {};
   background-repeat: no-repeat;
 }
 .coffeekind-image1 {
-  background-image: url("https://blog.coffeemart.com.tw/wp-content/uploads/2019/05/57446538_2265417590170593_932038504873984000_o.jpg");
+  background-image: url("https://hexschool-api.s3.us-west-2.amazonaws.com/custom/4gfgAKJkJDSJGK5Sr1MbiQiazHlflS29Ht218F0UptmPtSBJukgGmBEoxbKYS0kpJVCDTy8jIkacRxxIimqzIczD7DagWVhtbiLyZ11MGGuiTKvoZp4qdx1DWrT1t1p3.jpg");
 }
 .coffeekind-image2 {
-  background-image: url("https://images.unsplash.com/photo-1549883498-9c1eb45b3cae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+  background-image: url("https://hexschool-api.s3.us-west-2.amazonaws.com/custom/duc9uNlFqvJbhk1mgESy8WvHcZ6s4RfulNNTL1cpyvXGgM2qwUK7e3iBXEcsSqaBBhoivG7oEUGZxIuPr5YG137foYOCEU58iMbi7qFaCSHng229PLNSt10j01Q7TqZ4.jpg");
   margin-top: 35px;
 }
 .coffeekind-image3 {
-  background-image: url("https://images.unsplash.com/photo-1509785307050-d4066910ec1e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+  background-image: url("https://hexschool-api.s3.us-west-2.amazonaws.com/custom/vYMKb8E2bUC4yDViM8iPCO39Q7gO067fbenGLM6FurS0n2tQgMjFQoML5MRxE3DYKT271n18vBPumQF3LRfsAPRJCXCTBIFcVQOz4Y6BCkxlcTZ4NJZ7v5rANi7HlkqH.jpg");
   margin-top: 25px;
 }
 @media screen and (max-width: 1024px){

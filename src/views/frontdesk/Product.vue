@@ -4,14 +4,17 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb bg-beige border-bottom">
         <li class="breadcrumb-item">
-          <router-link to="/" class="text-lightgrey"
-        style="text-decoration: none;">首頁</router-link>
+          <router-link to="/" class="text-lightgrey">
+          首頁
+          </router-link>
         </li>
         <li class="breadcrumb-item">
-          <router-link to="/products" class="text-lightgrey"
-        style="text-decoration: none;">商品列表</router-link>
+          <router-link to="/products" class="text-lightgrey">
+          商品列表
+          </router-link>
         </li>
-        <li class="breadcrumb-item font-weight-bold text-coffee2 active" aria-current="page">
+        <li class="breadcrumb-item font-weight-bold text-coffee2 active"
+        aria-current="page">
           {{ product.title }}
         </li>
       </ol>
@@ -23,15 +26,16 @@
             <img :src="product.imageUrl" class="img-fluid" alt />
           </div>
           <div class="col-md-6">
-            <div class="">
+            <div class="product-detail">
               <blockquote>
-                <div class="d-flex justify-content-around align-items-center">
+                <div class="d-flex align-items-center product-title">
                   <h3 class="text-coffee2 font-weight-bold ">{{ product.title }}</h3>
-                  <span class="badge badge-pill badge-coffee2">{{ product.category }}</span>
+                  <span class="badge badge-pill badge-coffee2 ml-auto">
+                    {{ product.category }}</span>
                 </div>
                 <div class="px-3">
                   <p class="pt-3 text-coffee2 h5">{{ product.content }}</p>
-                  <span>{{ product.description }}</span>
+                  <span class="product-detail-span">{{ product.description }}</span>
                 </div>
                 <div class="d-flex justify-content-around text-coffee2 mt-4">
                   <div
@@ -61,11 +65,11 @@
                 </div>
                 <button
                   type="button"
-                  class="btn btn-coffee2"
+                  class="btn btn-coffee2 addToCart"
                   @click="detailAddToCart(product,product.num)"
-                  v-if="product.num" style="width: 50%"
+                  v-if="product.num"
                 >加到購物車</button>
-                <button type="button" class="btn btn-coffee2" style="width: 50%"
+                <button type="button" class="btn btn-coffee2 addToCart"
                 v-else disabled>加到購物車</button>
               </div>
             </div>
@@ -79,13 +83,13 @@
             <div class="col-md-6">
               <div class="mb-5">
               <h4 class="text-coffee2 mb-3 pb-3 text-center">產品規格</h4>
-              <p>
+              <p class="text-left pl-5">
                 產地：{{ product.title }}<br><br>
                 處理法：水洗<br><br>
                 烘焙度：{{ product.category }}<br><br>
                 保存方式：常溫、避免陽光直射<br><br>
                 保存期限：365 天(未開封)<br><br>
-                賞味期限：100 天（未開封）、開封後建議立即享用。<br><br>
+                賞味期限：100 天（未開封）、 開封後建議立即享用<br><br>
                 內容物重量：454g ± 10g<br><br>
                 內容物：咖啡豆
               </p>
@@ -94,8 +98,8 @@
             <div class="col-md-6">
               <div class="mb-5">
               <h4 class="text-coffee2 pb-3">使用方式</h4>
-              <p>
-                咖啡比例：每 10g 使用 150 ~ 200cc 水沖泡咖啡，<br>可因自己喜好口感增加或減少水量。<br><br>
+              <p class="text-left pl-5">
+                咖啡比例：每 10g 使用 150 ~ 200cc 水沖泡咖啡<br>可因自己喜好口感增加或減少水量<br><br>
                 萃取水溫：建議溫度 90 度~ 92 度
               </p>
               </div>
@@ -117,8 +121,8 @@
 <script>
 /* global $ */
 import Swiper from '@/components/Swiper.vue';
-import Toast from '../../components/Toast.vue';
-import Toasterror from '../../components/Toasterror.vue';
+import Toast from '@/components/Toast.vue';
+import Toasterror from '@/components/Toasterror.vue';
 
 export default {
   components: {
@@ -169,9 +173,17 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 body{
   background-color: #fefbf4;
+}
+.breadcrumb-item{
+  a{
+    text-decoration: none;
+  }
+}
+.addToCart{
+  width: 50%;
 }
 .product-origin {
   position: relative;
@@ -185,6 +197,17 @@ body{
   left: 0;
   height: 55%;
   border-bottom: 2px solid #bbb;
+}
+.product-detail{
+  .product-detail-span{
+    display: block;
+    text-align: left;
+  }
+}
+.product-title{
+  h3{
+    padding-left: 50px;
+  }
 }
 @media screen and (max-width: 414px){
   .single-product{

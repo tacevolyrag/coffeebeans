@@ -1,59 +1,68 @@
 <template>
-    <div class="container mt-5">
-        <loading :active.sync="isLoading"></loading>
-        <h2 class="text-coffee">後台優惠卷管理</h2>
-        <button class="float-right btn btn-coffee my-4" @click="newCouponModal">新增優惠券</button>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>序號名稱</th>
-                    <th>序號</th>
-                    <th>折扣百分比</th>
-                    <th>期限</th>
-                    <th>是否開放</th>
-                    <th>編輯</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="coupon in coupons" :key="coupon.id" >
-                    <td>{{ coupon.title }}</td>
-                    <td>{{ coupon.code }}</td>
-                    <td>{{ coupon.percent }}%</td>
-                    <td>{{ coupon.deadline.datetime}}</td>
-                    <td v-if="coupon.enabled" class="text-success">開放</td>
-                    <td v-else class="text-danger">未開放</td>
-                    <td>
-                        <div class="btn-group float-right">
-                            <button class="btn btn-outline-coffee" @click="editCouponModal(coupon)">
-                                編輯</button>
-                            <button class="btn btn-outline-danger" @click="delCouponModal(coupon)">
-                                刪除</button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+  <div class="container mt-5">
+    <loading :active.sync="isLoading"></loading>
+    <h2 class="text-coffee">後台優惠卷管理</h2>
+    <button class="float-right btn btn-coffee my-4" @click="newCouponModal">新增優惠券</button>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>序號名稱</th>
+          <th>序號</th>
+          <th>折扣百分比</th>
+          <th>期限</th>
+          <th>是否開放</th>
+          <th>編輯</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="coupon in coupons" :key="coupon.id">
+          <td>{{ coupon.title }}</td>
+          <td>{{ coupon.code }}</td>
+          <td>{{ coupon.percent }}%</td>
+          <td>{{ coupon.deadline.datetime}}</td>
+          <td v-if="coupon.enabled" class="text-success">開放</td>
+          <td v-else class="text-danger">未開放</td>
+          <td>
+            <div class="btn-group float-right">
+              <button class="btn btn-outline-coffee" @click="editCouponModal(coupon)">編輯</button>
+              <button class="btn btn-outline-danger" @click="delCouponModal(coupon)">刪除</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <!-- newCouponModal-->
-        <div class="modal fade" id="couponModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <Couponmodal :edit-coupon="editCoupon" :created="created"
-            @update="getcouponsData">
-            </Couponmodal>
-        </div>
+    <div
+      class="modal fade"
+      id="couponModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <Couponmodal :edit-coupon="editCoupon" :created="created" @update="getcouponsData">
+      </Couponmodal>
+    </div>
     <!-- newCouponModal end-->
     <!-- delCouponModal -->
-        <div class="modal fade" id="delCouponModal" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <Coupondelmodal :edit-coupon="editCoupon" @update="getcouponsData"></Coupondelmodal>
-        </div>
-    <!-- delCouponModal end-->
+    <div
+      class="modal fade"
+      id="delCouponModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <Coupondelmodal :edit-coupon="editCoupon" @update="getcouponsData"></Coupondelmodal>
     </div>
+    <!-- delCouponModal end-->
+  </div>
 </template>
 
 <script>
 /* global $ */
-import Couponmodal from '../../components/Couponmodal.vue';
-import Coupondelmodal from '../../components/Coupondelmodal.vue';
+import Couponmodal from '@/components/Couponmodal.vue';
+import Coupondelmodal from '@/components/Coupondelmodal.vue';
 
 export default {
   components: {
@@ -80,7 +89,9 @@ export default {
           this.coupons = res.data.data;
           this.pagination = res.data.meta.pagination;
           this.isLoading = false;
-          console.log(res.data);
+        }).catch((err) => {
+          console.log(err);
+          this.isLoading = false;
         });
     },
     newCouponModal() {

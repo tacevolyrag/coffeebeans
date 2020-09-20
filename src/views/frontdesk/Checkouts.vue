@@ -23,15 +23,15 @@
     </div>
     <div class="container py-5 congra congratulation">
       <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div style="font-size: 6rem"><i class="fas fa-truck"></i></div>
+        <div class="col-md-8 checkout">
+          <div class="truck-img"><i class="fas fa-truck"></i></div>
           <h4 class="mt-1 text-coffee2">恭喜您，已完成付款結帳囉 ！</h4>
-          <p class="mt-1">感謝您對 <span style="font-family:'Carter One', cursive;">
+          <p class="mt-1">感謝您對 <span>
             CoffeeBeans</span> 的信任，商品將會在 1 - 3 天到府，請耐心等候。</p>
           <div class="d-flex justify-content-around my-5 btnArea">
           <button class="btn btn-outline-coffee2" type="button" @click="goToIndex">回首頁</button>
           <button class="btn btn-coffee2 backShop"
-          type="button" style="width:40%" @click="goToShop">
+          type="button" @click="goToShop">
             繼續購物 ！</button>
           </div>
         </div>
@@ -59,6 +59,8 @@ export default {
 </script>
 
 <style lang="scss">
+$cf-Step-bgColor:  #632100;
+
 body{
   background-color: #fefbf4;
 }
@@ -76,7 +78,7 @@ body{
   .step3,
   .step4 {
     div {
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       color: #ffebae;
       height: 40px;
       width: 40px;
@@ -92,7 +94,7 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       width: 200px;
       height: 5px;
       top: 25%;
@@ -109,7 +111,7 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       width: 192px;
       height: 5px;
       top: 25%;
@@ -123,14 +125,14 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       height: 5px;
       top: 25%;
       width: 150px;
       right: -199%;
       z-index: 9;
       div {
-        background-color: #632100;
+        background-color: $cf-Step-bgColor;
         color: #ffebae;
       }
       span {
@@ -140,12 +142,23 @@ body{
   }
   .step4 {
     div {
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       color: #ffebae;
     }
     span {
       color: #2c3e50;
     }
+  }
+}
+.checkout{
+  span{
+    font-family: 'Carter One', cursive;
+  }
+  .truck-img{
+  font-size: 6rem;
+  }
+  .backShop{
+    width: 40%;
   }
 }
 @media screen and(max-width:768px){

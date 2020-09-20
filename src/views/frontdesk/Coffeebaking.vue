@@ -3,8 +3,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb bg-beige border-bottom">
         <li class="breadcrumb-item">
-          <router-link to="/" class="text-lightgrey "
-        style="text-decoration: none;">首頁</router-link>
+          <router-link to="/" class="text-lightgrey">首頁</router-link>
         </li>
         <li class="breadcrumb-item font-weight-bold active text-coffee2"
         aria-current="page">咖啡八階段</li>
@@ -123,6 +122,11 @@ export default {};
 body{
   background-color: #fefbf4;
 }
+.breadcrumb-item{
+  a{
+    text-decoration: none;
+  }
+}
 .coffee-definition{
   h4{
     padding-bottom: 10px;
@@ -139,7 +143,7 @@ body{
     background-position: center center;
   }
   .baking-image-3{
-    background-image: url("https://images.unsplash.com/photo-1541469406036-71229832e06e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+    background-image: url("https://hexschool-api.s3.us-west-2.amazonaws.com/custom/V8Z72RHw39b873Sd9DhUPHRMSvLVj4fqA1pNBlisqRazWoaAqG5iA5zuWwIeSlT1bCZ166jyubwtdpxTVUIWh7hfUDUng5jEfShJbdByYDXXfziB0Ndx9CWMaz1a7zzq.jpg");
   }
 }
 .bakingCoffee {
@@ -164,11 +168,11 @@ body{
     background-position: center center;
   }
   .baking-image-1 {
-    background-image: url("https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+    background-image: url("https://hexschool-api.s3.us-west-2.amazonaws.com/custom/o1sqgBAp4Dm2XQ7qg5WoLGek6IAXtByffR5NrVWthwpETd6S4C0gyPZ4JXHkOg4SNDINxSMWi3UZ6BrIIxilzhofBQNgm1n2dVRLXOjRuDYvCq5I98XLnG2WRe6TNd0q.jpg");
     margin-bottom: 10px;
   }
   .baking-image-2 {
-    background-image: url("https://images.unsplash.com/photo-1514066637891-498034f5a154?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+    background-image: url("https://hexschool-api.s3.us-west-2.amazonaws.com/custom/ZoOEGsUhW0MvOsjdXbmXS96aUS0b1qNwAFS9jGHpJZDdOM7kWSH0NCSXDB7iDa47MAUg8oqTWNwkXRuAsdGhTYUaeOyMhg2ZKbAV0JisdwoLr29PoLbjx5BpmA76ITAT.jpg");
   }
 }
 @media screen and (max-width: 1024px){

@@ -3,10 +3,10 @@
     <div class="container-fluid bg-coffee2 sticky-top">
       <div class="coffee-navbar">
         <div class="row align-items-center">
-          <div class="col-md-6 logo">
+          <div class="col-sm-6 logo">
             <router-link to="/" class="text-coffeetext ">Coffeebeans</router-link>
           </div>
-          <div class="col-md-6">
+          <div class="col-sm-6 ">
             <ul class="d-flex menu mb-0">
               <li>
                 <router-link to="/" class="">首頁</router-link>
@@ -25,25 +25,24 @@
                 >咖啡豆知識</a>
                 <ul class="knowledge-list bg-coffee2">
                   <li>
-                    <router-link to="/coffeekind" >咖啡豆種類</router-link>
+                    <router-link to="/coffeekind">咖啡豆種類</router-link>
                   </li>
                   <li>
-                    <router-link to="/coffeebaking" >烘焙八階段</router-link>
+                    <router-link to="/coffeebaking">烘焙八階段</router-link>
                   </li>
                 </ul>
               </li>
               <li class="kindBaking">
-                <router-link to="/coffeekind" >咖啡豆種類</router-link>
+                <router-link to="/coffeekind">咖啡豆種類</router-link>
               </li>
               <li class="kindBaking">
-                <router-link to="/coffeebaking" >烘焙八階段</router-link>
+                <router-link to="/coffeebaking">烘焙八階段</router-link>
               </li>
               <li>
                 <router-link to="/cart" >
                   <i class="fas fa-shopping-cart"></i>
                   <span
-                    class="badge badge-pill badge-danger"
-                    style="transform: translateX(-8px) translateY(5px)"
+                    class="badge badge-pill badge-danger badge-transform"
                     v-if="cart.length"
                   >{{ cart.length }}</span>
                 </router-link>
@@ -53,8 +52,7 @@
               <router-link to="/cart" >
                 <i class="fas fa-shopping-cart"></i>
                 <span
-                  class="badge badge-pill badge-danger"
-                  style="transform: translateX(-8px) translateY(5px)"
+                  class="badge badge-pill badge-danger badge-transform"
                   v-if="cart.length"
                 >{{ cart.length }}</span>
               </router-link>
@@ -79,11 +77,14 @@ export default {
   data() {
     return {
       cart: {},
+      panelShow: false,
     };
   },
   methods: {
-    menuDropDown() {
-      $('.knowledge-list').slideToggle();
+    menuDropDown(e) {
+      e.stopPropagation();
+      $('.knowledge-list').fadeToggle(300);
+      $('.coffee-knowledge').toggleClass('active');
     },
     getCartItems() {
       const getCartUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping`;
@@ -91,7 +92,8 @@ export default {
         this.cart = res.data.data;
       });
     },
-    hbgToggle() {
+    hbgToggle(e) {
+      e.stopPropagation();
       $('.navbarPos').toggleClass('menu-show');
     },
   },
@@ -101,6 +103,20 @@ export default {
       this.getCartItems();
     });
   },
+  mounted() {
+    document.addEventListener('click', (e) => {
+      if (e.target.className !== 'knowledge-list') {
+        $('.knowledge-list').hide();
+        $('.coffee-knowledge').removeClass('active');
+      }
+      if (e.target.className !== 'checkOpen') {
+        $('.navbarPos').removeClass('menu-show');
+        if ($('.checkOpen')[0].checked === true) {
+          $('.checkOpen')[0].checked = false;
+        }
+      }
+    });
+  },
 };
 </script>
 
@@ -108,6 +124,8 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Carter+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Niconne&display=swap");
+$cf-Theme-Color:  #421c02;
+$cf-Text-Color:  #e1c383;
 
 html {
   min-height: 100%;
@@ -126,7 +144,11 @@ html {
 .menu {
   li{
     a{
-      color : #e1c383;
+      color : $cf-Text-Color;
+      &:hover{
+      background-color: $cf-Text-Color;
+      color: $cf-Theme-Color;
+      }
     }
   }
   .knowledge-list {
@@ -135,31 +157,25 @@ html {
     li::before {
       content: "";
       display: block;
-      margin-left: 25%;
-      margin-right: 25%;
       border: 1px solid #ffebae;
     }
-    li {
-      transform: all 1s;
-    }
   }
-  .coffee-knowledge:hover {
+  a{
     display: block;
   }
-  a {
-    display: block;
+  .active{
+    background-color: $cf-Text-Color;
+    color: $cf-Theme-Color;
   }
 }
 .checkMenu{
   display: none;
-  input{
-  }
   .line{
     display: block;
     width: 33px;
     height: 4px;
     margin-bottom: 5px;
-    background-color: #e1c383;
+    background-color: $cf-Text-Color;
     border-radius: 3px;
     transform-origin: 3px 2px;
     z-index: 1;
@@ -182,6 +198,9 @@ html {
 }
 .cartHide{
   display: none;
+}
+.badge-transform{
+  transform: translateX(-8px) translateY(5px);
 }
 @media screen and (max-width: 1024px){
   .coffee-navbar{
@@ -219,9 +238,8 @@ html {
     display: block;
     position: absolute;
     right: 60px;
-    // bottom: 15px;
     a{
-      color: #e1c383;
+      color: $cf-Text-Color;
       padding: 30px 10px;
       :hover{
         color: #3a3b3d;
@@ -233,20 +251,20 @@ html {
     overflow: hidden;
     position: absolute;
     flex-direction: column;
-    top: 27px;
+    top: 57px;
     left: 0;
     right: 0;
-    background-color: #421c02;
+    background-color: $cf-Theme-Color;
     transition: max-height .3s;
     z-index: 15;
       li{
-        border-bottom: 1px dashed #e1c383;
+        border-bottom: 1px dashed $cf-Text-Color;
         a{
           padding: 10px 0;
         }
         :hover{
-          background-color:#e1c383;
-          color:  #421c02;
+          background-color: $cf-Text-Color;
+          color: $cf-Theme-Color;
         }
       }
   }
@@ -257,13 +275,22 @@ html {
     max-height: 600px;
   }
 }
-@media screen and (max-width: 1024px){
+@media screen and (min-width: 769px) and (max-width: 1305px){
+  .badge-transform{
+    transform: translateX(-5px) translateY(-15px);
+  }
+  .coffee-navbar a{
+    padding: 30px 15px;
+  }
 }
-@media screen and (max-width: 540px){
+@media screen and (max-width: 575px){
   .logo{
     position: relative;
     top: 15px;
     padding: 0;
+  }
+  .menu{
+    top: 29px;
   }
   .checkMenu{
     margin-bottom: 2px;
@@ -281,6 +308,11 @@ html {
     a{
       padding: 10px;
     }
+  }
+}
+@media screen and (max-width: 550px){
+  .cartHide{
+    left: -350px;
   }
 }
 @media screen and (max-width: 414px){

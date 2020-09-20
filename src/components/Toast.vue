@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div aria-live="polite" aria-atomic="true"
-    style="">
+    <div aria-live="polite" aria-atomic="true">
       <div
         class="toast toastSuc"
         role="alert"
@@ -9,13 +8,12 @@
         aria-atomic="true"
         data-delay="3000"
         data-animation="true"
-        style="position: absolute; top:90px ; right:200px ;  z-index: 30"
       >
         <div class="toast-header">
-          <div class="mr-2" style="color:#632100">
+          <div class="mr-2">
             <i class="fas fa-coffee"></i>
           </div>
-          <strong class="mr-auto" style="color:#632100">購物車訊息</strong>
+          <strong class="mr-auto">購物車訊息</strong>
           <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -29,3 +27,17 @@
 <script>
 export default {};
 </script>
+
+<style lang="scss">
+  .toastSuc{
+    position: absolute;
+    top: 90px;
+    right: 200px;
+    z-index: 30;
+    .toast-header{
+      div,strong{
+        color: #632100;
+      }
+    }
+  }
+</style>

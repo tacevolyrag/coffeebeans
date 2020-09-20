@@ -29,66 +29,60 @@
             </div>
           </div>
           <div class="col-sm-7">
-            <form>
-              <div class="form-group">
-                <label for="title">標題</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="title"
-                  v-model="editProducts.title"
-                  placeholder="請輸入標題"
-                />
-              </div>
-            </form>
+            <div class="form-group">
+              <label for="title">標題</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                v-model="editProducts.title"
+                placeholder="請輸入標題"
+              />
+            </div>
             <div class="row">
               <div class="col-sm-6">
-                <form>
-                  <div class="form-group">
-                    <label for="category">分類</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="category"
-                      v-model="editProducts.category"
-                      placeholder="請輸入分類"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="origin_price">原價</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="origin_price"
-                      v-model="editProducts.origin_price"
-                      placeholder="請輸入原價"
-                    />
-                  </div>
-                </form>
+                <div class="form-group">
+                  <label for="category">分類</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="category"
+                    v-model="editProducts.category"
+                    placeholder="請輸入分類"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="origin_price">原價</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="origin_price"
+                    v-model="editProducts.origin_price"
+                    placeholder="請輸入原價"
+                  />
+                </div>
               </div>
               <div class="col-sm-6">
-                <form>
-                  <div class="form-group">
-                    <label for="unit">單位</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="unit"
-                      v-model="editProducts.unit"
-                      placeholder="請輸入單位"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="price">售價</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="price"
-                      v-model="editProducts.price"
-                      placeholder="請輸入售價"
-                    />
-                  </div>
-                </form>
+                <div class="form-group">
+                  <label for="unit">單位</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="unit"
+                    v-model="editProducts.unit"
+                    placeholder="請輸入單位"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="price">售價</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="price"
+                    v-model="editProducts.price"
+                    placeholder="請輸入售價"
+                  />
+                </div>
               </div>
             </div>
             <hr />
@@ -163,6 +157,7 @@ export default {
     },
     uploadFile() {
       const uploadedFile = document.querySelector('#customFile').files[0];
+      console.dir(document.querySelector('#customFile'));
       const formData = new FormData();
       formData.append('file', uploadedFile);
       const url = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/storage`;

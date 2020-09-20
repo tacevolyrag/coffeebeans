@@ -91,8 +91,9 @@ export default {
       const getSwiperProductsUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/products`;
       this.$http.get(getSwiperProductsUrl)
         .then((res) => {
-          console.log(res);
           this.swiperProducts = res.data.data;
+        }).catch((err) => {
+          console.log(err);
         });
     },
   },

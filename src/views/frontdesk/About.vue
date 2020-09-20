@@ -4,7 +4,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-beige border-bottom">
           <li class="breadcrumb-item">
-            <router-link to="/" class="text-lightgrey" style="text-decoration: none;">
+            <router-link to="/" class="text-lightgrey">
             首頁
             </router-link>
           </li>
@@ -43,7 +43,6 @@
             width="500"
             height="450"
             frameborder="0"
-            style="border:0;"
             allowfullscreen
             aria-hidden="false"
             tabindex="0"
@@ -55,7 +54,7 @@
       <div class="container">
         <h3 class="text-coffee2 py-4">聯絡表單</h3>
         <form class="row justify-content-center">
-          <div class="col-md-8">
+          <div class="col-md-8 text-left">
             <div class="form-group">
               <label for="name">姓名*</label>
               <input type="text" id="name" name="姓名" class="form-control" placeholder="請輸入收件人姓名" />
@@ -90,6 +89,11 @@ export default {};
 <style lang="scss">
 body {
   background-color: #fefbf4;
+}
+.breadcrumb-item{
+  a{
+    text-decoration: none;
+  }
 }
 .contact {
   .message{

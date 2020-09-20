@@ -3,12 +3,10 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb bg-beige border-bottom">
         <li class="breadcrumb-item">
-          <router-link to="/" class="text-lightgrey "
-        style="text-decoration: none;">首頁</router-link>
+          <router-link to="/" class="text-lightgrey">首頁</router-link>
         </li>
         <li class="breadcrumb-item">
-          <router-link to="/cart" class="text-lightgrey "
-        style="text-decoration: none;">購物車</router-link>
+          <router-link to="/cart" class="text-lightgrey">購物車</router-link>
         </li>
         <li class="breadcrumb-item font-weight-bold active text-coffee2"
         aria-current="page">填寫資料及付款方式</li>
@@ -40,7 +38,7 @@
 
     <!-- customer data -->
     <div class="container py-5" v-if="cart.length">
-      <div class="row">
+      <div class="row ">
         <div class="col-md-6">
           <div class="row justify-content-center">
             <div class="cart-border">
@@ -48,7 +46,7 @@
               <div class="card-body">
                   <table width="100%" class="table">
                     <thead>
-                      <tr style="font-size: 14px">
+                      <tr class="order-header">
                         <th>品名</th>
                         <th>數量</th>
                         <th>價格</th>
@@ -79,7 +77,7 @@
                       </div>
                     </div>
                       <span class="text-danger float-left ml-4"
-                      v-if="couponExpired || coupon.enabled === false" style="font-size: 14px">
+                      v-if="couponExpired || coupon.enabled === false" >
                       此優惠券無效!</span>
                   </div>
               </div>
@@ -109,8 +107,8 @@
         </div>
          <!-- 訂單資訊驗證及訊息 start-->
         <div class="col-md-6 data-validation">
-          <div class="row">
-            <validation-observer v-slot="{ invalid }" class="col-md-12">
+          <div class="row justify-content-start">
+            <validation-observer v-slot="{ invalid }" class="col-md-10">
               <form @submit.prevent="submitData">
                 <div class="form-group text-left">
                   <validation-provider rules="required" v-slot="{ errors,classes}">
@@ -178,9 +176,9 @@
     <!-- customer data e -->
     <div class="cart container py-5" v-else>
       <div class="text-center">
-        <p style="font-size: 6rem"><i class="fas fa-shopping-cart"></i></p>
+        <p class="cart-img"><i class="fas fa-shopping-cart"></i></p>
         <p>您的購物車中沒有商品</p>
-        <div class="btn btn-coffee2" type="button" style="width: 15%" @click="goToShop" >去購物</div>
+        <div class="btn btn-coffee2 cart-goshop" type="button" @click="goToShop" >去購物</div>
       </div>
     </div>
   </div>
@@ -226,7 +224,8 @@ export default {
         this.cart = res.data.data;
         this.updateCartTotal();
         this.isLoading = false;
-      }).catch(() => {
+      }).catch((err) => {
+        console.log(err);
         this.isLoading = false;
       });
     },
@@ -238,7 +237,7 @@ export default {
           const orderId = res.data.data.id;
           this.$router.push(`/payedbill/${orderId}`);
         }).catch((err) => {
-          console.dir(err);
+          console.log(err);
           this.isLoading = false;
         });
     },
@@ -256,9 +255,10 @@ export default {
           this.couponExpired = false;
           this.coupon = res.data.data;
           this.isLoading = false;
-        }).catch(() => {
-          this.couponExpired = true;
+        }).catch((err) => {
           this.isLoading = false;
+          this.couponExpired = true;
+          console.log(err);
         });
     },
   },
@@ -269,8 +269,16 @@ export default {
 </script>
 
 <style lang="scss">
+$cf-Step-bgColor:  #632100;
+$cf-throughLine-Color: #bbb;
+
 body{
   background-color: #fefdf4;
+}
+.breadcrumb-item{
+  a{
+    text-decoration: none;
+  }
 }
 .shopping-step {
   letter-spacing: 1px;
@@ -286,7 +294,7 @@ body{
   .step3,
   .step4 {
     div {
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       color: #ffebae;
       height: 40px;
       width: 40px;
@@ -302,7 +310,7 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       width: 200px;
       height: 5px;
       top: 25%;
@@ -319,7 +327,7 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #632100;
+      background-color: $cf-Step-bgColor;
       width: 192px;
       height: 5px;
       top: 25%;
@@ -333,7 +341,7 @@ body{
       position: absolute;
       display: block;
       content: "";
-      background-color: #bbb;
+      background-color: $cf-throughLine-Color;
       height: 5px;
       top: 25%;
       width: 155px;
@@ -343,16 +351,16 @@ body{
   }
   .step3,.step4 {
     div {
-      background-color: #bbb;
+      background-color: $cf-throughLine-Color;
       color: #aaa;
     }
     span {
-      color: #bbb;
+      color: $cf-throughLine-Color;
     }
   }
 }
 .cart-border {
-  border: 1px solid #bbb;
+  border: 1px solid $cf-throughLine-Color;
   border-radius: 1%;
   .coupon {
     p {
@@ -361,8 +369,23 @@ body{
   }
   .checkout-money{
     padding-top: 20px;
-    border-top: 3px solid #632100;
+    border-top: 3px solid $cf-Step-bgColor;
   }
+}
+.order-header{
+  font-size: 14px;
+  font-weight: bold;
+}
+.coupon{
+  span{
+    font-size: 14px;
+  }
+}
+.cart-img{
+  font-size: 6rem;
+}
+.cart-goshop{
+  width: 15%;
 }
 @media screen and (max-width: 768px){
   .shopping-step{
