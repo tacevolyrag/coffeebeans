@@ -8,7 +8,7 @@
       <router-link to="/admin/login">登入</router-link>|
       <router-link to="/">回到前台</router-link>|
       <hr>
-      <router-view :token="token" />
+      <router-view/>
     </div>
   </div>
 </template>

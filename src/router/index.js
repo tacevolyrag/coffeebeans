@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-// import Home from '../views/frontdesk/Home.vue';
 
 Vue.use(VueRouter);
 
@@ -76,6 +75,11 @@ const routes = [
         component: () => import('../views/dashboard/Order.vue'),
       },
     ],
+  },
+  {
+    // 輸入錯誤網址跳回到首頁
+    path: '*',
+    redirect: '/',
   },
 ];
 const router = new VueRouter({
