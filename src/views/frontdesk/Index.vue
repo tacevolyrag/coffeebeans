@@ -414,7 +414,7 @@ export default {
       padding-top: 40px;
     }
     .into-img {
-      width: 400px;
+      width: 375px;
     }
   }
   .intoduction-2 {
