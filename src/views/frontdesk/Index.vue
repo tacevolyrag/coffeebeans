@@ -283,7 +283,7 @@ export default {
     transform: translateX(-50%);
   }
   .img-opacity2 {
-    transform: translateX(-50%);
+    transform: translateX(50%);
   }
   .img-opacity-duration {
     opacity: 1;
@@ -378,6 +378,14 @@ export default {
     }
   .into-img-1{
     margin-left: 0;
+    }
+
+  .img-opacity2{
+    transform: translateX(-50%);
+    }
+  .img-opacity-duration {
+    opacity: 1;
+    transform: translateX(0%);
     }
   }
 }
