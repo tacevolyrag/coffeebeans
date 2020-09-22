@@ -45,11 +45,11 @@
           <div class="cart-table">
             <table class="table mt-3 mb-0 cart-table">
             <thead>
-              <th>刪除</th>
-              <th>商品名稱</th>
-              <th width="150px">數量</th>
-              <th>單位</th>
-              <th width="130px" class="text-center">單價</th>
+              <th class="delete">刪除</th>
+              <th class="prouduct">商品名稱</th>
+              <th class="quantity">數量</th>
+              <th class="unit">單位</th>
+              <th class="text-center price">單價</th>
             </thead>
             <tbody v-if="cart.length">
               <tr v-for="item in cart" :key="item.id">
@@ -62,7 +62,7 @@
                     <i class="fas fa-times"></i>
                   </button>
                 </td>
-                <td class="align-middle"><a href="#" class="productTitle"
+                <td class="align-middle prouductName"><a href="#" class="productTitle"
                 @click.prevent="goToProduct(item.product.id)">
                   {{ item.product.title }}</a></td>
                 <td class="align-middle">
@@ -85,8 +85,8 @@
                     </div>
                   </div>
                 </td>
-                <td class="align-middle">{{ item.product.unit }}</td>
-                <td class="align-middle text-right font-weight-bold">
+                <td class="align-middle unit">{{ item.product.unit }}</td>
+                <td class="align-middle text-right font-weight-bold md-price">
                   $ {{ item.product.price * item.quantity | thousand}}
                   元
                 </td>
@@ -94,12 +94,11 @@
             </tbody>
             <tfoot class="cart-foot mt-3">
               <tr v-if="cart.length">
-                <td><button type="button" class="btn btn-coffee2" @click="backToShop">
+                <td colspan="2"><button type="button" class="btn btn-coffee2 float-left"
+                @click="backToShop">
                   繼續購物</button></td>
-                <td></td>
-                <td></td>
-                <td class="text-right total-price">總計</td>
-                <td class="text-right font-weight-bold"
+                <td class="total-price float-right">總計</td>
+                <td colspan="2" class="text-right font-weight-bold"
                 >$ {{ cartTotal | thousand }} 元</td>
               </tr>
             </tfoot>
@@ -349,10 +348,14 @@ body{
   }
 }
 .cart-table{
-  width: 100%;
+  max-width: 100%;
   display: block;
   overflow-x: auto;
+  .quantity{
+    width: 150px;
+  }
 }
+
 .cart-img{
   font-size: 6rem;
 }
@@ -403,6 +406,14 @@ body{
       width: 130px;
     }
   }
+  .cart-table{
+    .quantity{
+      width: 125px;
+    }
+    .price{
+      width: 100px;
+    }
+  }
 }
 @media screen and(max-width:414px){
   .shopping-step{
@@ -425,6 +436,20 @@ body{
     padding-bottom: 100px;
     .cart-goshop{
       width: 50%;
+    }
+  }
+  .cart-table{
+    .quantity{
+      width: 60px;
+    }
+    .delete{
+      width: 30px;
+    }
+    .unit{
+      display: none;
+    }
+    .price{
+      width: 100px;
     }
   }
 }
@@ -461,6 +486,14 @@ body{
       top: 18%;
       right: -144%;
       width: 92px;
+    }
+  }
+  .cart-table{
+    .price{
+      width: 50px;
+    }
+    .prouduct{
+      width: 200px;
     }
   }
 }

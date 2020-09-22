@@ -35,6 +35,7 @@ export default {};
     top: 90px;
     right: 200px;
     z-index: 30;
+    display: none;
     .toast-header{
       div,strong{
         color: #632100;

@@ -55,6 +55,7 @@
                   class="badge badge-pill badge-danger badge-transform"
                   v-if="cart.length"
                 >{{ cart.length }}</span>
+                <span else></span>
               </router-link>
             </div>
             <div class="checkMenu" @click="hbgToggle">
@@ -90,6 +91,8 @@ export default {
       const getCartUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping`;
       this.$http.get(getCartUrl).then((res) => {
         this.cart = res.data.data;
+      }).catch((err) => {
+        console.log(err);
       });
     },
     hbgToggle(e) {
