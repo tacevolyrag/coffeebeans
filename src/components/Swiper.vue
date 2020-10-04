@@ -16,7 +16,7 @@
                   {{ item.title }}
                 </div>
                 <div class="text">
-                  <p class="px-5">{{ item.content }}</p>
+                  <p>{{ item.content }}</p>
                 </div>
                 <div class="card-price text-right">
                   <div class="originPrice" v-if="item.origin_price">

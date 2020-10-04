@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="nav">
-      <div class="bg-coffee2 backend-navbar">
+      <div class="bg-coffee2 backend-navbar text-left">
         <router-link to="/admin/boardproducts">後台產品列表</router-link>
         <router-link to="/admin/order">訂單列表</router-link>
         <router-link to="/admin/coupons">優惠券列表</router-link>

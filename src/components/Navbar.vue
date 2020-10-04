@@ -113,14 +113,14 @@ export default {
   },
   mounted() {
     document.addEventListener('click', (e) => {
+      e.stopPropagation();
       if (e.target.className !== 'knowledge-list') {
         $('.knowledge-list').hide();
         $('.coffee-knowledge').removeClass('active');
-      }
-      if (e.target.className !== 'checkOpen') {
-        $('.navbarPos').removeClass('menu-show');
-        if ($('.checkOpen')[0].checked === true) {
-          $('.checkOpen')[0].checked = false;
+        if ($('.navbarPos').removeClass('menu-show')) {
+          if ($('.checkOpen')[0].checked === true) {
+            $('.checkOpen')[0].checked = false;
+          }
         }
       }
     });
