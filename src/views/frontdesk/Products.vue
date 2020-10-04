@@ -2,30 +2,51 @@
   <div class="products">
     <loading :active.sync="isLoading"></loading>
     <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb bg-beige border-bottom">
-        <li class="breadcrumb-item">
-          <router-link to="/" class="text-lightgrey">首頁</router-link>
-        </li>
-        <li class="breadcrumb-item font-weight-bold active" aria-current="page">商品列表</li>
-      </ol>
-    </nav>
-    <!-- 商品分類 -->
-    <div class="category pb-3">
-      <ul class="d-flex justify-content-center">
-        <li :class="{ active: filterProducts === 'all'}"
-        @click="filterSort(filterProducts = 'all')">全部商品</li>
-        <li :class="{ active: filterProducts === 'lightRoast'}"
-        @click="filterSort(filterProducts = 'lightRoast')">淺烘焙</li>
-        <li :class="{ active: filterProducts === 'midiumRoast'}"
-        @click="filterSort(filterProducts = 'midiumRoast')">中烘焙</li>
-        <li :class="{ active: filterProducts === 'other'}"
-        @click="filterSort(filterProducts = 'other')">週邊商品</li>
-      </ul>
-    </div>
-    <!-- 商品分類e -->
-    <!-- 商品列表 -->
-      <div class="row">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-beige border-bottom">
+          <li class="breadcrumb-item">
+            <router-link to="/" class="text-lightgrey">首頁</router-link>
+          </li>
+          <li
+            class="breadcrumb-item font-weight-bold active"
+            aria-current="page"
+          >
+            商品列表
+          </li>
+        </ol>
+      </nav>
+      <!-- 商品分類 -->
+      <div class="category pb-3">
+        <ul class="d-flex justify-content-center">
+          <li
+            :class="{ active: filterProducts === 'all' }"
+            @click="filterSort((filterProducts = 'all'))"
+          >
+            全部商品
+          </li>
+          <li
+            :class="{ active: filterProducts === 'lightRoast' }"
+            @click="filterSort((filterProducts = 'lightRoast'))"
+          >
+            淺烘焙
+          </li>
+          <li
+            :class="{ active: filterProducts === 'midiumRoast' }"
+            @click="filterSort((filterProducts = 'midiumRoast'))"
+          >
+            中烘焙
+          </li>
+          <li
+            :class="{ active: filterProducts === 'other' }"
+            @click="filterSort((filterProducts = 'other'))"
+          >
+            週邊商品
+          </li>
+        </ul>
+      </div>
+      <!-- 商品分類e -->
+      <!-- 商品列表 -->
+      <div class="row mb-5 pb-5">
         <div class="col-md-12">
           <div class="content">
             <div class="d-flex flex-wrap justify-content-between">
@@ -36,16 +57,20 @@
               >
                 <div class="card item-card">
                   <a href="#" @click.prevent="getProductDetail(product.id)">
-                  <div
-                    :style="{backgroundImage: `url(${product.imageUrl})`}"
-                    class="item-card-img"
-                  ></div>
+                    <div
+                      :style="{ backgroundImage: `url(${product.imageUrl})` }"
+                      class="item-card-img"
+                    ></div>
                   </a>
                   <div class="card-body">
-                    <h5 class="card-title product-title">
-                      <a href="#" class="text-coffee2 font-weight-bold"
-                      @click.prevent="getProductDetail(product.id)">
-                        {{ product.title }}</a>
+                    <h5 class="card-title product-title text-center">
+                      <a
+                        href="#"
+                        class="text-coffee2 font-weight-bold"
+                        @click.prevent="getProductDetail(product.id)"
+                      >
+                        {{ product.title }}</a
+                      >
                     </h5>
                     <p class="card-text">{{ product.content }}</p>
                   </div>
@@ -54,21 +79,29 @@
                       <div
                         class="h6 product-origin"
                         v-if="product.origin_price"
-                      >原價 ${{ product.origin_price | thousand }} 元</div>
+                      >
+                        原價 ${{ product.origin_price | thousand }} 元
+                      </div>
                     </div>
-                    <div class="h5 product-off">特價 ${{ product.price | thousand }} 元</div>
+                    <div class="h5 product-off">
+                      特價 ${{ product.price | thousand }} 元
+                    </div>
                   </div>
                   <div class="modal-footer mt-3">
                     <button
                       type="button"
                       class="btn btn-outline-coffee2 product-detail"
                       @click="getProductDetail(product.id)"
-                    >商品資訊</button>
+                    >
+                      商品資訊
+                    </button>
                     <button
                       type="button"
                       class="btn btn-coffee2 ml-auto"
                       @click="addToCart(product)"
-                    >加入購物車</button>
+                    >
+                      加入購物車
+                    </button>
                   </div>
                 </div>
               </div>
@@ -79,19 +112,15 @@
       <!-- 商品列表e -->
     </div>
     <Toast></Toast>
-    <Toasterror></Toasterror>
   </div>
 </template>
 
 <script>
-/* global $ */
 import Toast from '@/components/Toast.vue';
-import Toasterror from '@/components/Toasterror.vue';
 
 export default {
   components: {
     Toast,
-    Toasterror,
   },
   data() {
     return {
@@ -121,28 +150,40 @@ export default {
         quantity,
       };
       this.isLoading = true;
-      this.$http.post(addToCartUrl, cart).then(() => {
-        this.$bus.$emit('get-cart');
-        $('.toastSuc').toast('show');
-        this.isLoading = false;
-      }).catch(() => {
-        $('.toastErr').toast('show');
-        this.isLoading = false;
-      });
+      this.$http
+        .post(addToCartUrl, cart)
+        .then(() => {
+          this.$bus.$emit('get-cart');
+          this.$bus.$emit('messagepush', '加入購物車成功囉!ヽ(＾Д＾)ﾉ ', 'coffee2');
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          const errorList = err.response.data.errors;
+          errorList.forEach((error) => {
+            this.$bus.$emit('messagepush', `${error}Σ( ° △ °|||)`, 'danger');
+          });
+          this.isLoading = false;
+        });
     },
     filterSort() {
       switch (this.filterProducts) {
-        case ('all'):
+        case 'all':
           this.categoryProducts = this.products;
           break;
-        case ('lightRoast'):
-          this.categoryProducts = this.products.filter((item) => item.category === '淺烘焙');
+        case 'lightRoast':
+          this.categoryProducts = this.products.filter(
+            (item) => item.category === '淺烘焙',
+          );
           break;
-        case ('midiumRoast'):
-          this.categoryProducts = this.products.filter((item) => item.category === '中烘焙');
+        case 'midiumRoast':
+          this.categoryProducts = this.products.filter(
+            (item) => item.category === '中烘焙',
+          );
           break;
-        case ('other'):
-          this.categoryProducts = this.products.filter((item) => item.category === 'Other');
+        case 'other':
+          this.categoryProducts = this.products.filter(
+            (item) => item.category === 'Other',
+          );
           break;
         default:
           break;
@@ -156,51 +197,51 @@ export default {
 </script>
 
 <style lang="scss">
-$cf-Theme-Color:  #421c02;
+$cf-Theme-Color: #421c02;
 $cg-white: #fff;
 
-.breadcrumb-item{
-  a{
+.breadcrumb-item {
+  a {
     text-decoration: none;
   }
 }
-.products{
+.products {
   background-color: #fefbf4;
 }
-.item-card{
+.item-card {
   height: 450px;
-  .item-card-img{
+  .item-card-img {
     height: 200px;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
   }
 }
-.product-all-price{
+.product-all-price {
   padding: 0 16px;
 }
-.category{
-  ul{
-      .active{
-        color: $cf-Theme-Color;
-      }
-    li{
+.category {
+  ul {
+    .active {
+      color: $cf-Theme-Color;
+    }
+    li {
       padding: 2px 30px;
       font-weight: bold;
       cursor: pointer;
-      &:hover{
+      &:hover {
         color: $cf-Theme-Color;
       }
     }
-    li:not(:last-child){
+    li:not(:last-child) {
       border-right: 1px solid $cf-Theme-Color;
     }
   }
 }
-@media screen and (max-width: 414px){
-  .category{
-    ul{
-      li{
+@media screen and (max-width: 414px) {
+  .category {
+    ul {
+      li {
         padding: 10px;
         font-weight: bold;
         cursor: pointer;
@@ -209,19 +250,19 @@ $cg-white: #fff;
     }
   }
 }
-@media screen and (max-width: 320px){
-  .category{
-    ul{
-      li{
+@media screen and (max-width: 320px) {
+  .category {
+    ul {
+      li {
         padding: 5px;
       }
     }
   }
 }
-@media screen and (max-width: 280px){
-  .category{
-    ul{
-      li{
+@media screen and (max-width: 280px) {
+  .category {
+    ul {
+      li {
         padding: 10px;
       }
     }
@@ -263,16 +304,16 @@ $cg-white: #fff;
 .card-footer .product-detail:hover {
   color: $cg-white;
 }
-.breadcrumb-item.active{
+.breadcrumb-item.active {
   color: $cf-Theme-Color;
 }
-@media screen and(max-width: 768px){
-  .products-list{
+@media screen and(max-width: 768px) {
+  .products-list {
     width: 48%;
   }
 }
-@media screen and(max-width: 414px){
-  .products-list{
+@media screen and(max-width: 414px) {
+  .products-list {
     width: 100%;
     margin-bottom: 50px;
   }

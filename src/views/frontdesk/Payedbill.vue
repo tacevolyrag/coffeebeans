@@ -27,53 +27,58 @@
           <div class="border mb-4">
             <table class="table">
               <tr>
-                <td class="text-left h5 text-coffee2 order-info" width="35%">收件人資訊</td>
+                <td class="h5 text-coffee2 order-info" width="35%">
+                  收件人資訊
+                </td>
               </tr>
               <tr>
-                <td class="text-left" width="20%">姓名</td>
-                <td class="text-left">{{ order.user.name }}</td>
+                <td width="20%">姓名</td>
+                <td>{{ order.user.name }}</td>
               </tr>
               <tr>
-                <td class="text-left" width="20%">取貨地址</td>
-                <td class="text-left">{{ order.user.address }}</td>
+                <td width="20%">取貨地址</td>
+                <td>{{ order.user.address }}</td>
               </tr>
               <tr>
-                <td class="text-left" width="20%">手機號碼</td>
-                <td class="text-left">{{ order.user.tel }}</td>
+                <td width="20%">手機號碼</td>
+                <td>{{ order.user.tel }}</td>
               </tr>
               <tr>
-                <td class="text-left" width="20%">電子信箱</td>
-                <td class="text-left">{{ order.user.email }}</td>
+                <td width="20%">電子信箱</td>
+                <td>{{ order.user.email }}</td>
               </tr>
             </table>
           </div>
           <div class="border mb-4">
             <table class="table">
               <tr>
-                <td class="text-left h5 text-coffee2 order-info" width="35%">訂單資訊</td>
+                <td class="h5 text-coffee2 order-info" width="35%">訂單資訊</td>
               </tr>
               <tr>
-                <td class="text-left" width="20%">付款方式</td>
-                <td class="text-left">{{ order.payment }}</td>
+                <td width="20%">付款方式</td>
+                <td>{{ order.payment }}</td>
               </tr>
               <tr>
-                <td class="text-left" width="20%">優惠折扣</td>
-                <td class="text-left" v-if="order.coupon">{{ order.coupon.percent }}%</td>
-                <td class="text-left" v-else>原價</td>
+                <td width="20%">優惠折扣</td>
+                <td v-if="order.coupon">{{ order.coupon.percent }}%</td>
+                <td v-else>原價</td>
               </tr>
               <tr>
-                <td class="text-left" width="20%">訂單金額</td>
-                <td class="text-left text-coffee2 font-weight-bold h5">
-                    ${{ Math.floor(order.amount) }}</td>
+                <td width="20%">訂單金額</td>
+                <td class="text-coffee2 font-weight-bold h5">
+                  ${{ Math.floor(order.amount) }}
+                </td>
               </tr>
               <tr>
-                <td class="text-left" width="20%">付款狀態</td>
-                <td class="text-left text-danger" v-if="!order.paid">尚未付款</td>
+                <td width="20%">付款狀態</td>
+                <td class="text-danger" v-if="!order.paid">尚未付款</td>
               </tr>
             </table>
           </div>
           <div class="d-flex justify-content-end mb-5">
-            <button class="btn btn-coffee2 confrimedPay" @click="payedBill">確認付款</button>
+            <button class="btn btn-coffee2 confrimedPay" @click="payedBill">
+              確認付款
+            </button>
           </div>
         </div>
       </div>
@@ -94,11 +99,13 @@ export default {
       const { id } = this.$route.params;
       this.isLoading = true;
       const getOrderUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/orders/${id}`;
-      this.$http.get(getOrderUrl)
+      this.$http
+        .get(getOrderUrl)
         .then((res) => {
           this.order = res.data.data;
           this.isLoading = false;
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err);
           this.isLoading = false;
         });
@@ -110,11 +117,13 @@ export default {
       const { id } = this.$route.params;
       this.isLoading = true;
       const payedbillUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/orders/${id}/paying`;
-      this.$http.post(payedbillUrl)
+      this.$http
+        .post(payedbillUrl)
         .then(() => {
           this.isLoading = false;
           this.$router.push('/checkouts');
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err);
           this.isLoading = false;
         });
@@ -127,11 +136,11 @@ export default {
 </script>
 
 <style lang="scss">
-$cf-Step-bgColor:  #632100;
+$cf-Step-bgColor: #632100;
 $cf-throughLine-Color: #bbb;
 
-body{
-   background-color: #fefbf4;
+body {
+  background-color: #fefbf4;
 }
 .shopping-step {
   letter-spacing: 1px;
@@ -190,12 +199,12 @@ body{
   }
   .step3 {
     position: relative;
-      div {
-        color: #ffebae;
-      }
-      span {
-        color: #2c3e50;
-      }
+    div {
+      color: #ffebae;
+    }
+    span {
+      color: #2c3e50;
+    }
     &::before {
       position: absolute;
       display: block;
@@ -209,48 +218,48 @@ body{
     }
   }
   .step4 {
-      div {
-        background-color: $cf-throughLine-Color;
-        color: #aaa;
-      }
-      span {
-        color: $cf-throughLine-Color;
-      }
+    div {
+      background-color: $cf-throughLine-Color;
+      color: #aaa;
+    }
+    span {
+      color: $cf-throughLine-Color;
+    }
   }
 }
-.confrimedPay{
+.confrimedPay {
   width: 50%;
 }
-@media screen and(max-width: 768px){
-  .shopping-step{
-    .step1{
+@media screen and(max-width: 768px) {
+  .shopping-step {
+    .step1 {
       display: none;
     }
-    .step4{
+    .step4 {
       display: block;
     }
   }
 }
-@media screen and(max-width: 540px){
-  .data-coustomer{
+@media screen and(max-width: 540px) {
+  .data-coustomer {
     margin-top: 3rem;
   }
-  .shopping-step{
+  .shopping-step {
     display: none;
   }
 }
-@media screen and(max-width: 414px){
-  .shopping-step{
+@media screen and(max-width: 414px) {
+  .shopping-step {
     display: none;
   }
 }
-@media screen and(max-width: 375px){
-  .order-info{
+@media screen and(max-width: 375px) {
+  .order-info {
     width: 40%;
   }
 }
-@media screen and(max-width: 320px){
-  .order-info{
+@media screen and(max-width: 320px) {
+  .order-info {
     width: 45%;
   }
 }

@@ -4,48 +4,55 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb bg-beige border-bottom">
         <li class="breadcrumb-item">
-          <router-link to="/" class="text-lightgrey">
-          首頁
-          </router-link>
+          <router-link to="/" class="text-lightgrey"> 首頁 </router-link>
         </li>
         <li class="breadcrumb-item">
           <router-link to="/products" class="text-lightgrey">
-          商品列表
+            商品列表
           </router-link>
         </li>
-        <li class="breadcrumb-item font-weight-bold text-coffee2 active"
-        aria-current="page">
+        <li
+          class="breadcrumb-item font-weight-bold text-coffee2 active"
+          aria-current="page"
+        >
           {{ product.title }}
         </li>
       </ol>
     </nav>
     <div class="mt-4">
-      <div class="">
+      <div>
         <div class="row align-items-center">
           <div class="col-md-6 single-product">
-            <img :src="product.imageUrl" class="img-fluid" alt />
+            <img
+              :src="product.imageUrl"
+              class="img-fluid"
+              :alt="product.title"
+            />
           </div>
           <div class="col-md-6">
             <div class="product-detail">
               <blockquote>
                 <div class="d-flex align-items-center product-title">
-                  <h3 class="text-coffee2 font-weight-bold ">{{ product.title }}</h3>
+                  <h3 class="text-coffee2 font-weight-bold">
+                    {{ product.title }}
+                  </h3>
                   <span class="badge badge-pill badge-coffee2 ml-auto">
-                    {{ product.category }}</span>
+                    {{ product.category }}</span
+                  >
                 </div>
-                <div class="px-3">
+                <div>
                   <p class="pt-3 text-coffee2 h5">{{ product.content }}</p>
-                  <span class="product-detail-span">{{ product.description }}</span>
+                  <span class="product-detail-span">{{
+                    product.description
+                  }}</span>
                 </div>
                 <div class="d-flex justify-content-around text-coffee2 mt-4">
-                  <div
-                    class="h6 product-origin"
-                    v-if="!product.price"
-                  >NT ${{ product.origin_price | thousand }} 元</div>
-                  <div
-                    class="h5 font-weight-bold ml-auto"
-                    v-if="product.price"
-                  >NT ${{ product.price | thousand }} 元</div>
+                  <div class="h6 product-origin" v-if="!product.price">
+                    NT ${{ product.origin_price | thousand }} 元
+                  </div>
+                  <div class="h5 font-weight-bold ml-auto" v-if="product.price">
+                    NT ${{ product.price | thousand }} 元
+                  </div>
                 </div>
               </blockquote>
 
@@ -55,80 +62,90 @@
                   v-for="productNum in 10"
                   :key="productNum"
                   :value="productNum"
-                >數量 {{ productNum }} {{ product.unit }}</option>
+                >
+                  數量 {{ productNum }} {{ product.unit }}
+                </option>
               </select>
               <div class="mt-5 d-flex justify-content-end align-items-center">
                 <div class="mr-3 product-off h5 pt-2" v-if="product.num">
                   總計
                   <strong class="product-off">
-                    ${{ product.price * product.num | thousand }} 元</strong>
+                    ${{ (product.price * product.num) | thousand }} 元</strong
+                  >
                 </div>
                 <button
                   type="button"
                   class="btn btn-coffee2 addToCart"
-                  @click="detailAddToCart(product,product.num)"
+                  @click="detailAddToCart(product, product.num)"
                   v-if="product.num"
-                >加到購物車</button>
-                <button type="button" class="btn btn-coffee2 addToCart"
-                v-else disabled>加到購物車</button>
+                >
+                  加到購物車
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-coffee2 addToCart"
+                  v-else
+                  disabled
+                >
+                  加到購物車
+                </button>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-        <div class="row mt-5 pt-4 justify-content-center border-top"
-        v-if="!(product.category === 'Other')">
-            <div class="col-md-6">
-              <div class="mb-5">
-              <h4 class="text-coffee2 mb-3 pb-3 text-center">產品規格</h4>
-              <p class="text-left pl-5">
-                產地：{{ product.title }}<br><br>
-                處理法：水洗<br><br>
-                烘焙度：{{ product.category }}<br><br>
-                保存方式：常溫、避免陽光直射<br><br>
-                保存期限：365 天(未開封)<br><br>
-                賞味期限：100 天（未開封）、 開封後建議立即享用<br><br>
-                內容物重量：454g ± 10g<br><br>
-                內容物：咖啡豆
-              </p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-5">
-              <h4 class="text-coffee2 pb-3">使用方式</h4>
-              <p class="text-left pl-5">
-                咖啡比例：每 10g 使用 150 ~ 200cc 水沖泡咖啡<br>可因自己喜好口感增加或減少水量<br><br>
-                萃取水溫：建議溫度 90 度~ 92 度
-              </p>
-              </div>
-            </div>
+    <div
+      class="row mt-5 pt-4 justify-content-center border-top"
+      v-if="!(product.category === 'Other')"
+    >
+      <div class="col-md-6">
+        <div class="mb-5">
+          <h4 class="text-coffee2 mb-3 pb-3">產品規格</h4>
+          <p class="text-left">
+            產地：{{ product.title }}<br /><br />
+            處理法：水洗<br /><br />
+            烘焙度：{{ product.category }}<br /><br />
+            保存方式：常溫、避免陽光直射<br /><br />
+            保存期限：365 天(未開封)<br /><br />
+            賞味期限：100 天（未開封）、 開封後建議立即享用<br /><br />
+            內容物重量：454g ± 10g<br /><br />
+            內容物：咖啡豆
+          </p>
         </div>
-        <div class="row pt-5 justify-content-center">
-            <div class="col-md-12">
-              <div class="mb-5">
-              <h4 class="text-coffee2 mb-3 pb-3 font-weight-bold">你可能也會喜歡</h4>
-              <Swiper></Swiper>
-              </div>
-            </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-5">
+          <h4 class="text-coffee2 pb-3">使用方式</h4>
+          <p class="text-left">
+            咖啡比例：每 10g 使用 150 ~ 200cc 水沖泡咖啡<br />可因自己喜好口感增加或減少水量<br /><br />
+            萃取水溫：建議溫度 90 度~ 92 度
+          </p>
         </div>
+      </div>
+    </div>
+    <div class="row pt-5 justify-content-center mb-5 pb-5">
+      <div class="col-md-12">
+        <div class="mb-5">
+          <h4 class="text-coffee2 mb-3 pb-3 font-weight-bold text-center">
+            你可能也會喜歡
+          </h4>
+          <Swiper @getOtherItem="getProduct"></Swiper>
+        </div>
+      </div>
+    </div>
     <Toast></Toast>
-    <Toasterror></Toasterror>
   </div>
 </template>
 
 <script>
-/* global $ */
 import Swiper from '@/components/Swiper.vue';
 import Toast from '@/components/Toast.vue';
-import Toasterror from '@/components/Toasterror.vue';
 
 export default {
   components: {
     Swiper,
     Toast,
-    Toasterror,
   },
   data() {
     return {
@@ -158,11 +175,14 @@ export default {
         .post(addToCartUrl, cart)
         .then(() => {
           this.$bus.$emit('get-cart');
-          $('.toastSuc').toast('show');
+          this.$bus.$emit('messagepush', '加入購物車成功囉!ヽ(＾Д＾)ﾉ ', 'coffee2');
           this.isLoading = false;
         })
-        .catch(() => {
-          $('.toastErr').toast('show');
+        .catch((err) => {
+          const errorList = err.response.data.errors;
+          errorList.forEach((error) => {
+            this.$bus.$emit('messagepush', `${error}Σ( ° △ °|||)`, 'danger');
+          });
           this.isLoading = false;
         });
     },
@@ -174,15 +194,15 @@ export default {
 </script>
 
 <style lang="scss">
-body{
+body {
   background-color: #fefbf4;
 }
-.breadcrumb-item{
-  a{
+.breadcrumb-item {
+  a {
     text-decoration: none;
   }
 }
-.addToCart{
+.addToCart {
   width: 50%;
 }
 .product-origin {
@@ -198,19 +218,14 @@ body{
   height: 55%;
   border-bottom: 2px solid #bbb;
 }
-.product-detail{
-  .product-detail-span{
+.product-detail {
+  .product-detail-span {
     display: block;
     text-align: left;
   }
 }
-.product-title{
-  h3{
-    padding-left: 50px;
-  }
-}
-@media screen and (max-width: 414px){
-  .single-product{
+@media screen and (max-width: 414px) {
+  .single-product {
     margin-bottom: 30px;
   }
 }

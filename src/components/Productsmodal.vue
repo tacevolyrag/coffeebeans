@@ -4,7 +4,12 @@
     <div class="modal-content">
       <div class="modal-header bg-dark text-white">
         <h5 class="modal-title" id="exampleModalLongTitle">新增產品</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+        <button
+          type="button"
+          class="close text-white"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -23,8 +28,12 @@
             </div>
             <div class="form-group text-left">
               <label for="customFile"></label>
-              <input type="file" id="customFile" class="form-group text-fluid"
-              @change="uploadFile" />
+              <input
+                type="file"
+                id="customFile"
+                class="form-group text-fluid"
+                @change="uploadFile"
+              />
               <img :src="filePath[0]" class="img-fluid" alt />
             </div>
           </div>
@@ -88,12 +97,20 @@
             <hr />
             <div class="form-group">
               <label for="description">產品描述</label>
-              <textarea class="form-control" id="description" v-model="editProducts.description">
+              <textarea
+                class="form-control"
+                id="description"
+                v-model="editProducts.description"
+              >
               </textarea>
             </div>
             <div class="form-group">
               <label for="content">說明內容</label>
-              <textarea class="form-control" id="content" v-model="editProducts.content"></textarea>
+              <textarea
+                class="form-control"
+                id="content"
+                v-model="editProducts.content"
+              ></textarea>
             </div>
             <div class="form-check mb-3">
               <input
@@ -108,8 +125,20 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-outline-primary" @click="updateProduct">確認</button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            data-dismiss="modal"
+          >
+            取消
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            @click="updateProduct"
+          >
+            確認
+          </button>
         </div>
       </div>
     </div>
@@ -131,29 +160,23 @@ export default {
   methods: {
     updateProduct() {
       this.isLoading = true;
-      const editUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/product/${this.editProducts.id}`;
-      const creatUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/product`;
-      // 如果是 true 就新增一個產品，反之則編輯產品
-      if (this.created) {
-        this.$http.post(creatUrl, this.editProducts)
-          .then(() => {
-            this.$emit('edited');
-            this.filePath = {};
-            $('#createdItem').modal('hide');
-            this.isLoading = false;
-          }).catch(() => {
-            this.isLoading = false;
-          });
-      } else {
-        this.$http.patch(editUrl, this.editProducts)
-          .then(() => {
-            this.$emit('edited');
-            $('#createdItem').modal('hide');
-            this.isLoading = false;
-          }).catch(() => {
-            this.isLoading = false;
-          });
+      let apiUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/product`;
+      let httpMethod = 'post';
+      // 如果是 true 就新增一個產品，反之則編輯產品並更改 method 為更新
+      if (!this.created) {
+        apiUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/product/${this.editProducts.id}`;
+        httpMethod = 'patch';
       }
+      this.$http[httpMethod](apiUrl, this.editProducts)
+        .then(() => {
+          this.$emit('edited');
+          this.filePath = {};
+          $('#createdItem').modal('hide');
+          this.isLoading = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
     },
     uploadFile() {
       const uploadedFile = document.querySelector('#customFile').files[0];
@@ -161,22 +184,25 @@ export default {
       const formData = new FormData();
       formData.append('file', uploadedFile);
       const url = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/storage`;
-      this.$http.post(url, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }).then((res) => {
-        this.status.fileUploading = true;
-        this.filePath = res.data.data.path;
-        if (res.status === 200) {
-          this.editProducts.imageUrl.push(this.filePath);
-          if (this.editProducts.imageUrl[0]) {
-            this.editProducts.imageUrl[0] = this.filePath;
+      this.$http
+        .post(url, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((res) => {
+          this.status.fileUploading = true;
+          this.filePath = res.data.data.path;
+          if (res.status === 200) {
+            this.editProducts.imageUrl.push(this.filePath);
+            if (this.editProducts.imageUrl[0]) {
+              this.editProducts.imageUrl[0] = this.filePath;
+            }
           }
-        }
-      }).catch((err) => {
-        console.dir(err);
-      });
+        })
+        .catch((err) => {
+          console.dir(err);
+        });
     },
   },
 };

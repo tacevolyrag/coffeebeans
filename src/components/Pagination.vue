@@ -1,7 +1,7 @@
 <template>
   <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
-      <li class="page-item" :class="{ disabled: pages.current_page === 1}">
+      <li class="page-item" :class="{ disabled: pages.current_page === 1 }">
         <a
           class="page-link"
           href="#"
@@ -15,11 +15,16 @@
         class="page-item"
         v-for="page in pages.total_pages"
         :key="page"
-        :class="{active: pages.current_page === page}"
+        :class="{ active: pages.current_page === page }"
       >
-        <a class="page-link" href="#" @click.prevent="renderPage(page)">{{ page }}</a>
+        <a class="page-link" href="#" @click.prevent="renderPage(page)">{{
+          page
+        }}</a>
       </li>
-      <li class="page-item" :class="{ disabled: pages.current_page === pages.total_pages}">
+      <li
+        class="page-item"
+        :class="{ disabled: pages.current_page === pages.total_pages }"
+      >
         <a
           class="page-link"
           href="#"

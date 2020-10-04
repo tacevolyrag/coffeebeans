@@ -5,8 +5,12 @@
         <li class="breadcrumb-item">
           <router-link to="/" class="text-lightgrey">首頁</router-link>
         </li>
-        <li class="breadcrumb-item font-weight-bold active text-coffee2"
-        aria-current="page">購物車</li>
+        <li
+          class="breadcrumb-item font-weight-bold active text-coffee2"
+          aria-current="page"
+        >
+          購物車
+        </li>
       </ol>
     </nav>
     <loading :active.sync="isLoading"></loading>
@@ -36,81 +40,113 @@
     <!-- cart detail -->
     <div class="cart container py-5" v-if="cart.length">
       <div class="row">
-        <div class="col-md-12 col-lg-8 col-12 cart-border">
-          <div class="text-right mt-3">
-            <button type="button" class="btn btn-outline-danger btn-sm" @click="removeItems">
-              <i class="fas fa-times"> 清除購物車</i>
-            </button>
-          </div>
-          <div class="cart-table">
-            <table class="table mt-3 mb-0 cart-table">
-            <thead>
-              <th class="delete">刪除</th>
-              <th class="prouduct">商品名稱</th>
-              <th class="quantity">數量</th>
-              <th class="unit">單位</th>
-              <th class="text-center price">單價</th>
-            </thead>
-            <tbody v-if="cart.length">
-              <tr v-for="item in cart" :key="item.id">
-                <td class="align-middle">
-                  <button
-                    type="button"
-                    class="btn text-danger"
-                    @click="removeItem(item.product.id)"
-                  >
-                    <i class="fas fa-times"></i>
-                  </button>
-                </td>
-                <td class="align-middle prouductName"><a href="#" class="productTitle"
-                @click.prevent="goToProduct(item.product.id)">
-                  {{ item.product.title }}</a></td>
-                <td class="align-middle">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
+        <div class="col-lg-8">
+          <div class="cart-border">
+            <div class="text-right mt-3 pr-2">
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                @click="removeItems"
+              >
+                <i class="fas fa-times"> 清除購物車</i>
+              </button>
+            </div>
+            <div class="cart-table table-responsive">
+              <table class="table mt-3">
+                <thead>
+                  <th class="delete text-nowrap">刪除</th>
+                  <th class="prouduct text-nowrap">商品名稱</th>
+                  <th class="quantity text-nowrap">數量</th>
+                  <th class="unit text-nowrap">單位</th>
+                  <th class="price text-nowrap">單價</th>
+                </thead>
+                <tbody v-if="cart.length">
+                  <tr v-for="item in cart" :key="item.id">
+                    <td class="align-middle md-delete">
                       <button
                         type="button"
-                        class="btn btn-outline-coffee2"
-                        :disabled="item.quantity === 1"
-                        @click="quantityUpdate(item.product.id,item.quantity - 1)"
-                      >-</button>
-                    </div>
-                    <input type="text" :value="item.quantity" class="form-control text-center" />
-                    <div class="input-group-append">
+                        class="btn text-danger"
+                        @click="removeItem(item.product.id)"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </td>
+                    <td class="align-middle prouductName">
+                      <a
+                        href="#"
+                        class="productTitle"
+                        @click.prevent="goToNext('product', item.product.id)"
+                      >
+                        {{ item.product.title }}</a
+                      >
+                    </td>
+                    <td class="align-middle quantity-size">
+                      <div class="input-group input-group-sm flex-nowrap">
+                        <div class="input-group-prepend">
+                          <button
+                            type="button"
+                            class="btn btn-outline-coffee2 btn-sm"
+                            :disabled="item.quantity === 1"
+                            @click="
+                              quantityUpdate(item.product.id, item.quantity - 1)
+                            "
+                          >
+                            -
+                          </button>
+                        </div>
+                        <input
+                          type="text"
+                          :value="item.quantity"
+                          class="form-control text-center"
+                        />
+                        <div class="input-group-append">
+                          <button
+                            type="button"
+                            class="btn btn-outline-coffee2 btn-sm"
+                            @click="
+                              quantityUpdate(item.product.id, item.quantity + 1)
+                            "
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle unit">{{ item.product.unit }}</td>
+                    <td
+                      class="align-middle text-right font-weight-bold md-price text-nowrap"
+                    >
+                      $ {{ (item.product.price * item.quantity) | thousand }}
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot class="cart-foot mt-3">
+                  <tr v-if="cart.length">
+                    <td colspan="2">
                       <button
                         type="button"
-                        class="btn btn-outline-coffee2"
-                        @click="quantityUpdate(item.product.id,item.quantity + 1)"
-                      >+</button>
-                    </div>
-                  </div>
-                </td>
-                <td class="align-middle unit">{{ item.product.unit }}</td>
-                <td class="align-middle text-right font-weight-bold md-price">
-                  $ {{ item.product.price * item.quantity | thousand}}
-                  元
-                </td>
-              </tr>
-            </tbody>
-            <tfoot class="cart-foot mt-3">
-              <tr v-if="cart.length">
-                <td colspan="2"><button type="button" class="btn btn-coffee2 float-left"
-                @click="backToShop">
-                  繼續購物</button></td>
-                <td class="total-price float-right">總計</td>
-                <td colspan="2" class="text-right font-weight-bold"
-                >$ {{ cartTotal | thousand }} 元</td>
-              </tr>
-            </tfoot>
-            </table>
+                        class="btn btn-coffee2 float-left"
+                        @click="goToNext('products')"
+                      >
+                        繼續購物
+                      </button>
+                    </td>
+                    <td class="total-price text-right">總計</td>
+                    <td colspan="2" class="text-right font-weight-bold">
+                      $ {{ cartTotal | thousand }}
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
           </div>
         </div>
         <!-- cart detail end-->
 
         <!-- order information -->
-        <div class="col-md-12  col-lg-4 col-12 orderInfo">
-          <div class="cart-border">
-            <div class="card-header text-left pt-3 text-coffee2">訂單資訊</div>
+        <div class="col-lg-4 col-12 orderInfo">
+          <div class="cart-border" style="width: 100%">
+            <div class="card-header pt-3 text-coffee2">訂單資訊</div>
             <div class="card-body my-3">
               <div class="d-flex">
                 <p class="ml-4">商品總計</p>
@@ -125,11 +161,15 @@
               <div class="d-flex py-3">
                 <p class="ml-4">結帳金額</p>
                 <span class="ml-auto mr-4 font-weight-bold h5">
-                  NT$ {{ cartTotal | thousand }}</span>
+                  NT$ {{ cartTotal | thousand }}</span
+                >
               </div>
-              <button class="btn btn-coffee2 nextToStep"
-              @click="stepToPayway">
-              下一步</button>
+              <button
+                class="btn btn-coffee2 nextToStep"
+                @click="goToNext('paybill')"
+              >
+                下一步
+              </button>
             </div>
           </div>
         </div>
@@ -140,7 +180,13 @@
       <div class="text-center">
         <p class="cart-img"><i class="fas fa-shopping-cart"></i></p>
         <p>您的購物車中沒有商品</p>
-        <div class="btn btn-coffee2 cart-goshop" type="button" @click="goToShop" >去購物</div>
+        <div
+          class="btn btn-coffee2 cart-goshop"
+          type="button"
+          @click="goToNext('products')"
+        >
+          去購物
+        </div>
       </div>
     </div>
   </div>
@@ -156,18 +202,33 @@ export default {
     };
   },
   methods: {
-    goToShop() {
-      this.$router.push('/products');
+    goToNext(somewhere, productId) {
+      switch (somewhere) {
+        case 'paybill':
+          this.$bus.$emit('orderMoney', this.cartTotal);
+          this.$router.push('/paybill');
+          break;
+        case 'products':
+          this.$router.push('/products');
+          break;
+        case 'product':
+          this.$router.push(`/product/${productId}`);
+          break;
+        default:
+          break;
+      }
     },
     getCartItems() {
       const getCartItemsUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping`;
       this.isLoading = true;
-      this.$http.get(getCartItemsUrl)
+      this.$http
+        .get(getCartItemsUrl)
         .then((res) => {
           this.cart = res.data.data;
           this.updateCartTotal();
           this.isLoading = false;
-        }).catch((err) => {
+        })
+        .catch((err) => {
           this.isLoading = false;
           console.log(err);
         });
@@ -175,12 +236,14 @@ export default {
     removeItems() {
       const removeItemsUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping/all/product`;
       this.isLoading = true;
-      this.$http.delete(removeItemsUrl)
+      this.$http
+        .delete(removeItemsUrl)
         .then(() => {
           this.$bus.$emit('get-cart');
           this.getCartItems();
           this.isLoading = false;
-        }).catch((err) => {
+        })
+        .catch((err) => {
           this.isLoading = false;
           console.log(err);
         });
@@ -188,18 +251,17 @@ export default {
     removeItem(id) {
       const removeItemUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping/${id}`;
       this.isLoading = true;
-      this.$http.delete(removeItemUrl, id)
+      this.$http
+        .delete(removeItemUrl, id)
         .then(() => {
           this.$bus.$emit('get-cart');
           this.getCartItems();
           this.isLoading = false;
-        }).catch((err) => {
+        })
+        .catch((err) => {
           this.isLoading = false;
           console.log(err);
         });
-    },
-    goToProduct(id) {
-      this.$router.push(`/product/${id}`);
     },
     quantityUpdate(id, quantity) {
       const quantityUpdateUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping`;
@@ -208,11 +270,13 @@ export default {
         quantity,
       };
       this.isLoading = true;
-      this.$http.patch(quantityUpdateUrl, updateObj)
+      this.$http
+        .patch(quantityUpdateUrl, updateObj)
         .then(() => {
           this.getCartItems();
           this.isLoading = false;
-        }).catch((err) => {
+        })
+        .catch((err) => {
           this.isLoading = false;
           console.log(err);
         });
@@ -223,14 +287,6 @@ export default {
         this.cartTotal += item.quantity * item.product.price;
       });
     },
-
-    stepToPayway() {
-      this.$bus.$emit('orderMoney', this.cartTotal);
-      this.$router.push('/paybill');
-    },
-    backToShop() {
-      this.$router.push('/products');
-    },
   },
   mounted() {
     this.getCartItems();
@@ -239,10 +295,10 @@ export default {
 </script>
 
 <style lang="scss">
-$cf-Step-bgColor:  #632100;
+$cf-Step-bgColor: #632100;
 $cf-throughLine-Color: #bbb;
 
-body{
+body {
   margin-bottom: 80px;
   background-color: #fefbf4;
 }
@@ -324,12 +380,12 @@ body{
     }
   }
 }
-.breadcrumb-item{
-  a{
-    text-decoration: none;;
+.breadcrumb-item {
+  a {
+    text-decoration: none;
   }
 }
-.nextToStep{
+.nextToStep {
   width: 100%;
 }
 .cart {
@@ -337,172 +393,184 @@ body{
     border: 1px solid $cf-throughLine-Color;
     border-radius: 1%;
   }
-  tbody{
-    .productTitle{
+  thead {
+    text-align: center;
+  }
+  tbody {
+    text-align: center;
+    .productTitle {
       text-decoration: none;
       color: #000;
     }
   }
-  .cart-goshop{
+  .cart-goshop {
     width: 15%;
   }
 }
-.cart-table{
+.cart-table {
   max-width: 100%;
-  display: block;
-  overflow-x: auto;
-  .quantity{
+  .quantity {
     width: 150px;
   }
 }
-
-.cart-img{
+.cart-img {
   font-size: 6rem;
 }
-@media screen and(max-width:768px){
-  .shopping-step{
-    li{
+@media screen and(max-width:768px) {
+  .shopping-step {
+    li {
       margin: 0 59px;
     }
-    .step1::before{
+    .step1::before {
       top: 23%;
       right: -206%;
     }
-    .step2::before{
+    .step2::before {
       top: 23%;
       right: -87%;
     }
-    .step3::before{
+    .step3::before {
       display: none;
     }
-    .step4{
-       display: none;
+    .step4 {
+      display: none;
     }
   }
-  .cart{
-    .cart-goshop{
+  .cart {
+    .cart-goshop {
       width: 25%;
     }
   }
-  .orderInfo{
+  .orderInfo {
     display: flex;
     justify-content: center;
     margin-top: 50px;
   }
 }
-@media screen and(max-width:540px){
-  .shopping-step{
-    li{
+@media screen and(max-width:540px) {
+  .shopping-step {
+    li {
       margin: 0 45px;
     }
-    .step1::before{
+    .step1::before {
       top: 18%;
       right: -210%;
       width: 135px;
     }
-    .step2::before{
+    .step2::before {
       top: 18%;
       right: -91%;
       width: 130px;
     }
   }
-  .cart-table{
-    .quantity{
+  .cart-table {
+    .quantity {
       width: 125px;
     }
-    .price{
-      width: 100px;
+    .unit {
+      text-align: center;
+    }
+  }
+  .cart {
+    tbody {
+      text-align: left;
     }
   }
 }
-@media screen and(max-width:414px){
-  .shopping-step{
-    li{
+@media screen and(max-width:414px) {
+  .shopping-step {
+    li {
       margin: 0 50px;
     }
-    .step1::before{
+    .step1::before {
       top: 17%;
       right: -237%;
       width: 137px;
     }
-    .step2::before{
+    .step2::before {
       display: none;
     }
-    .step3{
+    .step3 {
       display: none;
     }
   }
-  .cart{
+  .cart {
     padding-bottom: 100px;
-    .cart-goshop{
+    .cart-goshop {
       width: 50%;
     }
   }
-  .cart-table{
-    .quantity{
-      width: 60px;
-    }
-    .delete{
-      width: 30px;
-    }
-    .unit{
+  .cart-table {
+    .unit {
       display: none;
-    }
-    .price{
-      width: 100px;
     }
   }
 }
-@media screen and(max-width:375px){
-  .shopping-step{
-    li{
+@media screen and(max-width:375px) {
+  .shopping-step {
+    li {
       margin: 0 42px;
     }
-    .step1::before{
+    .step1::before {
       top: 18%;
       right: -213%;
       width: 120px;
     }
   }
+  .table td.quantity-size {
+    padding: 0.75rem 0;
+  }
+  .table td.md-delete {
+    text-align: center;
+    padding: 0.75rem 0;
+  }
 }
-@media screen and(max-width:360px){
-  .shopping-step{
-    li{
+@media screen and(max-width:360px) {
+  .shopping-step {
+    li {
       margin: 0 39px;
     }
-    .step1::before{
+    .step1::before {
       top: 18%;
       right: -204%;
       width: 120px;
     }
   }
+  .table th,
+  .table td {
+    padding: 0.75rem 0.5rem;
+  }
 }
-@media screen and(max-width:320px){
-  .shopping-step{
-    li{
+@media screen and(max-width:320px) {
+  .shopping-step {
+    li {
       margin: 0 25px;
     }
-    .step1::before{
+    .step1::before {
       top: 18%;
       right: -144%;
       width: 92px;
     }
   }
-  .cart-table{
-    .price{
-      width: 50px;
+  .cart-table {
+    .prouduct {
+      width: 91px;
     }
-    .prouduct{
-      width: 200px;
+    .quantity {
+      width: 180px;
     }
   }
+  .table th,
+  .table td {
+    padding: 0.75rem 0;
+  }
 }
-@media screen and(max-width:280px){
-  .shopping-step{
-    li{
+@media screen and(max-width:280px) {
+  .shopping-step {
+    li {
       margin: 0 18px;
     }
-    .step1::before{
+    .step1::before {
       top: 18%;
       right: -120%;
       width: 72px;

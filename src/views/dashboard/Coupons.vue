@@ -2,7 +2,9 @@
   <div class="container mt-5">
     <loading :active.sync="isLoading"></loading>
     <h2 class="text-coffee">後台優惠卷管理</h2>
-    <button class="float-right btn btn-coffee my-4" @click="newCouponModal">新增優惠券</button>
+    <button class="float-right btn btn-coffee my-4" @click="newCouponModal">
+      新增優惠券
+    </button>
     <table class="table">
       <thead>
         <tr>
@@ -19,13 +21,23 @@
           <td>{{ coupon.title }}</td>
           <td>{{ coupon.code }}</td>
           <td>{{ coupon.percent }}%</td>
-          <td>{{ coupon.deadline.datetime}}</td>
+          <td>{{ coupon.deadline.datetime }}</td>
           <td v-if="coupon.enabled" class="text-success">開放</td>
           <td v-else class="text-danger">未開放</td>
           <td>
             <div class="btn-group float-right">
-              <button class="btn btn-outline-coffee" @click="editCouponModal(coupon)">編輯</button>
-              <button class="btn btn-outline-danger" @click="delCouponModal(coupon)">刪除</button>
+              <button
+                class="btn btn-outline-coffee"
+                @click="editCouponModal(coupon)"
+              >
+                編輯
+              </button>
+              <button
+                class="btn btn-outline-danger"
+                @click="delCouponModal(coupon)"
+              >
+                刪除
+              </button>
             </div>
           </td>
         </tr>
@@ -40,7 +52,11 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <Couponmodal :edit-coupon="editCoupon" :created="created" @update="getcouponsData">
+      <Couponmodal
+        :edit-coupon="editCoupon"
+        :created="created"
+        @update="getcouponsData"
+      >
       </Couponmodal>
     </div>
     <!-- newCouponModal end-->
@@ -53,7 +69,10 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <Coupondelmodal :edit-coupon="editCoupon" @update="getcouponsData"></Coupondelmodal>
+      <Coupondelmodal
+        :edit-coupon="editCoupon"
+        @update="getcouponsData"
+      ></Coupondelmodal>
     </div>
     <!-- delCouponModal end-->
   </div>
@@ -84,12 +103,14 @@ export default {
     getcouponsData() {
       this.isLoading = true;
       const getUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/coupons`;
-      this.$http.get(getUrl)
+      this.$http
+        .get(getUrl)
         .then((res) => {
           this.coupons = res.data.data;
           this.pagination = res.data.meta.pagination;
           this.isLoading = false;
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err);
           this.isLoading = false;
         });

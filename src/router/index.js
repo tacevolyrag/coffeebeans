@@ -51,6 +51,10 @@ const routes = [
     ],
   },
   {
+    path: '/login',
+    component: () => import('../views/dashboard/Login.vue'),
+  },
+  {
     path: '/admin',
     component: () => import('../views/dashboard/Dashboard.vue'),
     children: [
@@ -65,10 +69,6 @@ const routes = [
       {
         path: 'depositimage',
         component: () => import('../views/dashboard/Depositimage.vue'),
-      },
-      {
-        path: 'login',
-        component: () => import('../views/dashboard/Login.vue'),
       },
       {
         path: 'order',

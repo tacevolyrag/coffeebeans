@@ -1,34 +1,46 @@
 <template>
   <div>
     <swiper ref="mySwiper" :options="swiperOptions">
-        <template v-for="item in swiperProducts">
-            <swiper-slide :key="item.id">
-                <div class="slider card">
-                    <router-link :to="`/product/${item.id}`" target="_blank">
-                     <div class="swiperImg"
-                     :style=
-                     "{backgroundImage: `url(${item.imageUrl[0]})`}">
-                     </div>
-                    </router-link>
-                    <div class="card-body">
-                        <div class="body-content">
-                            <div class="text-coffee2 font-weight-bold h5">{{ item.title }}</div>
-                            <div class="text"><p class="px-5">{{ item.content }}</p></div>
-                            <div class="card-price text-right">
-                                <div class="originPrice" v-if="item.origin_price">
-                                    NT$ {{ item.origin_price }}</div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                  <router-link :to="`/product/${item.id}`" class="btn btn-coffee2"
-                                  target="_blank">查看更多</router-link>
-                                <div class="price h5 mt-1">NT$ {{ item.price }}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <template v-for="item in swiperProducts">
+        <swiper-slide :key="item.id">
+          <div class="slider card">
+            <a href="#" @click.prevent="getOtherItem(item.id)">
+              <div
+                class="swiperImg"
+                :style="{ backgroundImage: `url(${item.imageUrl[0]})` }"
+              ></div>
+            </a>
+            <div class="card-body">
+              <div class="body-content">
+                <div class="text-coffee2 font-weight-bold h5 text-center">
+                  {{ item.title }}
                 </div>
-            </swiper-slide>
-        </template>
-        <div class="swiper-pagination" slot="pagination"></div>
+                <div class="text">
+                  <p class="px-5">{{ item.content }}</p>
+                </div>
+                <div class="card-price text-right">
+                  <div class="originPrice" v-if="item.origin_price">
+                    NT$ {{ item.origin_price }}
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <a
+                      href="#"
+                      class="btn btn-coffee2"
+                      @click.prevent="getOtherItem(item.id)"
+                    >
+                      查看更多
+                    </a>
+                    <div class="price h5 mt-1">NT$ {{ item.price }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+      </template>
+      <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
   </div>
 </template>
@@ -89,12 +101,18 @@ export default {
   methods: {
     getSwiperProducts() {
       const getSwiperProductsUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/products`;
-      this.$http.get(getSwiperProductsUrl)
+      this.$http
+        .get(getSwiperProductsUrl)
         .then((res) => {
           this.swiperProducts = res.data.data;
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err);
         });
+    },
+    getOtherItem(id) {
+      this.$router.push(`/product/${id}`);
+      this.$emit('getOtherItem');
     },
   },
   created() {
@@ -104,27 +122,27 @@ export default {
 </script>
 
 <style lang="scss">
-  .swiperImg {
-      height: 250px;
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
+.swiperImg {
+  height: 250px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.card-price {
+  .originPrice {
+    color: #bbb;
+    text-decoration: line-through;
+    font-size: 14px;
   }
-  .card-price{
-    .originPrice{
-      color: #bbb;
-      text-decoration: line-through;
-      font-size: 14px;
-    }
-    .price{
-        color: red;
-        font-weight: bold;
-        font-size: 20px;
-    }
+  .price {
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
   }
-  .slider{
-      border: 0;
-      box-shadow: 0px 1px 2px #bbb;
-      margin-bottom: 50px;
-  }
+}
+.slider {
+  border: 0;
+  box-shadow: 0px 1px 2px #bbb;
+  margin-bottom: 50px;
+}
 </style>

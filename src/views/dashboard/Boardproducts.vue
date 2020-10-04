@@ -3,8 +3,14 @@
     <loading :active.sync="isLoading"></loading>
     <h2 class="text-coffee">後台商品管理</h2>
     <div class="text-right">
-      <button type="button" class="btn btn-coffee" @click="createdProduct" data-toggle="modal">
-          新增商品</button>
+      <button
+        type="button"
+        class="btn btn-coffee"
+        @click="createdProduct"
+        data-toggle="modal"
+      >
+        新增商品
+      </button>
     </div>
     <table class="table mt-4">
       <thead>
@@ -19,8 +25,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item,index) in products" :key="item.id">
-          <td class="pt-3 text-left">{{ index+1 }}</td>
+        <tr v-for="(item, index) in products" :key="item.id">
+          <td class="pt-3 text-left">{{ index + 1 }}</td>
           <td class="pt-3 text-left">{{ item.category }}</td>
           <td class="pt-3 text-left">{{ item.title }}</td>
           <td class="pt-3 text-right">{{ item.origin_price | thousand }}</td>
@@ -31,10 +37,20 @@
           </td>
           <td>
             <div class="btn-group">
-              <button type="button" class="btn btn-outline-coffee" @click="editProduct(item)">
-                  編輯 </button>
-              <button type="button" class="btn btn-outline-danger" @click="removeProduct(item)">
-                  刪除</button>
+              <button
+                type="button"
+                class="btn btn-outline-coffee"
+                @click="editProduct(item)"
+              >
+                編輯
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                @click="removeProduct(item)"
+              >
+                刪除
+              </button>
             </div>
           </td>
         </tr>
@@ -44,16 +60,32 @@
     <Pagination :pages="pagination" @render="getProducts"></Pagination>
 
     <!-- Modal -->
-    <div class="modal fade" id="createdItem" tabindex="-1" role="dialog" a
-        ria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <Modal :created="created" :status="status" :edit-products="editProducts"
-        @edited="getProducts"></Modal>
+    <div
+      class="modal fade"
+      id="createdItem"
+      tabindex="-1"
+      role="dialog"
+      a
+      ria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <Modal
+        :created="created"
+        :status="status"
+        :edit-products="editProducts"
+        @edited="getProducts"
+      ></Modal>
     </div>
 
     <!-- delModal -->
-    <div class="modal fade" id="removeItem" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
+    <div
+      class="modal fade"
+      id="removeItem"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
       <Delmodal :edit-products="editProducts" @edited="getProducts"></Delmodal>
     </div>
   </div>
@@ -92,7 +124,8 @@ export default {
     getProducts(pageNum = 1) {
       const getUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/products?page=${pageNum}`;
       this.isLoading = true;
-      this.$http.get(getUrl)
+      this.$http
+        .get(getUrl)
         .then((res) => {
           this.products = res.data.data;
           this.pagination = res.data.meta.pagination;
@@ -102,7 +135,8 @@ export default {
             };
           }
           this.isLoading = false;
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err);
           this.isLoading = false;
         });
@@ -120,12 +154,14 @@ export default {
       const editUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/product/${item.id}`;
       this.created = false;
       this.status.fileUploading = false;
-      this.$http.get(editUrl)
+      this.$http
+        .get(editUrl)
         .then((res) => {
           this.editProducts = res.data.data;
           $('#createdItem').modal('show');
           this.isLoading = false;
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err);
           this.isLoading = false;
         });

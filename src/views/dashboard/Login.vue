@@ -23,7 +23,9 @@
           placeholder="Password"
         />
       </div>
-      <button type="submit" class="btn btn-lg btn-block btn-primary">登入</button>
+      <button type="submit" class="btn btn-lg btn-block btn-primary">
+        登入
+      </button>
     </form>
   </div>
 </template>

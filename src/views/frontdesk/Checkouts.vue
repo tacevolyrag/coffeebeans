@@ -23,17 +23,28 @@
     </div>
     <div class="container py-5 congra congratulation">
       <div class="row justify-content-center">
-        <div class="col-md-8 checkout">
+        <div class="col-md-8 checkout text-center">
           <div class="truck-img"><i class="fas fa-truck"></i></div>
           <h4 class="mt-1 text-coffee2">恭喜您，已完成付款結帳囉 ！</h4>
-          <p class="mt-1">感謝您對 <span>
-            CoffeeBeans</span> 的信任，商品將會在 1 - 3 天到府，請耐心等候。</p>
+          <p class="mt-1">
+            感謝您對 <span> CoffeeBeans</span> 的信任，商品將會在 1 - 3
+            天到府，請耐心等候。
+          </p>
           <div class="d-flex justify-content-around my-5 btnArea">
-          <button class="btn btn-outline-coffee2" type="button"
-          @click="backToPast('index')">回首頁</button>
-          <button class="btn btn-coffee2 backShop"
-          type="button" @click="backToPast('products')">
-            繼續購物 ！</button>
+            <button
+              class="btn btn-outline-coffee2"
+              type="button"
+              @click="backToPast('index')"
+            >
+              回首頁
+            </button>
+            <button
+              class="btn btn-coffee2 backShop"
+              type="button"
+              @click="backToPast('products')"
+            >
+              繼續購物 ！
+            </button>
           </div>
         </div>
       </div>
@@ -64,12 +75,15 @@ export default {
     },
     getCartItems() {
       const getCartUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping`;
-      this.$http.get(getCartUrl).then((res) => {
-        this.$bus.$emit('get-cart');
-        this.cart = res.data.data;
-      }).catch((err) => {
-        console.log(err);
-      });
+      this.$http
+        .get(getCartUrl)
+        .then((res) => {
+          this.$bus.$emit('get-cart');
+          this.cart = res.data.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   created() {
@@ -79,9 +93,9 @@ export default {
 </script>
 
 <style lang="scss">
-$cf-Step-bgColor:  #632100;
+$cf-Step-bgColor: #632100;
 
-body{
+body {
   background-color: #fefbf4;
 }
 .shopping-step {
@@ -170,28 +184,28 @@ body{
     }
   }
 }
-.checkout{
-  span{
-    font-family: 'Carter One', cursive;
+.checkout {
+  span {
+    font-family: "Carter One", cursive;
   }
-  .truck-img{
-  font-size: 6rem;
+  .truck-img {
+    font-size: 6rem;
   }
-  .backShop{
+  .backShop {
     width: 40%;
   }
 }
-@media screen and(max-width:768px){
-  .shopping-step{
+@media screen and(max-width:768px) {
+  .shopping-step {
     display: none;
   }
 }
-@media screen and(max-width:320px){
-  .congratulation{
+@media screen and(max-width:320px) {
+  .congratulation {
     margin-bottom: 3rem;
   }
-  .btnArea{
-    .backShop{
+  .btnArea {
+    .backShop {
       width: 50%;
     }
   }

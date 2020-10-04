@@ -11,15 +11,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(image,index) in imageStorage" :key="image.id">
+        <tr v-for="(image, index) in imageStorage" :key="image.id">
           <td>{{ index + 1 }}</td>
-          <td><img :src="image.path" class="img-fluid" width="100px"></td>
+          <td><img :src="image.path" class="img-fluid" width="100px" /></td>
           <td>
             <div class="btn-group" style="line-height: 100px">
-            <button type="button" class="btn btn-outline-danger d-flex align-items-center"
-            @click.prevent="imageDeleteModal(image)">
-              刪除
-            </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger d-flex align-items-center"
+                @click.prevent="imageDeleteModal(image)"
+              >
+                刪除
+              </button>
             </div>
           </td>
         </tr>
@@ -28,13 +31,24 @@
     <!-- Pagination -->
     <Pagination :pages="pagination" @render="getImages"></Pagination>
     <!-- Modal -->
-    <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-    aria-hidden="true">
+    <div
+      class="modal fade"
+      id="delModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="ModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header bg-danger">
             <h5 class="modal-title text-white">刪除圖片</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -42,10 +56,20 @@
             是否刪除 <i class="h5 text-danger"> 圖片 </i>(刪除後將無法恢復)？
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-coffee" data-dismiss="modal">
-              Close</button>
-            <button type="button" class="btn btn-danger text-white" @click.prevent="imageDelete">
-              確認刪除</button>
+            <button
+              type="button"
+              class="btn btn-outline-coffee"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger text-white"
+              @click.prevent="imageDelete"
+            >
+              確認刪除
+            </button>
           </div>
         </div>
       </div>
@@ -92,12 +116,14 @@ export default {
     imageDelete() {
       const delUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/storage/${this.editImage.id}`;
       this.isLoading = true;
-      this.$http.delete((delUrl))
+      this.$http
+        .delete(delUrl)
         .then(() => {
           $('#delModal').modal('hide');
           this.getImages();
           this.isLoading = false;
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err);
           this.isLoading = false;
         });

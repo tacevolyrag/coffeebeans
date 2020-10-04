@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12">
           <div class="banner">
-            <div class="banner-text h4">
+            <div class="banner-text h4 text-center">
               <p>遠離喧囂的生活</p>
               <p>邂逅內心的自我</p>
               <p>一杯手沖單品咖啡</p>
@@ -19,8 +19,12 @@
         <div class="row justify-content-center align-items-center">
           <div class="col-md-6">
             <div class="into-img into-img-1 img-opacity img-opacity1 img-fluid">
-              <a href="#" class="text-white" @click.prevent="btnToCoffee('coffeekind')">
-                  Coffee 新鮮咖啡豆
+              <a
+                href="#"
+                class="text-white text-center"
+                @click.prevent="btnToCoffee('coffeekind')"
+              >
+                Coffee 新鮮咖啡豆
               </a>
             </div>
           </div>
@@ -28,7 +32,8 @@
             <div class="into-text">
               <h3 class="text-coffee2">有高品質的咖啡豆才有好咖啡</h3>
               <p>
-                一杯好咖啡的關鍵是什麼？好的沖泡技巧和器具固然不可或缺，但 <strong>高品質的咖啡豆</strong>
+                一杯好咖啡的關鍵是什麼？好的沖泡技巧和器具固然不可或缺，但
+                <strong>高品質的咖啡豆</strong>
                 才是最重要的元素。不同品種咖啡豆的味道都不一樣，個人喜好當然也見仁見智。
               </p>
               <h3 class="text-coffee2">那麼，什麼才是高品質的咖啡豆</h3>
@@ -41,7 +46,9 @@
                 type="button"
                 class="btn btn-outline-coffee2 float-right mt-3"
                 @click="btnToCoffee('coffeekind')"
-              >更多咖啡豆資訊</button>
+              >
+                更多咖啡豆資訊
+              </button>
             </div>
           </div>
         </div>
@@ -56,28 +63,28 @@
                 在烘焙過程中，咖啡生豆的水分慢慢釋放後
                 <strong>重量減輕，顏色加深，體積膨脹</strong>
                 含有
-                <strong>
-                  香氣的油脂
-                </strong>慢慢釋放出來。<br>
+                <strong> 香氣的油脂 </strong>慢慢釋放出來。<br />
                 此外，生豆中原本含有的大量綠原酸隨著
-                烘焙的過程會逐漸消失釋放出好聞的水果
-                酸其味道隨
+                烘焙的過程會逐漸消失釋放出好聞的水果 酸其味道隨
                 <strong>烘焙時間長短</strong> 而有所差異。
               </p>
               <button
                 type="button"
                 class="btn btn-outline-coffee2 float-right mt-3"
                 @click="btnToCoffee('coffeebaking')"
-              >更多咖啡豆資訊</button>
+              >
+                更多咖啡豆資訊
+              </button>
             </div>
           </div>
           <div class="col-md-6">
             <div class="into-img into-img-2 img-opacity img-opacity2 img-fluid">
               <a
                 href="#"
-                class="text-white"
+                class="text-white text-center"
                 @click.prevent="btnToCoffee('coffeebaking')"
-              >Baking 烘焙二三事</a>
+                >Baking 烘焙二三事</a
+              >
             </div>
           </div>
         </div>
@@ -85,63 +92,78 @@
     </div>
     <div class="product-area">
       <div class="container product-hot">
-        <h2 class="text-coffee2">咖啡豆搭配周邊！ 自用贈禮兩相宜！ 限時限量搶購中！</h2>
+        <h2 class="text-coffee2 text-center">
+          咖啡豆搭配周邊！ 自用贈禮兩相宜！ 限時限量搶購中！
+        </h2>
         <br />
-        <h4>超值優惠，慶祝開幕折扣優惠碼輸入「 opening 」 全品項打 9 折，心動不如馬上行動！</h4>
+        <h4 class="text-center">
+          超值優惠，慶祝開幕折扣優惠碼輸入「 opening 」 全品項打 9
+          折，心動不如馬上行動！
+        </h4>
         <br />
         <div class="row justify-content-center align-items-center">
           <div class="col-md-4">
-            <div class="product product1">
-              <router-link to="/products" class="product1-img img-fluid"></router-link>
+            <div class="product product1 text-center">
+              <router-link
+                to="/products"
+                class="product1-img img-fluid"
+              ></router-link>
               <router-link to="/products" class="text-coffee2 link-product">
-                <h3>阿拉比卡豆(Arabica)</h3>
+                <h3>阿拉比卡豆</h3>
               </router-link>
-              <p>
-                <strong>果實飽滿、味道柔順</strong>
-                <br />咖啡因含量低，味道比較甜、柔和，
-                <br />帶點莓果般的酸味。
+              <h5 class="font-weight-bold">果實飽滿、味道柔順</h5>
+              <p class="text-left">
+                咖啡因含量低，味道比較甜、柔和，帶點莓果般的酸味。
               </p>
               <button
                 type="button"
                 class="btn btn-outline-coffee2"
                 @click="btnToCoffee('products')"
-              >查看商品資訊</button>
+              >
+                查看商品資訊
+              </button>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="product product2">
-              <router-link to="/products" class="product2-img img-fluid"></router-link>
+            <div class="product product2 text-center">
+              <router-link
+                to="/products"
+                class="product2-img img-fluid"
+              ></router-link>
               <router-link to="/products" class="text-coffee2 link-product">
-                <h3>羅布斯塔豆(Robusta)</h3>
+                <h3>羅布斯塔豆</h3>
               </router-link>
-              <p>
-                <strong>味道苦烈、價格較低</strong>
-                <br />咖啡因含量高，脂肪和糖分含量較低，
-                <br />羅布斯塔的味道較苦也較強烈。
+              <h5 class="font-weight-bold">味道苦烈、價格較低</h5>
+              <p class="text-left">
+                咖啡因含量高，脂肪和糖分含量較低，羅布斯塔的味道較苦也較強烈。
               </p>
               <button
                 type="button"
                 class="btn btn-outline-coffee2"
                 @click="btnToCoffee('products')"
-              >查看商品資訊</button>
+              >
+                查看商品資訊
+              </button>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="product product3">
-              <router-link to="/products" class="product3-img img-fluid"></router-link>
+            <div class="product product3 text-center">
+              <router-link
+                to="/products"
+                class="product3-img img-fluid"
+              ></router-link>
               <router-link to="/products" class="text-coffee2 link-product">
                 <h3>馬克杯</h3>
               </router-link>
-              <strong>圓潤杯耳舒適好拿握</strong>
-              <p>
-                適盛裝咖啡、牛奶等，亦可做為居家
-                <br />擺飾。
-              </p>
+              <h5 class="font-weight-bold">圓潤杯耳舒適好拿握</h5>
+              <p class="text-left">適盛裝咖啡、牛奶等，亦可做為居家擺飾。</p>
               <button
                 type="button"
                 class="btn btn-outline-coffee2"
                 @click="btnToCoffee('products')"
-              >查看商品資訊</button>
+              >
+                查看商品資訊
+              </button>
             </div>
           </div>
         </div>
@@ -178,11 +200,11 @@ export default {
       $(window).scroll(() => {
         const scrollPos = $(window).scrollTop();
         const windowHeight = $(window).height();
-        // eslint-disable-next-line
-        $(".into-img").each(function () {
-          const thisPos = $(this).offset().top;
+        $('.into-img').each(() => {
+          const vm = $('.into-img');
+          const thisPos = vm.offset().top;
           if (scrollPos + windowHeight >= thisPos) {
-            $(this).addClass('img-opacity-duration');
+            vm.addClass('img-opacity-duration');
           }
         });
         if (scrollPos >= 900) {
@@ -299,14 +321,14 @@ export default {
       padding: 0 0 15px 0;
       text-align: center;
     }
-    p{
+    p {
       text-align: left;
       padding: 0 75px;
     }
-    button{
+    button {
       margin-right: 70px;
     }
-    .feature{
+    .feature {
       padding-left: 90px;
     }
   }
@@ -338,6 +360,9 @@ export default {
     h3 {
       margin: 20px 0;
     }
+    p {
+      padding: 0 1.5rem;
+    }
     .product1-img,
     .product2-img,
     .product3-img {
@@ -367,25 +392,32 @@ export default {
 
 // rwd
 @media screen and (max-width: 1024px) {
-.intoduction{
-  .into-text {
-      p{
+  .intoduction {
+    .into-text {
+      p {
         padding: 0 0px;
       }
-      button{
+      button {
         margin-right: 0;
       }
     }
-  .into-img-1{
-    margin-left: 0;
+    .into-img-1 {
+      margin-left: 0;
     }
 
-  .img-opacity2{
-    transform: translateX(-50%);
+    .img-opacity2 {
+      transform: translateX(-50%);
     }
-  .img-opacity-duration {
-    opacity: 1;
-    transform: translateX(0%);
+    .img-opacity-duration {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+}
+.product-hot {
+  .product {
+    p {
+      padding: 0 20px;
     }
   }
 }
@@ -393,6 +425,18 @@ export default {
   .index {
     .banner {
       justify-content: start;
+    }
+  }
+  .product-hot {
+    .product2 {
+      p {
+        padding: 0 5px;
+      }
+    }
+    .product3 {
+      p {
+        padding: 0 25px;
+      }
     }
   }
 }

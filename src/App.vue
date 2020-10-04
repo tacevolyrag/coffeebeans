@@ -7,6 +7,7 @@
 <script>
 export default {};
 </script>
+
 <style lang="scss">
 @import "./assets/scss/main";
 
@@ -14,7 +15,6 @@ export default {};
   font-family: 'Noto Sans TC', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
