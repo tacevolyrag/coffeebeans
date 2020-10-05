@@ -180,7 +180,6 @@ export default {
     },
     uploadFile() {
       const uploadedFile = document.querySelector('#customFile').files[0];
-      console.dir(document.querySelector('#customFile'));
       const formData = new FormData();
       formData.append('file', uploadedFile);
       const url = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/storage`;
@@ -199,9 +198,6 @@ export default {
               this.editProducts.imageUrl[0] = this.filePath;
             }
           }
-        })
-        .catch((err) => {
-          console.dir(err);
         });
     },
   },

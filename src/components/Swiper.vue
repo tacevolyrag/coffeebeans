@@ -105,9 +105,6 @@ export default {
         .get(getSwiperProductsUrl)
         .then((res) => {
           this.swiperProducts = res.data.data;
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     getOtherItem(id) {

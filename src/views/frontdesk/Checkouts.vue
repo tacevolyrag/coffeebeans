@@ -80,9 +80,6 @@ export default {
         .then((res) => {
           this.$bus.$emit('get-cart');
           this.cart = res.data.data;
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
   },

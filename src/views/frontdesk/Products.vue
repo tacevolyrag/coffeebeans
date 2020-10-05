@@ -8,7 +8,7 @@
             <router-link to="/" class="text-lightgrey">首頁</router-link>
           </li>
           <li
-            class="breadcrumb-item font-weight-bold active"
+            class="breadcrumb-item font-weight-bold active text-coffeetext2"
             aria-current="page"
           >
             商品列表
@@ -46,12 +46,12 @@
       </div>
       <!-- 商品分類e -->
       <!-- 商品列表 -->
-      <div class="row mb-5 pb-5">
+      <div class="row item">
         <div class="col-md-12">
           <div class="content">
-            <div class="d-flex flex-wrap justify-content-between">
+            <div class="d-flex flex-wrap">
               <div
-                class="products-list shadow-sm bg-white rounded"
+                class="products-list bg-white rounded"
                 v-for="product in categoryProducts"
                 :key="product.id"
               >
@@ -208,84 +208,63 @@ $cg-white: #fff;
 .products {
   background-color: #fefbf4;
 }
-.item-card {
-  height: 450px;
-  .item-card-img {
-    height: 200px;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+.item{
+  margin-bottom: 10rem;
+}
+.products-list{
+  margin-bottom: 25px;
+  width: 31%;
+  margin: 2.5% 1.165%;
+  .item-card {
+    height: 450px;
+    box-shadow: 0 1px 2px rgba(66,28,2,0.15);
+    .item-card-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    .product-all-price {
+      padding: 0 16px;
+      .product-origin {
+        position: relative;
+        color: #bbb;
+        font-weight: bolder;
+        text-decoration: line-through;
+      }
+      .product-off {
+        color: $cf-Theme-Color;
+        font-weight: bolder;
+      }
+    }
+    .product-title {
+      a{
+      text-decoration: none;
+      font-weight: bolder;
+      }
+    }
   }
 }
-.product-all-price {
-  padding: 0 16px;
-}
+
 .category {
   ul {
     .active {
-      color: $cf-Theme-Color;
+      color: #632100;
     }
     li {
       padding: 2px 30px;
       font-weight: bold;
       cursor: pointer;
       &:hover {
-        color: $cf-Theme-Color;
+        color: #632100;
       }
     }
     li:not(:last-child) {
-      border-right: 1px solid $cf-Theme-Color;
+      border-right: 1px solid #632100;
     }
   }
 }
-@media screen and (max-width: 414px) {
-  .category {
-    ul {
-      li {
-        padding: 10px;
-        font-weight: bold;
-        cursor: pointer;
-        z-index: 10;
-      }
-    }
-  }
-}
-@media screen and (max-width: 320px) {
-  .category {
-    ul {
-      li {
-        padding: 5px;
-      }
-    }
-  }
-}
-@media screen and (max-width: 280px) {
-  .category {
-    ul {
-      li {
-        padding: 10px;
-      }
-    }
-  }
-}
-.product-title a {
-  text-decoration: none;
-  font-weight: bolder;
-}
-.products-list {
-  margin-bottom: 25px;
-  width: 31%;
-}
-.product-origin {
-  position: relative;
-  color: #bbb;
-  font-weight: bolder;
-  text-decoration: line-through;
-}
-.product-off {
-  color: $cf-Theme-Color;
-  font-weight: bolder;
-}
+
 .card-footer button {
   background-color: $cf-Theme-Color;
   color: $cg-white;
@@ -316,6 +295,34 @@ $cg-white: #fff;
   .products-list {
     width: 100%;
     margin-bottom: 50px;
+  }
+  .category {
+    ul {
+      li {
+        padding: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10;
+      }
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .category {
+    ul {
+      li {
+        padding: 5px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 280px) {
+  .category {
+    ul {
+      li {
+        padding: 10px;
+      }
+    }
   }
 }
 </style>

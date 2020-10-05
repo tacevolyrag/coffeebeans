@@ -12,7 +12,7 @@
           </router-link>
         </li>
         <li
-          class="breadcrumb-item font-weight-bold text-coffee2 active"
+          class="breadcrumb-item font-weight-bold text-coffeetext2 active"
           aria-current="page"
         >
           {{ product.title }}

@@ -142,8 +142,7 @@ export default {
           this.pagination = res.data.meta.pagination;
           this.isLoading = false;
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.isLoading = false;
         });
     },
@@ -159,8 +158,7 @@ export default {
           this.getOrderData();
           this.isLoading = false;
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.isLoading = false;
         });
     },

@@ -136,8 +136,7 @@ export default {
           }
           this.isLoading = false;
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.isLoading = false;
         });
     },
@@ -161,8 +160,7 @@ export default {
           $('#createdItem').modal('show');
           this.isLoading = false;
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.isLoading = false;
         });
     },

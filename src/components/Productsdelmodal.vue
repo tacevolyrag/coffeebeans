@@ -56,8 +56,7 @@ export default {
           this.$emit('edited');
           this.isLoading = false;
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.isLoading = false;
         });
     },

@@ -9,7 +9,7 @@
             >
           </div>
           <div class="col-sm-6">
-            <ul class="d-flex menu mb-0">
+            <ul class="d-flex menu">
               <li>
                 <router-link to="/products">產品列表</router-link>
               </li>
@@ -95,25 +95,13 @@ export default {
         .get(getCartUrl)
         .then((res) => {
           this.cart = res.data.data;
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     hbgToggle(e) {
       e.stopPropagation();
       $('.navbarPos').toggleClass('menu-show');
     },
-  },
-  created() {
-    this.getCartItems();
-    this.$bus.$on('get-cart', () => {
-      this.getCartItems();
-    });
-  },
-  mounted() {
-    document.addEventListener('click', (e) => {
-      e.stopPropagation();
+    queryHide(e) {
       if (e.target.className !== 'knowledge-list') {
         $('.knowledge-list').hide();
         $('.coffee-knowledge').removeClass('active');
@@ -123,7 +111,19 @@ export default {
           }
         }
       }
+    },
+  },
+  created() {
+    this.getCartItems();
+    this.$bus.$on('get-cart', () => {
+      this.getCartItems();
     });
+  },
+  mounted() {
+    document.addEventListener('click', this.queryHide);
+  },
+  beforeDestroy() {
+    document.removeEventListener('click', this.queryHide);
   },
 };
 </script>

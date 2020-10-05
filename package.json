@@ -47,10 +47,6 @@
     ],
     "parserOptions": {
       "parser": "babel-eslint"
-    },
-    "rules": {
-      "no-console": "off",
-      "prefer-object-spread": "error"
     }
   },
   "browserslist": [

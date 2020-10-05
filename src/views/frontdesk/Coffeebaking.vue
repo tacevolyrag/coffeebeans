@@ -6,7 +6,7 @@
           <router-link to="/" class="text-lightgrey">首頁</router-link>
         </li>
         <li
-          class="breadcrumb-item font-weight-bold active text-coffee2"
+          class="breadcrumb-item font-weight-bold active text-coffeetext2"
           aria-current="page"
         >
           咖啡八階段
@@ -15,8 +15,8 @@
     </nav>
     <section class="row coffee-definition align-items-center">
       <div class="col-md-6">
-        <h4 class="text-coffee2 font-weight-bold text-center">烘焙的定義</h4>
-        <p class="h5">
+        <h4 class="text-coffeetext2 font-weight-bold">烘焙的定義</h4>
+        <p>
           所謂咖啡烘焙（coffee
           roasting）是指通過對生豆的加熱，促使咖啡豆內外部發生一系列物理和化學反應，
           並在此過程中生成咖啡的酸，苦，甘等多種味道，形成醇度和色調，將生豆轉化為深褐色原豆的過程。
@@ -26,40 +26,40 @@
         <div class="baking-image baking-image-3"></div>
       </div>
     </section>
-    <h4 class="text-coffee2 font-weight-bold mt-5 text-center">烘培八階段</h4>
+    <h4 class="text-coffeetext2 font-weight-bold mt-5 text-center">烘培八階段</h4>
     <div class="bakingCoffee py-5 row">
       <section class="col-md-6">
         <div class="baking-text">
-          <h4 class="text-center">淺培</h4>
-          <h5 class="pt-1">Light Roast</h5>
+          <h4 class="">淺培</h4>
+          <h5 class="pt-2">Light Roast</h5>
           <p>
             所有烘焙階段中最淺的烘焙度，咖啡豆的表面呈淡淡的肉桂色， 其口
             <br />味和香味均不足，一般用在檢驗上，很少用來品嘗。
           </p>
-          <h5 class="pt-1">Cinnamon Roast</h5>
+          <h5 class="pt-2">Cinnamon Roast</h5>
           <p>
             外觀上呈現肉桂色，臭青味已除，香味尚可，酸度強，咖啡味淡， 市
             <br />面上較少販賣。
           </p>
-          <h4 class="text-center">中培</h4>
-          <h5 class="pt-1">Medium Roast</h5>
+          <h4 class="">中培</h4>
+          <h5 class="pt-2">Medium Roast</h5>
           <p>
             外觀上呈現棕色，除了酸味外，苦味亦出現了，口感不錯。 此時酸重
             <br />於苦、醇度適中，又稱美式烘焙。
           </p>
-          <h5 class="pt-1">High Roast</h5>
+          <h5 class="pt-2">High Roast</h5>
           <p>
             屬於中度微深烘焙，表面已出現少許濃茶色，苦味亦變強了。 咖啡味
             <br />道酸中帶苦，香氣及風味皆佳，是市面上販賣最多的烘焙豆方式。
           </p>
-          <h5 class="pt-1">City Roast</h5>
+          <h5 class="pt-2">City Roast</h5>
           <p>
             外觀上呈現咖啡棕色，最標準的烘焙度，苦味和酸味達到平衡， 使咖
             <br />啡產生多層次感，讓原本喜好中度烘焙的美國人改變口味，轉向喜歡
             <br />上它。
           </p>
-          <h4 class="text-center">深培</h4>
-          <h5 class="pt-1">Full City Roast</h5>
+          <h4 class="">深培</h4>
+          <h5 class="pt-2">Full City Roast</h5>
           <p>
             外觀上呈現深棕色，顏色變得相當深，表面出現油亮，苦味較酸味強
             <br />， 適合曼特寧、夏威夷可那等特徵強烈的咖啡豆。
@@ -79,7 +79,7 @@
       </section>
       <div class="col-md-6 mb-5 pb-3">
         <table class="table table-bordered baking-table bg-beige">
-          <thead class="text-coffee2 h5">
+          <thead class="text-coffeetext2 h5">
             <tr>
               <th>淺培</th>
               <th>中培</th>
@@ -134,11 +134,12 @@ body {
 .coffee-definition {
   h4 {
     padding-bottom: 10px;
-    border-bottom: 2px solid $cf-Theme-Color;
+    padding: 0 20px;
   }
   p {
     padding: 20px 20px;
     line-height: 1.8;
+    font-size: 18px;
   }
   .baking-image {
     height: 400px;
@@ -155,7 +156,8 @@ body {
     h4 {
       background-color: $cf-Theme-Color;
       color: $cf-Text-Color;
-      padding: 5px 0;
+      padding: 5px 10px;
+      margin: 5px 20px;
     }
     h5 {
       color: #632100;

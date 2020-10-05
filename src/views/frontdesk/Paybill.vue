@@ -9,7 +9,7 @@
           <router-link to="/cart" class="text-lightgrey">購物車</router-link>
         </li>
         <li
-          class="breadcrumb-item font-weight-bold active text-coffee2"
+          class="breadcrumb-item font-weight-bold active text-coffeetext2"
           aria-current="page"
         >
           填寫資料及付款方式
@@ -315,8 +315,7 @@ export default {
           this.updateCartTotal();
           this.isLoading = false;
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.isLoading = false;
         });
     },
@@ -329,8 +328,7 @@ export default {
           const orderId = res.data.data.id;
           this.$router.push(`/payedbill/${orderId}`);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.isLoading = false;
         });
     },
@@ -350,10 +348,9 @@ export default {
           this.coupon = res.data.data;
           this.isLoading = false;
         })
-        .catch((err) => {
+        .catch(() => {
           this.isLoading = false;
           this.couponExpired = true;
-          console.log(err);
         });
     },
   },

@@ -6,7 +6,7 @@
           <router-link to="/" class="text-lightgrey">首頁</router-link>
         </li>
         <li
-          class="breadcrumb-item font-weight-bold active text-coffee2"
+          class="breadcrumb-item font-weight-bold active text-coffeetext2"
           aria-current="page"
         >
           購物車
@@ -15,7 +15,7 @@
     </nav>
     <loading :active.sync="isLoading"></loading>
     <!-- shopping step -->
-    <div class="container shopping-step py-5">
+    <div class="container shopping-step py-5" v-if="cart.length">
       <ol class="step d-flex justify-content-center">
         <li class="step1">
           <div class="d-flex justify-content-center align-items-center">1</div>
@@ -228,9 +228,8 @@ export default {
           this.updateCartTotal();
           this.isLoading = false;
         })
-        .catch((err) => {
+        .catch(() => {
           this.isLoading = false;
-          console.log(err);
         });
     },
     removeItems() {
@@ -243,9 +242,8 @@ export default {
           this.getCartItems();
           this.isLoading = false;
         })
-        .catch((err) => {
+        .catch(() => {
           this.isLoading = false;
-          console.log(err);
         });
     },
     removeItem(id) {
@@ -258,9 +256,8 @@ export default {
           this.getCartItems();
           this.isLoading = false;
         })
-        .catch((err) => {
+        .catch(() => {
           this.isLoading = false;
-          console.log(err);
         });
     },
     quantityUpdate(id, quantity) {
@@ -276,9 +273,8 @@ export default {
           this.getCartItems();
           this.isLoading = false;
         })
-        .catch((err) => {
+        .catch(() => {
           this.isLoading = false;
-          console.log(err);
         });
     },
     updateCartTotal() {

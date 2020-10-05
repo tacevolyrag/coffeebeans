@@ -57,8 +57,7 @@ export default {
           this.isLoading = false;
           this.$router.push('/admin');
         })
-        .catch((err) => {
-          console.log(err.response);
+        .catch(() => {
           this.isLoading = false;
         });
     },

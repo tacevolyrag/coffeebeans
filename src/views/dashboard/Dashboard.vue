@@ -37,9 +37,8 @@ export default {
         .then(() => {
           this.authSuccess = true;
         })
-        .catch((err) => {
+        .catch(() => {
           this.$router.push('/login');
-          console.log(err);
         });
     },
   },
