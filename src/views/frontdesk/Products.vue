@@ -209,7 +209,7 @@ $cg-white: #fff;
   background-color: #fefbf4;
 }
 .item{
-  margin-bottom: 10rem;
+  padding-bottom: 10rem;
 }
 .products-list{
   margin-bottom: 25px;
