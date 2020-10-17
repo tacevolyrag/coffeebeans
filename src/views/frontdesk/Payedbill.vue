@@ -2,7 +2,7 @@
   <div>
     <loading :active.sync="isLoading"></loading>
     <div class="container shopping-step py-5">
-      <ol class="step d-flex justify-content-center">
+      <ol class="step d-flex justify-content-center list-unstyled">
         <li class="step1">
           <div class="d-flex justify-content-center align-items-center">1</div>
           <span>確認購物車</span>
@@ -27,7 +27,7 @@
           <div class="border mb-4">
             <table class="table">
               <tr>
-                <td class="h5 text-coffee2 order-info" width="35%">
+                <td class="h5 text-themeCoffee order-info" width="35%">
                   收件人資訊
                 </td>
               </tr>
@@ -52,7 +52,7 @@
           <div class="border mb-4">
             <table class="table">
               <tr>
-                <td class="h5 text-coffee2 order-info" width="35%">訂單資訊</td>
+                <td class="h5 text-themeCoffee order-info" width="35%">訂單資訊</td>
               </tr>
               <tr>
                 <td width="20%">付款方式</td>
@@ -65,7 +65,7 @@
               </tr>
               <tr>
                 <td width="20%">訂單金額</td>
-                <td class="text-coffee2 font-weight-bold h5">
+                <td class="text-themeCoffee font-weight-bold h5">
                   ${{ Math.floor(order.amount) }}
                 </td>
               </tr>
@@ -76,18 +76,24 @@
             </table>
           </div>
           <div class="d-flex justify-content-end mb-5">
-            <button class="btn btn-coffee2 confrimedPay" @click="payedBill">
+            <button class="btn btn-themeCoffee confrimedPay" @click="payedBill">
               確認付款
             </button>
           </div>
         </div>
       </div>
     </div>
+    <Toast></Toast>
   </div>
 </template>
 
 <script>
+import Toast from '@/components/Toast.vue';
+
 export default {
+  components: {
+    Toast,
+  },
   data() {
     return {
       order: {},
@@ -122,7 +128,9 @@ export default {
           this.isLoading = false;
           this.$router.push('/checkouts');
         })
-        .catch(() => {
+        .catch((err) => {
+          const errorMessage = err.message;
+          this.$bus.$emit('messagepush', `${errorMessage}Σ( ° △ °|||)`, 'danger');
           this.isLoading = false;
         });
     },

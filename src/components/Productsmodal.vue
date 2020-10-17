@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <loading :active.sync="isLoading"></loading>
     <div class="modal-content">
-      <div class="modal-header bg-dark text-white">
+      <div class="modal-header bg-themeCoffee text-secondaryCoffee">
         <h5 class="modal-title" id="exampleModalLongTitle">新增產品</h5>
         <button
           type="button"
@@ -24,7 +24,8 @@
                 class="form-control"
                 v-model="editProducts.imageUrl[0]"
               />
-              <img :src="editProducts.imageUrl[0]" alt class="img-fluid mt-3" />
+              <img :src="editProducts.imageUrl[0]" alt="editProducts.title"
+              class="img-fluid mt-3" />
             </div>
             <div class="form-group text-left">
               <label for="customFile"></label>
@@ -134,7 +135,7 @@
           </button>
           <button
             type="button"
-            class="btn btn-outline-primary"
+            class="btn btn-themeCoffee"
             @click="updateProduct"
           >
             確認

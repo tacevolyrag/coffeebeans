@@ -1,15 +1,15 @@
 <template>
   <div class="navbarPos">
-    <div class="container-fluid bg-coffee2 sticky-top">
+    <div class="container-fluid bg-themeCoffee sticky-top">
       <div class="coffee-navbar">
         <div class="row align-items-center">
           <div class="col-sm-6 logo">
-            <router-link to="/" class="text-coffeetext"
+            <router-link to="/" class="text-secondaryCoffee"
               >Coffeebeans</router-link
             >
           </div>
           <div class="col-sm-6">
-            <ul class="d-flex menu">
+            <ul class="d-flex menu list-unstyled">
               <li>
                 <router-link to="/products">產品列表</router-link>
               </li>
@@ -20,10 +20,10 @@
                 <a
                   href="#"
                   class="coffee-knowledge"
-                  @click.prevent="menuDropDown"
+                  @click.prevent.stop="menuDropDown"
                   >咖啡豆知識</a
                 >
-                <ul class="knowledge-list bg-coffee2">
+                <ul class="knowledge-list bg-themeCoffee list-unstyled">
                   <li>
                     <router-link to="/coffeekind">咖啡豆種類</router-link>
                   </li>
@@ -60,7 +60,7 @@
                   <span else></span>
                 </router-link>
               </div>
-              <div class="checkMenu" @click="hbgToggle">
+              <div class="checkMenu" @click.stop="hbgToggle">
                 <input type="checkbox" class="checkOpen" />
                 <span class="line line1"></span>
                 <span class="line line2"></span>
@@ -84,8 +84,7 @@ export default {
     };
   },
   methods: {
-    menuDropDown(e) {
-      e.stopPropagation();
+    menuDropDown() {
       $('.knowledge-list').fadeToggle(300);
       $('.coffee-knowledge').toggleClass('active');
     },
@@ -97,8 +96,7 @@ export default {
           this.cart = res.data.data;
         });
     },
-    hbgToggle(e) {
-      e.stopPropagation();
+    hbgToggle() {
       $('.navbarPos').toggleClass('menu-show');
     },
     queryHide(e) {
@@ -133,7 +131,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Niconne&display=swap");
 $cf-Theme-Color: #421c02;
-$cf-Text-Color: #e1c383;
+$cf-Secondary-Color: #e1c383;
 
 html {
   min-height: 100%;
@@ -153,9 +151,9 @@ html {
 .menu {
   li {
     a {
-      color: $cf-Text-Color;
+      color: $cf-Secondary-Color;
       &:hover {
-        background-color: $cf-Text-Color;
+        background-color: $cf-Secondary-Color;
         color: $cf-Theme-Color;
       }
     }
@@ -173,7 +171,7 @@ html {
     display: block;
   }
   .active {
-    background-color: $cf-Text-Color;
+    background-color: $cf-Secondary-Color;
     color: $cf-Theme-Color;
   }
 }
@@ -184,7 +182,7 @@ html {
     width: 33px;
     height: 4px;
     margin-bottom: 5px;
-    background-color: $cf-Text-Color;
+    background-color: $cf-Secondary-Color;
     border-radius: 3px;
     transform-origin: 3px 2px;
     z-index: 1;
@@ -253,7 +251,7 @@ html {
     right: 60px;
     margin-right: 1.5rem;
     a {
-      color: $cf-Text-Color;
+      color: $cf-Secondary-Color;
       padding: 30px 10px;
       :hover {
         color: #3a3b3d;
@@ -272,13 +270,13 @@ html {
     transition: max-height 0.3s;
     z-index: 15;
     li {
-      border-bottom: 1px dashed $cf-Text-Color;
+      border-bottom: 1px dashed $cf-Secondary-Color;
       a {
         padding: 10px 0;
         text-align: center;
       }
       :hover {
-        background-color: $cf-Text-Color;
+        background-color: $cf-Secondary-Color;
         color: $cf-Theme-Color;
       }
     }

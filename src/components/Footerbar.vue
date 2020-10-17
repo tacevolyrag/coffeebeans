@@ -1,8 +1,8 @@
 <template>
   <div style="position: absolute; bottom: 0; width: 100%">
-    <div class="footer container-fluid bg-coffee2">
+    <div class="footer container-fluid bg-themeCoffee">
       <div class="container d-flex justify-content-center align-items-center">
-        <div class="text-coffeetext footer-copyright">
+        <div class="text-secondaryCoffee footer-copyright">
           Copyright2020 &copy; CoffeeBeans design by ShengWei
         </div>
       </div>

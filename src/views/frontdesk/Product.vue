@@ -12,7 +12,7 @@
           </router-link>
         </li>
         <li
-          class="breadcrumb-item font-weight-bold text-coffeetext2 active"
+          class="breadcrumb-item font-weight-bold text-infoCoffee active"
           aria-current="page"
         >
           {{ product.title }}
@@ -33,20 +33,20 @@
             <div class="product-detail">
               <blockquote>
                 <div class="d-flex align-items-center product-title">
-                  <h3 class="text-coffee2 font-weight-bold">
+                  <h3 class="text-themeCoffee font-weight-bold">
                     {{ product.title }}
                   </h3>
-                  <span class="badge badge-pill badge-coffee2 ml-auto">
+                  <span class="badge badge-pill badge-themeCoffee ml-auto">
                     {{ product.category }}</span
                   >
                 </div>
                 <div>
-                  <p class="pt-3 text-coffee2 h5">{{ product.content }}</p>
+                  <p class="pt-3 text-themeCoffee h5">{{ product.content }}</p>
                   <span class="product-detail-span">{{
                     product.description
                   }}</span>
                 </div>
-                <div class="d-flex justify-content-around text-coffee2 mt-4">
+                <div class="d-flex justify-content-around text-themeCoffee mt-4">
                   <div class="h6 product-origin" v-if="!product.price">
                     NT ${{ product.origin_price | thousand }} 元
                   </div>
@@ -57,7 +57,7 @@
               </blockquote>
 
               <select v-model="product.num" class="form-control mt-3">
-                <option value="0" disabled selected>請選擇數量</option>
+                <option value="0" disabled>請選擇數量</option>
                 <option
                   v-for="productNum in 10"
                   :key="productNum"
@@ -75,7 +75,7 @@
                 </div>
                 <button
                   type="button"
-                  class="btn btn-coffee2 addToCart"
+                  class="btn btn-themeCoffee addToCart"
                   @click="detailAddToCart(product, product.num)"
                   v-if="product.num"
                 >
@@ -83,7 +83,7 @@
                 </button>
                 <button
                   type="button"
-                  class="btn btn-coffee2 addToCart"
+                  class="btn btn-themeCoffee addToCart"
                   v-else
                   disabled
                 >
@@ -101,7 +101,7 @@
     >
       <div class="col-md-6">
         <div class="mb-5">
-          <h4 class="text-coffee2 mb-3 pb-3">產品規格</h4>
+          <h4 class="text-themeCoffee mb-3 pb-3">產品規格</h4>
           <p class="text-left">
             產地：{{ product.title }}<br /><br />
             處理法：水洗<br /><br />
@@ -116,7 +116,7 @@
       </div>
       <div class="col-md-6">
         <div class="mb-5">
-          <h4 class="text-coffee2 pb-3">使用方式</h4>
+          <h4 class="text-themeCoffee pb-3">使用方式</h4>
           <p class="text-left">
             咖啡比例：每 10g 使用 150 ~ 200cc 水沖泡咖啡<br />可因自己喜好口感增加或減少水量<br /><br />
             萃取水溫：建議溫度 90 度~ 92 度
@@ -127,7 +127,7 @@
     <div class="row pt-5 justify-content-center mb-5 pb-5">
       <div class="col-md-12">
         <div class="mb-5">
-          <h4 class="text-coffee2 mb-3 pb-3 font-weight-bold text-center">
+          <h4 class="text-themeCoffee mb-3 pb-3 font-weight-bold text-center">
             你可能也會喜歡
           </h4>
           <Swiper @getOtherItem="getProduct"></Swiper>
@@ -175,7 +175,7 @@ export default {
         .post(addToCartUrl, cart)
         .then(() => {
           this.$bus.$emit('get-cart');
-          this.$bus.$emit('messagepush', '加入購物車成功囉!ヽ(＾Д＾)ﾉ ', 'coffee2');
+          this.$bus.$emit('messagepush', '加入購物車成功囉!ヽ(＾Д＾)ﾉ ', 'themeCoffee');
           this.isLoading = false;
         })
         .catch((err) => {

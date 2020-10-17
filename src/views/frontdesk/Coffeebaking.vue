@@ -6,7 +6,7 @@
           <router-link to="/" class="text-lightgrey">首頁</router-link>
         </li>
         <li
-          class="breadcrumb-item font-weight-bold active text-coffeetext2"
+          class="breadcrumb-item font-weight-bold active text-infoCoffee"
           aria-current="page"
         >
           咖啡八階段
@@ -15,7 +15,7 @@
     </nav>
     <section class="row coffee-definition align-items-center">
       <div class="col-md-6">
-        <h4 class="text-coffeetext2 font-weight-bold">烘焙的定義</h4>
+        <h4 class="text-infoCoffee font-weight-bold">烘焙的定義</h4>
         <p>
           所謂咖啡烘焙（coffee
           roasting）是指通過對生豆的加熱，促使咖啡豆內外部發生一系列物理和化學反應，
@@ -26,7 +26,7 @@
         <div class="baking-image baking-image-3"></div>
       </div>
     </section>
-    <h4 class="text-coffeetext2 font-weight-bold mt-5 text-center">烘培八階段</h4>
+    <h4 class="text-infoCoffee font-weight-bold mt-5 text-center">烘培八階段</h4>
     <div class="bakingCoffee py-5 row">
       <section class="col-md-6">
         <div class="baking-text">
@@ -79,7 +79,7 @@
       </section>
       <div class="col-md-6 mb-5 pb-3">
         <table class="table table-bordered baking-table bg-beige">
-          <thead class="text-coffeetext2 h5">
+          <thead class="text-infoCoffee h5">
             <tr>
               <th>淺培</th>
               <th>中培</th>
@@ -120,7 +120,7 @@ export default {};
 $cf-Theme-Color: #421c02;
 // 咖啡豆次色彩
 $cf-beige-Color: #fefbf4;
-$cf-Text-Color: #e1c383;
+$cf-Secondary-Color: #e1c383;
 $cf-throughLine-Color: #bbb;
 
 body {
@@ -155,7 +155,7 @@ body {
   .baking-text {
     h4 {
       background-color: $cf-Theme-Color;
-      color: $cf-Text-Color;
+      color: $cf-Secondary-Color;
       padding: 5px 10px;
       margin: 5px 20px;
     }

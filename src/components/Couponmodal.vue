@@ -3,8 +3,8 @@
     <loading :active.sync="isLoading"></loading>
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-coffee" id="exampleModalLabel">
+        <div class="modal-header bg-themeCoffee">
+          <h5 class="modal-title text-secondaryCoffee" id="exampleModalLabel">
             新增優惠券
           </h5>
           <button
@@ -80,7 +80,7 @@
                   v-model="editCoupon.percent"
                 />
               </div>
-              <div class="form-check mt-4 text-coffee font-weight-bold">
+              <div class="form-check mt-4 text-themeCoffee font-weight-bold">
                 <input
                   type="checkbox"
                   class="form-check-input"
@@ -98,7 +98,7 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             關閉
           </button>
-          <button type="button" class="btn btn-coffee" @click="createdCoupon">
+          <button type="button" class="btn btn-themeCoffee" @click="createdCoupon">
             完成
           </button>
         </div>
@@ -121,33 +121,23 @@ export default {
   methods: {
     createdCoupon() {
       this.isLoading = true;
-      const creatCouponUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/coupon`;
-      const editCouponUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/coupon/${this.editCoupon.id}`;
       this.editCoupon.deadline_at = `${this.couponDate} ${this.couponTime}`;
+      let apiUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/coupon`;
+      let httpMethod = 'post';
+
       // 如果是 true 就新增一個優惠券，反之則編輯優惠券。
-      if (this.created) {
-        this.$http
-          .post(creatCouponUrl, this.editCoupon)
-          .then(() => {
-            this.$emit('update');
-            $('#couponModal').modal('hide');
-            this.isLoading = false;
-          })
-          .catch(() => {
-            this.isLoading = false;
-          });
-      } else {
-        this.$http
-          .patch(editCouponUrl, this.editCoupon)
-          .then(() => {
-            this.$emit('update');
-            $('#couponModal').modal('hide');
-            this.isLoading = false;
-          })
-          .catch(() => {
-            this.isLoading = false;
-          });
+      if (!this.created) {
+        apiUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/coupon/${this.editCoupon.id}`;
+        httpMethod = 'patch';
       }
+      this.$http[httpMethod](apiUrl, this.editCoupon)
+        .then(() => {
+          this.$emit('update');
+          $('#couponModal').modal('hide');
+          this.isLoading = false;
+        }).catch(() => {
+          this.isLoading = false;
+        });
     },
   },
 };

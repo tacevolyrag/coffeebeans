@@ -12,7 +12,7 @@
             </a>
             <div class="card-body">
               <div class="body-content">
-                <div class="text-coffee2 font-weight-bold h5 text-center">
+                <div class="text-themeCoffee font-weight-bold h5 text-center">
                   {{ item.title }}
                 </div>
                 <div class="text">
@@ -27,7 +27,7 @@
                   >
                     <a
                       href="#"
-                      class="btn btn-coffee2"
+                      class="btn btn-themeCoffee"
                       @click.prevent="getOtherItem(item.id)"
                     >
                       查看更多

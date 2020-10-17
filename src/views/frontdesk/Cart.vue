@@ -6,7 +6,7 @@
           <router-link to="/" class="text-lightgrey">首頁</router-link>
         </li>
         <li
-          class="breadcrumb-item font-weight-bold active text-coffeetext2"
+          class="breadcrumb-item font-weight-bold active text-infoCoffee"
           aria-current="page"
         >
           購物車
@@ -16,7 +16,7 @@
     <loading :active.sync="isLoading"></loading>
     <!-- shopping step -->
     <div class="container shopping-step py-5" v-if="cart.length">
-      <ol class="step d-flex justify-content-center">
+      <ol class="step d-flex justify-content-center list-unstyled">
         <li class="step1">
           <div class="d-flex justify-content-center align-items-center">1</div>
           <span>確認購物車</span>
@@ -85,7 +85,7 @@
                         <div class="input-group-prepend">
                           <button
                             type="button"
-                            class="btn btn-outline-coffee2 btn-sm"
+                            class="btn btn-outline-themeCoffee btn-sm"
                             :disabled="item.quantity === 1"
                             @click="
                               quantityUpdate(item.product.id, item.quantity - 1)
@@ -102,7 +102,7 @@
                         <div class="input-group-append">
                           <button
                             type="button"
-                            class="btn btn-outline-coffee2 btn-sm"
+                            class="btn btn-outline-themeCoffee btn-sm"
                             @click="
                               quantityUpdate(item.product.id, item.quantity + 1)
                             "
@@ -125,7 +125,7 @@
                     <td colspan="2">
                       <button
                         type="button"
-                        class="btn btn-coffee2 float-left"
+                        class="btn btn-themeCoffee float-left"
                         @click="goToNext('products')"
                       >
                         繼續購物
@@ -146,7 +146,7 @@
         <!-- order information -->
         <div class="col-lg-4 col-12 orderInfo">
           <div class="cart-border" style="width: 100%">
-            <div class="card-header pt-3 text-coffee2">訂單資訊</div>
+            <div class="card-header pt-3 text-themeCoffee">訂單資訊</div>
             <div class="card-body my-3">
               <div class="d-flex">
                 <p class="ml-4">商品總計</p>
@@ -165,7 +165,7 @@
                 >
               </div>
               <button
-                class="btn btn-coffee2 nextToStep"
+                class="btn btn-themeCoffee nextToStep"
                 @click="goToNext('paybill')"
               >
                 下一步
@@ -181,7 +181,7 @@
         <p class="cart-img"><i class="fas fa-shopping-cart"></i></p>
         <p>您的購物車中沒有商品</p>
         <div
-          class="btn btn-coffee2 cart-goshop"
+          class="btn btn-themeCoffee cart-goshop"
           type="button"
           @click="goToNext('products')"
         >

@@ -8,7 +8,7 @@
             <router-link to="/" class="text-lightgrey">首頁</router-link>
           </li>
           <li
-            class="breadcrumb-item font-weight-bold active text-coffeetext2"
+            class="breadcrumb-item font-weight-bold active text-infoCoffee"
             aria-current="page"
           >
             商品列表
@@ -17,7 +17,7 @@
       </nav>
       <!-- 商品分類 -->
       <div class="category pb-3">
-        <ul class="d-flex justify-content-center">
+        <ul class="d-flex justify-content-center list-unstyled">
           <li
             :class="{ active: filterProducts === 'all' }"
             @click="filterSort((filterProducts = 'all'))"
@@ -66,7 +66,7 @@
                     <h5 class="card-title product-title text-center">
                       <a
                         href="#"
-                        class="text-coffee2 font-weight-bold"
+                        class="text-themeCoffee font-weight-bold"
                         @click.prevent="getProductDetail(product.id)"
                       >
                         {{ product.title }}</a
@@ -90,14 +90,14 @@
                   <div class="modal-footer mt-3">
                     <button
                       type="button"
-                      class="btn btn-outline-coffee2 product-detail"
+                      class="btn btn-outline-themeCoffee product-detail"
                       @click="getProductDetail(product.id)"
                     >
                       商品資訊
                     </button>
                     <button
                       type="button"
-                      class="btn btn-coffee2 ml-auto"
+                      class="btn btn-themeCoffee ml-auto"
                       @click="addToCart(product)"
                     >
                       加入購物車
@@ -154,7 +154,7 @@ export default {
         .post(addToCartUrl, cart)
         .then(() => {
           this.$bus.$emit('get-cart');
-          this.$bus.$emit('messagepush', '加入購物車成功囉!ヽ(＾Д＾)ﾉ ', 'coffee2');
+          this.$bus.$emit('messagepush', '加入購物車成功囉!ヽ(＾Д＾)ﾉ ', 'themeCoffee');
           this.isLoading = false;
         })
         .catch((err) => {
@@ -288,7 +288,7 @@ $cg-white: #fff;
 }
 @media screen and(max-width: 768px) {
   .products-list {
-    width: 48%;
+    width: 47%;
   }
 }
 @media screen and(max-width: 414px) {

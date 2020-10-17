@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div id="nav">
-      <div class="bg-coffee2 backend-navbar text-left">
+    <div id="nav" v-if="authSuccess">
+      <div class="bg-themeCoffee backend-navbar text-left">
         <router-link to="/admin/boardproducts">後台產品列表</router-link>
         <router-link to="/admin/order">訂單列表</router-link>
         <router-link to="/admin/coupons">優惠券列表</router-link>
@@ -9,7 +9,7 @@
         <router-link to="/login">登入</router-link>
         <router-link to="/">回到前台</router-link>
       </div>
-      <router-view v-if="authSuccess"/>
+      <router-view />
     </div>
   </div>
 </template>
@@ -28,7 +28,6 @@ export default {
         /(?:(?:^|.*;\s*)myToken\s*=\s*([^;]*).*$)|^.*$/,
         '$1',
       );
-      this.$http.defaults.headers.common.Authorization = `Bearer ${this.token}`;
       const apiUrl = `${process.env.VUE_APP_PATH}api/auth/check`;
       this.$http
         .post(apiUrl, {
@@ -36,6 +35,7 @@ export default {
         })
         .then(() => {
           this.authSuccess = true;
+          this.$http.defaults.headers.common.Authorization = `Bearer ${this.token}`;
         })
         .catch(() => {
           this.$router.push('/login');

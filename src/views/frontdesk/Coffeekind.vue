@@ -7,14 +7,14 @@
             <router-link to="/" class="text-lightgrey"> 首頁 </router-link>
           </li>
           <li
-            class="breadcrumb-item font-weight-bold active text-coffeetext2"
+            class="breadcrumb-item font-weight-bold active text-infoCoffee"
             aria-current="page"
           >
             咖啡豆種類
           </li>
         </ol>
       </nav>
-      <h4 class="font-weight-bold text-coffeetext2 text-center">
+      <h4 class="font-weight-bold text-infoCoffee text-center">
         單品咖啡以及綜合咖啡的差異
       </h4>
       <div class="row origin">
@@ -39,7 +39,7 @@
     </div>
     <div>
       <div class="container coffeekind pb-5">
-        <h4 class="mb-4 text-coffeetext2 font-weight-bold text-center">
+        <h4 class="mb-4 text-infoCoffee font-weight-bold text-center">
           咖啡豆種類
         </h4>
         <div class="row align-items-center">
@@ -163,7 +163,6 @@ export default {};
     color: #632100;
     font-weight: bold;
     padding: 0px 25px;
-    // border-bottom: 2px solid #632100;
     &::after{
       content: '';
       display: block;
@@ -171,7 +170,6 @@ export default {};
       border-bottom: 2px solid #632100;
       padding-top: 10px;
     }
-    // width: 50%;
   }
   p {
     padding: 5px 25px;
@@ -217,6 +215,13 @@ export default {};
   .coffeekind-image {
     min-height: 600px;
     border-radius: 1%;
+  }
+}
+@media screen and (max-width: 375px) {
+  .coffee-origin{
+    h5{
+      padding: 5px 0px 5px 25px;
+    }
   }
 }
 </style>

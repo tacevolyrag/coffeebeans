@@ -22,7 +22,7 @@
               <a
                 href="#"
                 class="text-white text-center"
-                @click.prevent="btnToCoffee('coffeekind')"
+                @click.prevent="btnToCoffee('/coffeekind')"
               >
                 Coffee 新鮮咖啡豆
               </a>
@@ -30,13 +30,13 @@
           </div>
           <div class="col-md-6">
             <div class="into-text">
-              <h3 class="text-coffee2">有高品質的咖啡豆才有好咖啡</h3>
+              <h3 class="text-themeCoffee">有高品質的咖啡豆才有好咖啡</h3>
               <p>
                 一杯好咖啡的關鍵是什麼？好的沖泡技巧和器具固然不可或缺，但
                 <strong>高品質的咖啡豆</strong>
                 才是最重要的元素。不同品種咖啡豆的味道都不一樣，個人喜好當然也見仁見智。
               </p>
-              <h3 class="text-coffee2">那麼，什麼才是高品質的咖啡豆</h3>
+              <h3 class="text-themeCoffee">那麼，什麼才是高品質的咖啡豆</h3>
               <p>
                 一般覺得好喝的咖啡大概都有兩個特徵：
                 <br />
@@ -44,10 +44,10 @@
               </p>
               <button
                 type="button"
-                class="btn btn-outline-coffee2 float-right mt-3"
-                @click="btnToCoffee('coffeekind')"
+                class="btn btn-outline-themeCoffee float-right mt-3"
+                @click="btnToCoffee('/coffeekind')"
               >
-                更多咖啡豆資訊
+                查看咖啡種類
               </button>
             </div>
           </div>
@@ -57,7 +57,7 @@
         <div class="row justify-content-center align-items-center">
           <div class="col-md-6 intoduction-2">
             <div class="into-text">
-              <h3 class="text-coffee2">咖啡的香氣，來自咖啡烘焙</h3>
+              <h3 class="text-themeCoffee">咖啡的香氣，來自咖啡烘焙</h3>
               <p>
                 咖啡的香氣及味道，是在烘焙後才產生的，
                 在烘焙過程中，咖啡生豆的水分慢慢釋放後
@@ -70,10 +70,10 @@
               </p>
               <button
                 type="button"
-                class="btn btn-outline-coffee2 float-right mt-3"
-                @click="btnToCoffee('coffeebaking')"
+                class="btn btn-outline-themeCoffee float-right mt-3"
+                @click="btnToCoffee('/coffeebaking')"
               >
-                更多咖啡豆資訊
+                查看咖啡烘焙
               </button>
             </div>
           </div>
@@ -82,7 +82,7 @@
               <a
                 href="#"
                 class="text-white text-center"
-                @click.prevent="btnToCoffee('coffeebaking')"
+                @click.prevent="btnToCoffee('/coffeebaking')"
                 >Baking 烘焙二三事</a
               >
             </div>
@@ -92,7 +92,7 @@
     </div>
     <div class="product-area">
       <div class="container product-hot">
-        <h2 class="text-coffee2 text-center">
+        <h2 class="text-themeCoffee text-center">
           咖啡豆搭配周邊！ 自用贈禮兩相宜！ 限時限量搶購中！
         </h2>
         <br />
@@ -108,7 +108,7 @@
                 to="/products"
                 class="product1-img img-fluid"
               ></router-link>
-              <router-link to="/products" class="text-coffee2 link-product">
+              <router-link to="/products" class="text-themeCoffee link-product">
                 <h3>阿拉比卡豆</h3>
               </router-link>
               <h5 class="font-weight-bold">果實飽滿、味道柔順</h5>
@@ -117,8 +117,8 @@
               </p>
               <button
                 type="button"
-                class="btn btn-outline-coffee2"
-                @click="btnToCoffee('products')"
+                class="btn btn-outline-themeCoffee"
+                @click="btnToCoffee('/products')"
               >
                 查看商品資訊
               </button>
@@ -130,7 +130,7 @@
                 to="/products"
                 class="product2-img img-fluid"
               ></router-link>
-              <router-link to="/products" class="text-coffee2 link-product">
+              <router-link to="/products" class="text-themeCoffee link-product">
                 <h3>羅布斯塔豆</h3>
               </router-link>
               <h5 class="font-weight-bold">味道苦烈、價格較低</h5>
@@ -139,8 +139,8 @@
               </p>
               <button
                 type="button"
-                class="btn btn-outline-coffee2"
-                @click="btnToCoffee('products')"
+                class="btn btn-outline-themeCoffee"
+                @click="btnToCoffee('/products')"
               >
                 查看商品資訊
               </button>
@@ -152,15 +152,15 @@
                 to="/products"
                 class="product3-img img-fluid"
               ></router-link>
-              <router-link to="/products" class="text-coffee2 link-product">
+              <router-link to="/products" class="text-themeCoffee link-product">
                 <h3>馬克杯</h3>
               </router-link>
               <h5 class="font-weight-bold">圓潤杯耳舒適好拿握</h5>
               <p class="text-left">適盛裝咖啡、牛奶等，亦可做為居家擺飾。</p>
               <button
                 type="button"
-                class="btn btn-outline-coffee2"
-                @click="btnToCoffee('products')"
+                class="btn btn-outline-themeCoffee"
+                @click="btnToCoffee('/products')"
               >
                 查看商品資訊
               </button>
@@ -182,19 +182,7 @@
 export default {
   methods: {
     btnToCoffee(somewhere) {
-      switch (somewhere) {
-        case 'coffeekind':
-          this.$router.push('/coffeekind');
-          break;
-        case 'coffeebaking':
-          this.$router.push('/coffeebaking');
-          break;
-        case 'products':
-          this.$router.push('/products');
-          break;
-        default:
-          break;
-      }
+      this.$router.push(somewhere);
     },
     scrollToShow() {
       $(window).scroll(() => {
@@ -244,7 +232,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  max-width: 100%;
+  // max-width: 100%;
 }
 // banner img,text css
 .banner {
@@ -329,7 +317,9 @@ export default {
       margin-right: 70px;
     }
     .feature {
-      padding-left: 90px;
+      // padding-left: 90px;
+      display: block;
+      text-align: center;
     }
   }
 }
@@ -357,6 +347,7 @@ export default {
   padding: 50px;
   .product {
     line-height: 2;
+    // margin-bottom: 2rem;
     h3 {
       margin: 20px 0;
     }
@@ -440,6 +431,36 @@ export default {
     }
   }
 }
+@media screen and (max-width: 540px) {
+  .banner {
+    .banner-text {
+      transform: translateX(20%);
+    }
+  }
+  .intoduction {
+    .img-opacity1 {
+      transform: translateX(0%);
+    }
+    .img-opacity2 {
+      transform: translateX(0%);
+    }
+    .img-opacity-duration {
+      opacity: 1;
+    }
+    .into-text {
+      padding-top: 2rem;
+    }
+    .into-img-2 {
+      margin-top: 2rem;
+    }
+  }
+  .product-hot {
+    .product1,.product2 {
+        margin-bottom: 2rem;
+    }
+  }
+}
+
 @media screen and (max-width: 425px) {
   .index {
     .banner {
@@ -448,7 +469,7 @@ export default {
       background-size: center center;
       .banner-text {
         transform: translateX(0);
-        padding-left: 25px;
+        padding-left: 10px;
       }
     }
   }
@@ -460,6 +481,9 @@ export default {
     .into-img {
       width: 375px;
     }
+    .into-img-2 {
+      margin-top: 0;
+    }
   }
   .intoduction-2 {
     margin-bottom: 3rem;
@@ -470,6 +494,13 @@ export default {
   }
 }
 @media screen and (max-width: 375px) {
+  .index {
+    .banner {
+      .banner-text {
+        padding-left: 0px;
+      }
+    }
+  }
   .intoduction {
     .into-img {
       width: 350px;

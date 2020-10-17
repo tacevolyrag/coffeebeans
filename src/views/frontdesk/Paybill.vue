@@ -9,7 +9,7 @@
           <router-link to="/cart" class="text-lightgrey">購物車</router-link>
         </li>
         <li
-          class="breadcrumb-item font-weight-bold active text-coffeetext2"
+          class="breadcrumb-item font-weight-bold active text-infoCoffee"
           aria-current="page"
         >
           填寫資料及付款方式
@@ -19,7 +19,7 @@
     <loading :active.sync="isLoading"></loading>
     <!-- shopping step -->
     <div class="container shopping-step py-5">
-      <ol class="step d-flex justify-content-center">
+      <ol class="step d-flex justify-content-center list-unstyled">
         <li class="step1">
           <div class="d-flex justify-content-center align-items-center">1</div>
           <span>確認購物車</span>
@@ -46,7 +46,7 @@
         <div class="col-md-6">
           <div class="row justify-content-center">
             <div class="cart-border">
-              <div class="card-header text-left pt-3 text-coffee2">
+              <div class="card-header text-left pt-3 text-themeCoffee">
                 訂單資訊
               </div>
               <div class="card-body">
@@ -82,7 +82,7 @@
                       v-model="form.coupon"
                     />
                     <div class="input-group-append mr-5">
-                      <button class="btn btn-coffee2" @click="couponUse">
+                      <button class="btn btn-themeCoffee" @click="couponUse">
                         使用
                       </button>
                     </div>
@@ -240,7 +240,7 @@
                 <div class="text-right verification-submit pt-3">
                   <button
                     type="submit"
-                    class="btn btn-outline-coffee2"
+                    class="btn btn-outline-themeCoffee"
                     :disabled="invalid"
                   >
                     送出訂單資料
@@ -258,13 +258,13 @@
       <div class="text-center">
         <p class="cart-img"><i class="fas fa-shopping-cart"></i></p>
         <p>您的購物車中沒有商品</p>
-        <div
-          class="btn btn-coffee2 cart-goshop"
+        <button
+          class="btn btn-themeCoffee cart-goshop"
           type="button"
           @click="goToShop"
         >
           去購物
-        </div>
+        </button>
       </div>
     </div>
   </div>

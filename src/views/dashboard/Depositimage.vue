@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5">
     <loading :active.sync="isLoading"></loading>
-    <h2 class="text-coffee">後台圖片管理</h2>
+    <h2 class="text-themeCoffee">後台圖片管理</h2>
     <table class="table mt-4">
       <thead>
         <tr>
@@ -58,7 +58,7 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-outline-coffee"
+              class="btn btn-outline-themeCoffee"
               data-dismiss="modal"
             >
               Close

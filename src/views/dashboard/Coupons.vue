@@ -1,8 +1,8 @@
 <template>
   <div class="container mt-5">
     <loading :active.sync="isLoading"></loading>
-    <h2 class="text-coffee">後台優惠卷管理</h2>
-    <button class="float-right btn btn-coffee my-4" @click="newCouponModal">
+    <h2 class="text-themeCoffee">後台優惠卷管理</h2>
+    <button class="float-right btn btn-themeCoffee my-4" @click="newCouponModal">
       新增優惠券
     </button>
     <table class="table">
@@ -27,7 +27,7 @@
           <td>
             <div class="btn-group float-right">
               <button
-                class="btn btn-outline-coffee"
+                class="btn btn-outline-themeCoffee"
                 @click="editCouponModal(coupon)"
               >
                 編輯

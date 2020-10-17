@@ -13,13 +13,13 @@
         data-animation="true"
       >
         <div class="toast-header" :class="`bg-${res.status}`">
-            <div class="mr-2 text-coffeetext">
+            <div class="mr-2 text-secondaryCoffee">
               <i class="fas fa-coffee"></i>
             </div>
-            <strong class="mr-auto text-coffeetext">購物車訊息</strong>
+            <strong class="mr-auto text-secondaryCoffee">購物車訊息</strong>
             <button
               type="button"
-              class="ml-2 mb-1 close text-coffeetext"
+              class="ml-2 mb-1 close text-secondaryCoffee"
               data-dismiss="toast"
               aria-label="Close"
               @click="closeToast(`toast-${i}`)"

@@ -7,7 +7,7 @@
             <router-link to="/" class="text-lightgrey"> 首頁 </router-link>
           </li>
           <li
-            class="breadcrumb-item font-weight-bold text-coffeetext2 active"
+            class="breadcrumb-item font-weight-bold text-infoCoffee active"
             aria-current="page"
           >
             聯絡我們
@@ -16,7 +16,7 @@
       </nav>
       <div class="row contact py-5">
         <div class="col-md-6 col-12">
-          <h2 class="text-left text-coffeetext2 font-weight-bold pl-4 mb-2">
+          <h2 class="text-left text-infoCoffee font-weight-bold pl-4 mb-2">
             湖前門市
             <i class="fas fa-store"></i>
           </h2>
@@ -27,7 +27,7 @@
             營業時間： 週一至週六 09：00 AM ~ 19：00 PM
           </p>
           <p class="px-4 text-left h5">（ 週日無營業 ）</p>
-          <div class="text-coffeetext2 text-left message">
+          <div class="text-infoCoffee text-left message">
             <h4>
               聯絡地址
               <i class="fas fa-address-card"></i> ：新北市汐止區湖前街 20 號
@@ -57,7 +57,7 @@
     </div>
     <div class="contact-us bg-beige mb-5 pb-5">
       <div class="container">
-        <h3 class="text-coffeetext2 py-4 text-center">聯絡表單</h3>
+        <h3 class="text-infoCoffee py-4 text-center">聯絡表單</h3>
         <form class="row justify-content-center">
           <div class="col-md-8 text-left">
             <div class="form-group">
@@ -102,7 +102,7 @@
               </textarea>
             </div>
             <div class="text-right">
-              <button type="submit" class="btn btn-coffee2 my-4">
+              <button type="submit" class="btn btn-themeCoffee my-4">
                 送出表單
               </button>
             </div>

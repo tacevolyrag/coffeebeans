@@ -1,11 +1,11 @@
 <template>
   <div class="container mt-5">
     <loading :active.sync="isLoading"></loading>
-    <h2 class="text-coffee">後台商品管理</h2>
+    <h2 class="text-themeCoffee">後台商品管理</h2>
     <div class="text-right">
       <button
         type="button"
-        class="btn btn-coffee"
+        class="btn btn-themeCoffee"
         @click="createdProduct"
         data-toggle="modal"
       >
@@ -39,7 +39,7 @@
             <div class="btn-group">
               <button
                 type="button"
-                class="btn btn-outline-coffee"
+                class="btn btn-outline-themeCoffee"
                 @click="editProduct(item)"
               >
                 編輯
@@ -118,7 +118,6 @@ export default {
       isLoading: false,
     };
   },
-  props: ['token'],
 
   methods: {
     getProducts(pageNum = 1) {

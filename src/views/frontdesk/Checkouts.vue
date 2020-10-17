@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <loading :active.sync="isLoading"></loading>
     <div class="container shopping-step py-5">
-      <ol class="step d-flex justify-content-center">
+      <ol class="step d-flex justify-content-center list-unstyled">
         <li class="step1">
           <div class="d-flex justify-content-center align-items-center">1</div>
           <span>確認購物車</span>
@@ -25,23 +25,23 @@
       <div class="row justify-content-center">
         <div class="col-md-8 checkout text-center">
           <div class="truck-img"><i class="fas fa-truck"></i></div>
-          <h4 class="mt-1 text-coffee2">恭喜您，已完成付款結帳囉 ！</h4>
+          <h4 class="mt-1 text-themeCoffee">恭喜您，已完成付款結帳囉 ！</h4>
           <p class="mt-1">
             感謝您對 <span> CoffeeBeans</span> 的信任，商品將會在 1 - 3
             天到府，請耐心等候。
           </p>
           <div class="d-flex justify-content-around my-5 btnArea">
             <button
-              class="btn btn-outline-coffee2"
+              class="btn btn-outline-themeCoffee"
               type="button"
-              @click="backToPast('index')"
+              @click="backToPast('/index')"
             >
               回首頁
             </button>
             <button
-              class="btn btn-coffee2 backShop"
+              class="btn btn-themeCoffee backShop"
               type="button"
-              @click="backToPast('products')"
+              @click="backToPast('/products')"
             >
               繼續購物 ！
             </button>
@@ -62,16 +62,7 @@ export default {
   },
   methods: {
     backToPast(somewhere) {
-      switch (somewhere) {
-        case 'index':
-          this.$router.push('/#');
-          break;
-        case 'products':
-          this.$router.push('/products');
-          break;
-        default:
-          break;
-      }
+      this.$router.push(somewhere);
     },
     getCartItems() {
       const getCartUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping`;

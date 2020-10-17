@@ -20,7 +20,6 @@ import './assets/js/filter';
 import './bus';
 
 window.$ = $;
-
 Vue.config.productionTip = false;
 Vue.component('Loading', Loading);
 Vue.use(VueAxios, axios);
@@ -29,18 +28,15 @@ Vue.use(VueAxios, axios);
 Object.keys(rules).forEach((rule) => {
   extend(rule, rules[rule]);
 });
-
 configure({
   classes: {
     valid: 'is-valid',
     invalid: 'is-invalid',
   },
 });
-
 localize('zh_TW', TW);
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
-
 new Vue({
   router,
   render: (h) => h(App),

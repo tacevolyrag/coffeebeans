@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5">
     <loading :active.sync="isLoading"></loading>
-    <h2 class="text-coffee">後台訂單列表</h2>
+    <h2 class="text-themeCoffee">後台訂單列表</h2>
     <table class="table mt-5">
       <thead>
         <tr>
@@ -45,7 +45,7 @@
           </td>
           <td>
             <button
-              class="btn btn-coffee2"
+              class="btn btn-themeCoffee"
               data-target="orderModal"
               @click="specifyOrder(item.id)"
             >
@@ -67,7 +67,7 @@
         <div class="modal-content bg-beige">
           <div class="modal-header">
             <h5
-              class="modal-title text-coffee2 font-weight-bold"
+              class="modal-title text-themeCoffee font-weight-bold"
               id="exampleModalLabel"
             >
               訂單資訊
@@ -104,7 +104,7 @@
             </table>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-coffee2" data-dismiss="modal">
+            <button type="button" class="btn btn-themeCoffee" data-dismiss="modal">
               關閉
             </button>
           </div>
