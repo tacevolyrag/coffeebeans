@@ -232,7 +232,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  // max-width: 100%;
+  overflow-x: hidden;
 }
 // banner img,text css
 .banner {

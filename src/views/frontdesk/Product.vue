@@ -55,17 +55,14 @@
                   </div>
                 </div>
               </blockquote>
-
-              <select v-model="product.num" class="form-control mt-3">
-                <option value="0" disabled>請選擇數量</option>
-                <option
-                  v-for="productNum in 10"
-                  :key="productNum"
-                  :value="productNum"
-                >
-                  數量 {{ productNum }} {{ product.unit }}
-                </option>
-              </select>
+              <div class="mt-3">
+                <select class="form-control" v-model="product.num">
+                  <option value="0" disabled>請選擇數量</option>
+                  <option v-for="number in 10" :value="number" :key="number">
+                    數量 {{ number }} {{ product.unit }}
+                  </option>
+                </select>
+              </div>
               <div class="mt-5 d-flex justify-content-end align-items-center">
                 <div class="mr-3 product-off h5 pt-2" v-if="product.num">
                   總計
@@ -77,15 +74,6 @@
                   type="button"
                   class="btn btn-themeCoffee addToCart"
                   @click="detailAddToCart(product, product.num)"
-                  v-if="product.num"
-                >
-                  加到購物車
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-themeCoffee addToCart"
-                  v-else
-                  disabled
                 >
                   加到購物車
                 </button>
@@ -160,7 +148,7 @@ export default {
       const getProductApi = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/product/${id}`;
       this.$http.get(getProductApi).then((res) => {
         this.product = res.data.data;
-        this.$set(this.product, 'num', 0);
+        this.$set(this.product, 'num', 1);
         this.isLoading = false;
       });
     },
