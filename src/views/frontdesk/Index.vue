@@ -18,7 +18,8 @@
       <div class="intoduction container">
         <div class="row justify-content-center align-items-center">
           <div class="col-md-6">
-            <div class="into-img into-img-1 img-opacity img-opacity1 img-fluid">
+            <div class="into-img into-img-1 img-opacity img-opacity1
+            img-fluid">
               <a
                 href="#"
                 class="text-white text-center"
@@ -185,9 +186,13 @@ export default {
       this.$router.push(somewhere);
     },
     scrollToShow() {
+      const scrollPos = $(window).scrollTop();
+      const windowHeight = $(window).height();
+      const leftImage = $('.into-img-1').offset().top;
+      if (leftImage < windowHeight) {
+        $('.into-img-1').addClass('img-opacity-duration');
+      }
       $(window).scroll(() => {
-        const scrollPos = $(window).scrollTop();
-        const windowHeight = $(window).height();
         $('.into-img').each(() => {
           const vm = $('.into-img');
           const thisPos = vm.offset().top;
@@ -317,7 +322,6 @@ export default {
       margin-right: 70px;
     }
     .feature {
-      // padding-left: 90px;
       display: block;
       text-align: center;
     }

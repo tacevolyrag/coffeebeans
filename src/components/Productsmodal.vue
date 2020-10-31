@@ -24,7 +24,7 @@
                 class="form-control"
                 v-model="editProducts.imageUrl[0]"
               />
-              <img :src="editProducts.imageUrl[0]" alt="editProducts.title"
+              <img :src="editProducts.imageUrl[0]" :alt="editProducts.title"
               class="img-fluid mt-3" />
             </div>
             <div class="form-group text-left">
@@ -35,7 +35,7 @@
                 class="form-group text-fluid"
                 @change="uploadFile"
               />
-              <img :src="filePath[0]" class="img-fluid" alt />
+              <img :src="filePath[0]" class="img-fluid" :alt="editProducts.title"/>
             </div>
           </div>
           <div class="col-sm-7">
