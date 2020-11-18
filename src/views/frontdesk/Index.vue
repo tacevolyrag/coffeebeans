@@ -416,10 +416,13 @@ export default {
     }
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   .index {
     .banner {
-      justify-content: start;
+      justify-content: center;
+      .banner-text{
+        transform: translateX(0);
+      }
     }
   }
   .product-hot {

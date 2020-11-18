@@ -20,7 +20,6 @@
                 <a
                   href="#"
                   class="coffee-knowledge"
-                  @click.prevent.stop="menuDropDown"
                   >咖啡豆知識</a
                 >
                 <ul class="knowledge-list bg-themeCoffee list-unstyled">
@@ -84,10 +83,6 @@ export default {
     };
   },
   methods: {
-    menuDropDown() {
-      $('.knowledge-list').fadeToggle(300);
-      $('.coffee-knowledge').toggleClass('active');
-    },
     getCartItems() {
       const getCartUrl = `${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping`;
       this.$http
@@ -99,14 +94,11 @@ export default {
     hbgToggle() {
       $('.navbarPos').toggleClass('menu-show');
     },
-    queryHide(e) {
-      if (e.target.className !== 'knowledge-list') {
-        $('.knowledge-list').hide();
-        $('.coffee-knowledge').removeClass('active');
-        if ($('.navbarPos').removeClass('menu-show')) {
-          if ($('.checkOpen')[0].checked === true) {
-            $('.checkOpen')[0].checked = false;
-          }
+    queryHide() {
+      // $('.coffee-knowledge').removeClass('active');
+      if ($('.navbarPos').removeClass('menu-show')) {
+        if ($('.checkOpen')[0].checked === true) {
+          $('.checkOpen')[0].checked = false;
         }
       }
     },
@@ -141,6 +133,9 @@ html {
   .logo {
     font-family: "Carter One", cursive;
     text-align: center;
+    a{
+      padding: 30px 10px;
+    }
   }
   a {
     text-decoration: none;
@@ -156,6 +151,13 @@ html {
         background-color: $cf-Secondary-Color;
         color: $cf-Theme-Color;
       }
+    }
+    &:hover > ul{
+      display: block;
+    }
+    &:hover > a{
+      background-color: $cf-Secondary-Color;
+      color: $cf-Theme-Color;
     }
   }
   .knowledge-list {
@@ -209,13 +211,6 @@ html {
 .badge-transform {
   transform: translateX(-8px) translateY(5px);
 }
-@media screen and (max-width: 1024px) {
-  .coffee-navbar {
-    a {
-      padding: 30px 16px;
-    }
-  }
-}
 @media screen and (max-width: 768px) {
   .coffee-navbar {
     .logo {
@@ -231,6 +226,7 @@ html {
     margin-right: 1.5rem;
     .checkOpen {
       position: absolute;
+      cursor: pointer;
       width: 40px;
       height: 40px;
       right: 0px;
@@ -270,7 +266,7 @@ html {
     transition: max-height 0.3s;
     z-index: 15;
     li {
-      border-bottom: 1px dashed $cf-Secondary-Color;
+      border-top: 1px dashed $cf-Secondary-Color;
       a {
         padding: 10px 0;
         text-align: center;
@@ -297,9 +293,17 @@ html {
     a{
       padding: 30px 15px;
     }
+    .menu{
+      justify-content: flex-end;
+    }
   }
   .badge-transform {
     transform: translateX(-5px) translateY(-15px);
+  }
+}
+@media screen and (max-width: 874px) {
+  .coffee-navbar a {
+    padding: 30px 5px;
   }
 }
 @media screen and (max-width: 575px) {
